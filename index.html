@@ -634,7 +634,7 @@
         <table class="bts-table" id="bts-table">
                 <thead>
                     <tr>
-                        <th data-sort="index"># <span class="sort-icon">↕</span></th>
+                        <th>#</th>
                         <th data-sort="dist_km" class="sorted">Odległość <span class="sort-icon">↑</span></th>
                         <th data-sort="azimuth">Azymut <span class="sort-icon">↕</span></th>
                         <th data-sort="operator_count">Operatorzy <span class="sort-icon">↕</span></th>
@@ -642,7 +642,6 @@
                         <th data-sort="has_5g_n78">5G <span class="sort-icon">↕</span></th>
                         <th style="min-width:180px">Na nadajniku</th>
                         <th style="min-width:200px">Szacowana</th>
-                        <th style="min-width:90px">Szczegóły</th>
                     </tr>
                 </thead>
                 <tbody id="table-body"></tbody>
@@ -968,8 +967,7 @@
             iconAnchor: [10, 10]
         });
         userMarker = L.marker([userLoc.lat, userLoc.lon], { icon: userIcon, zIndexOffset: 1000 })
-            .addTo(map)
-            .bindPopup('<div class="popup-title">📍 Twoja lokalizacja</div><div class="font-mono" style="font-size:0.78rem">' + userLoc.lat.toFixed(5) + '°N, ' + userLoc.lon.toFixed(5) + '°E</div>');
+            .addTo(map);
 
         linesLayer = L.layerGroup().addTo(map);
         markersLayer = L.layerGroup().addTo(map);
@@ -1043,7 +1041,7 @@
                 marker = L.marker([t.lat, t.lon], { icon: circleIcon });
             }
 
-            marker.bindPopup(buildPopup(t), { maxHeight: 450, maxWidth: 350 });
+            marker.on('click', () => window.expandTowerDetails(t._idx));
             marker.on('click', () => highlightTower(idx, 'map'));
 
             markersLayer.addLayer(marker);
@@ -1133,7 +1131,6 @@
                 <td>${fiveGCell}</td>
                 <td class="num">${theoCell}</td>
                 <td class="num real-speed">${realCell}</td>
-                <td><button class="terrain-btn details-btn" title="Szczegóły pasm i profil terenu">📋</button></td>
             `;
 
             const detailsRow = document.createElement('tr');
@@ -1151,7 +1148,7 @@
                     <span>${badges}</span>
                 </div>`;
             }).join('');
-            detailsRow.innerHTML = `<td colspan="9" style="padding:8px 12px;background:rgba(255,255,255,0.03);border-top:none">
+            detailsRow.innerHTML = `<td colspan="8" style="padding:8px 12px;background:rgba(255,255,255,0.03);border-top:none">
                 <div style="display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap">
                     <div style="flex:1;min-width:250px">${detailsHtml}</div>
                     <div style="flex:1;min-width:300px">
@@ -1164,22 +1161,15 @@
 </div>
             </td>`;
 
-            const detailsBtn = tr.querySelector('.details-btn');
-            if (detailsBtn) {
-                detailsBtn.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    detailsRow.classList.toggle('d-none');
-                    if (!detailsRow.classList.contains('d-none')) {
-                        const container = detailsRow.querySelector('.inline-terrain');
-                        if (container && !container.dataset.loaded) {
-                            container.dataset.loaded = '1';
-                            renderInlineTerrain(t, container);
-                        }
+            tr.addEventListener('click', () => {
+                detailsRow.classList.toggle('d-none');
+                if (!detailsRow.classList.contains('d-none')) {
+                    const container = detailsRow.querySelector('.inline-terrain');
+                    if (container && !container.dataset.loaded) {
+                        container.dataset.loaded = '1';
+                        renderInlineTerrain(t, container);
                     }
-                });
-            }
-            tr.addEventListener('click', (e) => {
-                if (e.target.closest('.details-btn')) return;
+                }
                 highlightTower(t._idx, 'table');
             });
             tbody.appendChild(tr);
