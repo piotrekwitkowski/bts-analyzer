@@ -152,11 +152,18 @@
             border-bottom: 1px solid var(--clr-border);
             padding: var(--space-md) 0;
         }
+        .filter-bar .container-fluid {
+            column-gap: var(--space-lg);
+            row-gap: var(--space-sm);
+        }
         .filter-group {
             display: flex;
             align-items: center;
             gap: var(--space-sm);
             flex-wrap: wrap;
+            background: rgba(128,128,128,0.06);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: var(--radius-sm);
         }
         .filter-label {
             font-size: 0.72rem;
@@ -545,7 +552,13 @@
             #map { height: 40vh; }
             .bts-table { font-size: 0.75rem; }
             .bts-table td, .bts-table th { padding: var(--space-xs) var(--space-sm); }
-            .filter-bar .container-fluid { flex-direction: column; gap: var(--space-sm); }
+            .filter-bar { padding: var(--space-sm) 0; }
+            .filter-bar .container-fluid { gap: var(--space-xs); }
+        .filter-sep { display: none; }
+            .filter-group { border-right: none; padding-right: 0; }
+            .op-check { padding: 2px 6px; font-size: 0.75rem; }
+            .tech-btn { padding: 2px 8px; font-size: 0.72rem; }
+            .filter-label { font-size: 0.65rem; }
             .terrain-chart-wrap { height: 200px; }
             .terrain-stats { grid-template-columns: 1fr; }
         }
@@ -586,8 +599,6 @@
             </label>
         </div>
 
-        <div style="width:1px; height:24px; background:var(--clr-border)"></div>
-
         <div class="filter-group">
             <span class="filter-label">Technologia</span>
             <button class="tech-btn active" data-tech="all">Wszystkie</button>
@@ -596,8 +607,6 @@
             <button class="tech-btn" data-tech="5g_any">5G</button>
             <button class="tech-btn" data-tech="lte">LTE</button>
         </div>
-
-        <div style="width:1px; height:24px; background:var(--clr-border)"></div>
 
         <div class="filter-group">
             <span class="filter-label">Max odległość</span>
@@ -936,7 +945,6 @@
     async function init() {
         const resp = await fetch('data.json?t=' + Date.now());
         const data = await resp.json();
-        console.log('Loaded data keys:', Object.keys(data), 'towers:', data.towers?.length);
         userLoc = data.user;
         allTowers = data.towers.map((t, i) => ({ ...t, _idx: i }));
 
@@ -1717,7 +1725,10 @@
         }
     }
 
-    document.addEventListener('DOMContentLoaded', () => { initTheme(); init(); });
+    document.addEventListener('DOMContentLoaded', () => {
+        initTheme();
+        init();
+    });
 })();
 </script>
 </body>
