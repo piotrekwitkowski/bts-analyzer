@@ -227,7 +227,7 @@
             border-radius: 2px;
             background: var(--clr-border);
             outline: none;
-            width: 140px;
+            width: 90px;
         }
         .dist-slider::-webkit-slider-thumb {
             -webkit-appearance: none;
@@ -571,10 +571,6 @@
 </head>
 <body>
 
-<div class="loading-overlay" id="loader">
-    <div class="loading-spinner"></div>
-</div>
-
 <header class="app-header">
     <div class="container-fluid px-4 d-flex align-items-center flex-wrap gap-3 justify-content-end">
         <h1 style="margin-right:auto">Radar <span>5G</span></h1>
@@ -620,7 +616,7 @@
         </div>
 
         <div class="filter-group">
-            <span class="filter-label">Odległość</span>
+            <span class="filter-label">Dystans</span>
             <input type="range" class="dist-slider" id="dist-slider" min="0.5" max="10" step="0.1" value="10">
             <span class="font-mono" style="font-size:0.78rem; min-width:50px;" id="dist-value">10 km</span>
         </div>
@@ -638,7 +634,7 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th data-sort="dist_km" class="sorted">Odległość <span class="sort-icon">↑</span></th>
+                        <th data-sort="dist_km" class="sorted">Dystans <span class="sort-icon">↑</span></th>
                         <th data-sort="azimuth">Azymut <span class="sort-icon">↕</span></th>
                         <th data-sort="operator_count">Operatorzy <span class="sort-icon">↕</span></th>
                         <th data-sort="miasto">Miasto <span class="sort-icon">↕</span></th>
@@ -761,35 +757,53 @@
     }
 
     const losCache = {};
-    let losFetchQueue = [];
-    let losFetching = false;
+    const losFetching = new Set();
+
+    function prefillLosCache() {
+        for (const tower of allTowers) {
+            const cacheKey = `terrain_${tower._idx}`;
+            const cached = sessionStorage.getItem(cacheKey);
+            if (cached) {
+                try {
+                    const d = JSON.parse(cached);
+                    const elevs = d.elevs || d;
+                    const points = interpolatePoints(userLoc.lat, userLoc.lon, tower.lat, tower.lon, 30);
+                    const distances = points.map(p => haversineDist(userLoc.lat, userLoc.lon, p.lat, p.lon));
+                    losCache[tower._idx] = computeLOSAnalysis(elevs, distances);
+                } catch (e) {}
+            }
+        }
+    }
 
     async function fetchLOSForTower(tower) {
         const idx = tower._idx;
         if (losCache[idx]) return losCache[idx];
-        const points = interpolatePoints(userLoc.lat, userLoc.lon, tower.lat, tower.lon, 30);
-        const elevations = await fetchTerrainElevations(idx, points);
-        const distances = points.map(p => haversineDist(userLoc.lat, userLoc.lon, p.lat, p.lon));
-        const losData = computeLOSAnalysis(elevations, distances);
-        losCache[idx] = losData;
-        return losData;
+        if (losFetching.has(idx)) return null;
+        losFetching.add(idx);
+        try {
+            const points = interpolatePoints(userLoc.lat, userLoc.lon, tower.lat, tower.lon, 30);
+            const elevations = await fetchTerrainElevations(idx, points);
+            const distances = points.map(p => haversineDist(userLoc.lat, userLoc.lon, p.lat, p.lon));
+            const losData = computeLOSAnalysis(elevations, distances);
+            losCache[idx] = losData;
+            return losData;
+        } finally {
+            losFetching.delete(idx);
+        }
     }
 
-    async function autoFetchLOS() {
-        if (losFetching) return;
-        losFetching = true;
-        const sorted = [...allTowers].sort((a, b) => a.dist_km - b.dist_km);
-        for (const tower of sorted) {
-            if (losCache[tower._idx]) continue;
-            try {
-                await fetchLOSForTower(tower);
-                updateTowerSpeedCells(tower._idx);
-                await new Promise(r => setTimeout(r, 200));
-            } catch (e) {
-                console.warn(`LOS fetch failed for tower ${tower._idx}:`, e.message);
-            }
-        }
-        losFetching = false;
+    let losObserver;
+    function initLosObserver() {
+        losObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                const idx = parseInt(entry.target.dataset.idx);
+                if (isNaN(idx) || losCache[idx] || losFetching.has(idx)) return;
+                const tower = allTowers[idx];
+                if (!tower) return;
+                fetchLOSForTower(tower).then(() => updateTowerSpeedCells(idx));
+            });
+        }, { rootMargin: '200px 0px' });
     }
 
     function updateTowerSpeedCells(idx) {
@@ -941,13 +955,12 @@
         userLoc = data.user;
         allTowers = data.towers.map((t, i) => ({ ...t, _idx: i }));
 
+        prefillLosCache();
+        initLosObserver();
         initMap();
         bindFilters();
         applyFilters();
         initTerrain();
-
-        setTimeout(() => document.getElementById('loader').classList.add('hidden'), 300);
-        setTimeout(() => autoFetchLOS(), 1000);
     }
 
     // ── MAP ──
@@ -1128,7 +1141,7 @@
             tr.innerHTML = `
                 <td class="num">${i + 1}</td>
                 <td class="num">${t.dist_km.toFixed(2)} <span style="color:var(--clr-text-dim)">km</span></td>
-                <td class="num">${Math.round(t.azimuth)}° <span style="color:var(--clr-text-dim)">${t.azimuth_dir}</span></td>
+                <td class="num"><span style="display:inline-block;transform:rotate(${t.azimuth}deg)">↑</span> <span style="color:var(--clr-text-dim)">${Math.round(t.azimuth)}° ${t.azimuth_dir}</span></td>
                 <td>${opBadges}</td>
                 <td>${t.miasto}</td>
                 <td>${fiveGCell}</td>
@@ -1177,6 +1190,7 @@
             });
             tbody.appendChild(tr);
             tbody.appendChild(detailsRow);
+            if (losObserver && !losCache[t._idx]) losObserver.observe(tr);
         });
     }
 
