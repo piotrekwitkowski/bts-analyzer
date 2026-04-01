@@ -629,7 +629,8 @@
                         <th data-sort="operator_count">Operatorzy <span class="sort-icon">↕</span></th>
                         <th data-sort="miasto">Miasto <span class="sort-icon">↕</span></th>
                         <th data-sort="has_5g_n78">5G <span class="sort-icon">↕</span></th>
-                        <th data-sort="band_count" style="min-width:200px">Prędkość ↓ <span class="sort-icon">↕</span></th>
+                        <th style="min-width:180px">Na nadajniku</th>
+                        <th style="min-width:200px">Szacowana</th>
                         <th style="min-width:90px">Szczegóły</th>
                     </tr>
                 </thead>
@@ -665,6 +666,34 @@
         const d = tower.dist_km;
         const los = losCache[tower._idx] || null;
         return estimateSpeedForBands(tower.all_bands, d, los);
+    }
+
+    function theoreticalSpeedForBands(bands) {
+        let best = '', maxDl = 0;
+        if (bands.includes('5G3600') || bands.includes('5G3500')) {
+            best = 'n78'; maxDl = 700;
+        } else if (bands.includes('5G700')) {
+            best = 'n28'; maxDl = 300;
+            const lteBands = bands.filter(b => b.startsWith('LTE'));
+            if (lteBands.length >= 3) maxDl = 300;
+            else maxDl = 120;
+        } else if (bands.some(b => b.startsWith('5G'))) {
+            best = '5G'; maxDl = 200;
+        } else {
+            const lteBands = bands.filter(b => b.startsWith('LTE'));
+            if (lteBands.length > 0) { best = 'LTE'; maxDl = lteBands.length * 40; }
+            else { best = '2G/3G'; maxDl = 10; }
+        }
+        const label = maxDl >= 100 ? `${maxDl} Mbps` : `<${maxDl} Mbps`;
+        const cls = maxDl >= 300 ? 'check-yes' : maxDl >= 100 ? 'speed-mid' : maxDl >= 50 ? 'speed-low' : 'check-no';
+        return { best, maxDl, label, cls };
+    }
+
+    function theoreticalSpeedsPerOperator(tower) {
+        return tower.operators.map(op => {
+            const spd = theoreticalSpeedForBands(op.bands);
+            return { operator: op.operator, id: op.id, ...spd };
+        }).sort((a, b) => b.maxDl - a.maxDl);
     }
 
     function estimateSpeedForBands(bands, d, los) {
@@ -756,14 +785,32 @@
         const tower = allTowers[idx];
         if (!tower) return;
         const opSpeeds = estimateSpeedsPerOperator(tower);
-        const topTwo = opSpeeds.slice(0, 2);
-        const speedCell = topTwo.map(s => {
+        const realCell = opSpeeds.map(s => {
             const c = OPERATOR_COLORS[s.operator] || '#888';
-            return `<span class="${s.cls}" style="font-weight:600">${s.label}</span> <span style="font-size:0.75em;color:${c}">${s.operator}</span> <span style="font-size:0.7em;color:var(--clr-text-dim)">${s.best}</span>`;
+            return `<span style="white-space:nowrap"><span class="${s.cls}" style="font-weight:600">${s.label}</span> <span style="font-size:0.75em;color:${c}">${s.operator}</span> <span style="font-size:0.7em;color:var(--clr-text-dim)">${s.best}</span></span>`;
         }).join('<br>');
         const mainRow = rows[0];
-        const speedTd = mainRow.querySelectorAll('td')[7];
-        if (speedTd) speedTd.innerHTML = speedCell;
+        const realTd = mainRow.querySelector('.real-speed');
+        if (realTd) realTd.innerHTML = realCell;
+
+        if (rows.length > 1) {
+            const detailsRow = rows[1];
+            const bandsDiv = detailsRow.querySelector('div > div:first-child');
+            if (bandsDiv) {
+                bandsDiv.innerHTML = opSpeeds.map(s => {
+                    const opColor = OPERATOR_COLORS[s.operator] || '#888';
+                    const op = tower.operators.find(o => o.operator === s.operator && o.id === s.id);
+                    const badges = op ? op.bands.map(b => `<span class="band-badge ${bandClass(b)}">${b}</span>`).join(' ') : '';
+                    return `<div style="display:flex;align-items:baseline;gap:6px;padding:3px 0;border-bottom:1px solid rgba(255,255,255,0.05);flex-wrap:wrap">
+                        <span class="${s.cls}" style="font-weight:600;min-width:90px">${s.label}</span>
+                        <span style="color:${opColor};font-weight:600">${s.operator}</span>
+                        <span style="color:var(--clr-text-dim);font-size:0.8em">${s.id}</span>
+                        <span style="color:var(--clr-text-dim);font-size:0.8em">(${s.best})</span>
+                        <span>${badges}</span>
+                    </div>`;
+                }).join('');
+            }
+        }
     }
 
     async function renderInlineTerrain(tower, container) {
@@ -983,7 +1030,7 @@
                 marker = L.marker([t.lat, t.lon], { icon: circleIcon });
             }
 
-            marker.bindPopup(buildPopup(t));
+            marker.bindPopup(buildPopup(t), { maxHeight: 450, maxWidth: 350 });
             marker.on('click', () => highlightTower(idx, 'map'));
 
             markersLayer.addLayer(marker);
@@ -1037,20 +1084,23 @@
             const primOp = primaryOperator(t);
             const rowCls = t.operator_count > 1 ? 'op-multi' : ('op-' + (OPERATOR_CLASS[primOp] || ''));
 
+            const tr = document.createElement('tr');
+            tr.className = rowCls;
+            tr.dataset.idx = t._idx;
+
             const opBadges = t.operator_names.map(name => {
                 const cls = OPERATOR_CLASS[name] || '';
                 return `<span class="op-tag ${cls}">${name}</span>`;
             }).join('');
 
-            const opSpeeds = estimateSpeedsPerOperator(t);
-            const topSpd = opSpeeds[0];
-            const topOpColor = OPERATOR_COLORS[topSpd.operator] || '#888';
+            const theoSpeeds = theoreticalSpeedsPerOperator(t);
+            const theoCell = theoSpeeds.map(s => {
+                const c = OPERATOR_COLORS[s.operator] || '#888';
+                return `<span style="white-space:nowrap"><span class="${s.cls}" style="font-weight:600">${s.label}</span> <span style="font-size:0.75em;color:${c}">${s.operator}</span> <span style="font-size:0.7em;color:var(--clr-text-dim)">${s.best}</span></span>`;
+            }).join('<br>');
 
-            const tr = document.createElement('tr');
-            tr.className = rowCls;
-            tr.dataset.idx = t._idx;
-            const topTwo = opSpeeds.slice(0, 2);
-            const speedCell = topTwo.map(s => {
+            const opSpeeds = estimateSpeedsPerOperator(t);
+            const realCell = opSpeeds.map(s => {
                 const c = OPERATOR_COLORS[s.operator] || '#888';
                 return `<span style="white-space:nowrap"><span class="${s.cls}" style="font-weight:600">${s.label}</span> <span style="font-size:0.75em;color:${c}">${s.operator}</span> <span style="font-size:0.7em;color:var(--clr-text-dim)">${s.best}</span></span>`;
             }).join('<br>');
@@ -1064,11 +1114,12 @@
             tr.innerHTML = `
                 <td class="num">${i + 1}</td>
                 <td class="num">${t.dist_km.toFixed(2)}</td>
-                <td class="num">${t.azimuth.toFixed(1)}° <span style="color:var(--clr-text-dim)">${t.azimuth_dir}</span></td>
+                <td class="num">${Math.round(t.azimuth)}° ${t.azimuth_dir}</td>
                 <td>${opBadges}</td>
                 <td>${t.miasto}</td>
-                <td class="text-center">${fiveGCell}</td>
-                <td class="num">${speedCell}</td>
+                <td>${fiveGCell}</td>
+                <td class="num">${theoCell}</td>
+                <td class="num real-speed">${realCell}</td>
                 <td><button class="terrain-btn details-btn" title="Szczegóły pasm i profil terenu">📋</button></td>
             `;
 
@@ -1087,7 +1138,7 @@
                     <span>${badges}</span>
                 </div>`;
             }).join('');
-            detailsRow.innerHTML = `<td colspan="8" style="padding:8px 12px;background:rgba(255,255,255,0.03);border-top:none">
+            detailsRow.innerHTML = `<td colspan="9" style="padding:8px 12px;background:rgba(255,255,255,0.03);border-top:none">
                 <div style="display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap">
                     <div style="flex:1;min-width:250px">${detailsHtml}</div>
                     <div style="flex:1;min-width:300px">
