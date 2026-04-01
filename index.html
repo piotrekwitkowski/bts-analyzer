@@ -837,7 +837,7 @@
                 bandsDiv.innerHTML = opSpeeds.map(s => {
                     const opColor = OPERATOR_COLORS[s.operator] || '#888';
                     const op = tower.operators.find(o => o.operator === s.operator && o.id === s.id);
-                    const badges = op ? op.bands.map(b => `<span class="band-badge ${bandClass(b)}">${b}</span>`).join(' ') : '';
+                    const badges = op ? sortBands(op.bands).map(b => `<span class="band-badge ${bandClass(b)}">${b}</span>`).join(' ') : '';
                     return `<div style="display:flex;align-items:baseline;gap:6px;padding:3px 0;border-bottom:1px solid rgba(255,255,255,0.05);flex-wrap:wrap">
                         <span class="${s.cls}" style="font-weight:600;min-width:90px">${s.label}</span>
                         <span style="color:${opColor};font-weight:600">${s.operator}</span>
@@ -929,6 +929,20 @@
         if (b.startsWith('GSM')) return 'band-gsm';
         if (b.startsWith('UMTS')) return 'band-umts';
         return 'band-lte';
+    }
+
+    function bandSortKey(b) {
+        if (b.includes('3600') || b.includes('3500')) return 0;
+        if (b.includes('700') && b.startsWith('5G')) return 1;
+        if (b.startsWith('5G') || b.startsWith('NR')) return 2;
+        if (b.startsWith('LTE')) return 3;
+        if (b.startsWith('UMTS')) return 4;
+        if (b.startsWith('GSM')) return 5;
+        return 6;
+    }
+
+    function sortBands(bands) {
+        return [...bands].sort((a, b) => bandSortKey(a) - bandSortKey(b));
     }
 
     /** Return the primary operator of a tower (the one with the most bands) */
@@ -1085,7 +1099,7 @@
         // Operator sections
         const opSections = t.operators.map(op => {
             const opColor = OPERATOR_COLORS[op.operator] || '#888';
-            const bands = op.bands.map(b => `<span class="band-badge ${bandClass(b)}">${b}</span>`).join(' ');
+            const bands = sortBands(op.bands).map(b => `<span class="band-badge ${bandClass(b)}">${b}</span>`).join(' ');
             return `
                 <div class="popup-op-section">
                     <div class="popup-op-name">
@@ -1168,7 +1182,7 @@
             const detailsHtml = opSpeeds.map(s => {
                 const opColor = OPERATOR_COLORS[s.operator] || '#888';
                 const op = t.operators.find(o => o.operator === s.operator && o.id === s.id);
-                const badges = op ? op.bands.map(b => `<span class="band-badge ${bandClass(b)}">${b}</span>`).join(' ') : '';
+                const badges = op ? sortBands(op.bands).map(b => `<span class="band-badge ${bandClass(b)}">${b}</span>`).join(' ') : '';
                 return `<div style="display:flex;align-items:baseline;gap:6px;padding:3px 0;border-bottom:1px solid rgba(255,255,255,0.05);flex-wrap:wrap">
                     <span class="${s.cls}" style="font-weight:600;min-width:90px">${s.label}</span>
                     <span style="color:${opColor};font-weight:600">${s.operator}</span>
