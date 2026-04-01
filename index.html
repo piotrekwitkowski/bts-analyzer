@@ -869,6 +869,9 @@
             container.appendChild(canvas);
 
             const losLine = distances.map(d => losData.userElev + (d / losData.totalDist) * (losData.btsElev - losData.userElev));
+            const freqMHz = getDominantFreqMHz(tower);
+            const fresnelRadii = computeFresnelRadii(freqMHz, distances, losData.totalDist);
+            const fresnelLower = losData.los.map((l, i) => l - fresnelRadii[i]);
             const distLabels = distances.map(d => (d / 1000).toFixed(1));
 
             new Chart(canvas, {
@@ -879,21 +882,42 @@
                         {
                             label: 'Teren',
                             data: elevations,
-                            borderColor: losData.blocked ? '#ef4444' : '#22c55e',
-                            backgroundColor: losData.blocked ? 'rgba(239,68,68,0.15)' : 'rgba(34,197,94,0.15)',
-                            borderWidth: 1.5,
-                            fill: true,
+                            borderColor: 'rgba(148,163,184,0.9)',
+                            fill: { target: 1, above: 'rgba(239,68,68,0.3)', below: 'rgba(34,197,94,0.08)' },
+                            tension: 0.35,
                             pointRadius: 0,
-                            tension: 0.3
+                            borderWidth: 1.5,
+                            order: 2
                         },
                         {
                             label: 'LOS',
                             data: losLine,
-                            borderColor: '#fbbf24',
-                            borderWidth: 1,
-                            borderDash: [4, 4],
+                            borderColor: 'rgba(251,191,36,0.85)',
+                            borderDash: [8, 4],
                             fill: false,
-                            pointRadius: 0
+                            pointRadius: 0,
+                            borderWidth: 1.5,
+                            order: 1
+                        },
+                        {
+                            label: 'Fresnel',
+                            data: fresnelLower,
+                            borderColor: 'rgba(251,191,36,0.2)',
+                            borderDash: [3, 3],
+                            fill: false,
+                            pointRadius: 0,
+                            borderWidth: 1,
+                            order: 1
+                        },
+                        {
+                            label: '_fill',
+                            data: elevations,
+                            borderColor: 'transparent',
+                            backgroundColor: 'rgba(56,189,248,0.04)',
+                            fill: 'origin',
+                            pointRadius: 0,
+                            borderWidth: 0,
+                            order: 3
                         }
                     ]
                 },
@@ -901,6 +925,7 @@
                     responsive: true,
                     maintainAspectRatio: false,
                     animation: { duration: 300 },
+                    interaction: { mode: 'index', intersect: false },
                     plugins: {
                         legend: { display: false },
                         title: {
@@ -908,6 +933,19 @@
                             text: `${tower.miasto} ${tower.dist_km}km — ${losData.blocked ? '⛔ NLOS (+' + losData.maxObs.toFixed(0) + 'm)' : '✅ LOS czysty'}`,
                             color: losData.blocked ? '#ef4444' : '#22c55e',
                             font: { size: 11 }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(20,24,32,0.95)',
+                            borderColor: '#242a36',
+                            borderWidth: 1,
+                            bodyFont: { size: 10 },
+                            callbacks: {
+                                title: items => `${items[0].label} km`,
+                                label: item => {
+                                    if (item.dataset.label === '_fill') return null;
+                                    return `${item.dataset.label}: ${item.raw.toFixed(1)} m`;
+                                }
+                            }
                         }
                     },
                     scales: {
