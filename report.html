@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<title>Analiza 5G — Radlin k. Kielc</title>
+<style>
+  @page {
+    size: A4;
+    margin: 20mm 18mm 22mm 18mm;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 10pt;
+    line-height: 1.45;
+    color: #1a1a1a;
+    background: #fff;
+  }
+  .cover {
+    page-break-after: always;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+    text-align: center;
+    padding: 60px 40px;
+  }
+  .cover h1 {
+    font-size: 26pt;
+    font-weight: 700;
+    color: #0a2540;
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+  }
+  .cover .subtitle {
+    font-size: 13pt;
+    color: #4a6fa5;
+    font-weight: 400;
+    margin-bottom: 40px;
+  }
+  .cover .meta {
+    font-size: 10pt;
+    color: #666;
+    margin-top: 20px;
+  }
+  h2 {
+    font-size: 16pt;
+    color: #0a2540;
+    border-bottom: 3px solid #4a6fa5;
+    padding-bottom: 6px;
+    margin: 24px 0 12px 0;
+    page-break-after: avoid;
+  }
+  h3 {
+    font-size: 12pt;
+    color: #2a4a7a;
+    margin: 14px 0 6px 0;
+    page-break-after: avoid;
+  }
+  h4 {
+    font-size: 10.5pt;
+    color: #3a5a8a;
+    margin: 10px 0 4px 0;
+  }
+  p { margin: 5px 0; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 8px 0 12px 0;
+    font-size: 9pt;
+    page-break-inside: avoid;
+  }
+  th, td {
+    border: 1px solid #d0d7e0;
+    padding: 5px 7px;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background: #0a2540;
+    color: #fff;
+    font-weight: 600;
+    font-size: 8.5pt;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+  tr:nth-child(even) { background: #f5f7fa; }
+  .yes { color: #0a8754; font-weight: 700; }
+  .no { color: #c0392b; font-weight: 700; }
+  .partial { color: #e67e22; font-weight: 700; }
+  .callout {
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin: 10px 0;
+    page-break-inside: avoid;
+  }
+  .callout-green { background: #e8f5e9; border-left: 4px solid #0a8754; }
+  .callout-amber { background: #fff8e1; border-left: 4px solid #f9a825; }
+  .callout-blue { background: #e3f2fd; border-left: 4px solid #1565c0; }
+  .callout-red { background: #fce4ec; border-left: 4px solid #c62828; }
+  .callout strong { display: block; margin-bottom: 3px; }
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 8pt;
+    font-weight: 600;
+    color: #fff;
+  }
+  .badge-green { background: #0a8754; }
+  .badge-amber { background: #f9a825; color: #333; }
+  .badge-red { background: #c62828; }
+  .badge-blue { background: #1565c0; }
+  .footer-note {
+    margin-top: 24px;
+    padding-top: 10px;
+    border-top: 1px solid #d0d7e0;
+    font-size: 8pt;
+    color: #888;
+  }
+  .section-break { page-break-before: always; }
+  ul { margin: 5px 0 5px 20px; }
+  li { margin: 2px 0; }
+  .verdict {
+    border: 2px solid #0a2540;
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin: 12px 0;
+    background: #f8fafc;
+  }
+  .verdict h3 { margin-top: 0; color: #0a2540; }
+  .terrain-img {
+    width: 100%;
+    max-width: 580px;
+    border: 1px solid #d0d7e0;
+    border-radius: 6px;
+    margin: 6px 0;
+  }
+  .ascii-los {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 7.5pt;
+    line-height: 1.25;
+    background: #f5f7fa;
+    border: 1px solid #d0d7e0;
+    border-radius: 6px;
+    padding: 8px 12px;
+    margin: 6px 0 10px 0;
+    white-space: pre;
+    overflow-x: auto;
+    page-break-inside: avoid;
+  }
+  .loc-header {
+    font-size: 14pt;
+    font-weight: 700;
+    color: #0a2540;
+    margin: 0 0 4px 0;
+    page-break-after: avoid;
+  }
+  .loc-sub {
+    font-size: 10pt;
+    color: #4a6fa5;
+    margin: 0 0 10px 0;
+  }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <h1>Analiza 5G — Radlin k. Kielc</h1>
+  <div class="subtitle">Stacje bazowe, profile terenu i dobór routera outdoor</div>
+  <div class="meta">
+    Lokalizacja: 50.8483°N, 20.7456°E, ~296 m n.p.m.<br>
+    Data opracowania: marzec 2026<br>
+    Źródła: btssearch.pl, UKE, TP-Link, spectrum-tracker.com, dane NMT
+  </div>
+</div>
+
+<!-- ==================== PART 1: TRANSMITTERS ==================== -->
+
+<!-- PAGE: Cedzyna -->
+<div class="section-break"></div>
+<div class="loc-header">1. Cedzyna — 2,5–2,8 km · azymut 322°–343° (NW–NNW)</div>
+<div class="loc-sub">Play (n78!) · Orange · T-Mobile · Plus — 6 stacji</div>
+
+<h3>Stacje bazowe</h3>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Operator</th>
+    <th>5G n78</th>
+    <th>5G n28</th>
+    <th>5G inne</th>
+    <th>LTE</th>
+  </tr>
+  <tr style="background:#e8f5e9">
+    <td><strong>KIE4427</strong></td>
+    <td><strong>Play</strong></td>
+    <td class="yes">TAK</td>
+    <td class="yes">TAK</td>
+    <td>n1</td>
+    <td>B1/B3/B7/B8/B20/B28</td>
+  </tr>
+  <tr>
+    <td>KIE1043</td>
+    <td>Play</td>
+    <td class="no">BRAK</td>
+    <td class="no">BRAK</td>
+    <td>n1</td>
+    <td>B1/B3/B7/B20</td>
+  </tr>
+  <tr>
+    <td>13788</td>
+    <td>Orange</td>
+    <td class="no">BRAK</td>
+    <td class="yes">TAK</td>
+    <td>n1</td>
+    <td>B1/B3/B7/B20/B28</td>
+  </tr>
+  <tr>
+    <td>55187</td>
+    <td>T-Mobile</td>
+    <td class="no">BRAK</td>
+    <td class="yes">TAK</td>
+    <td>n1</td>
+    <td>B1/B3/B7/B8/B20/B28</td>
+  </tr>
+  <tr>
+    <td>BT12468</td>
+    <td>Plus</td>
+    <td class="no">BRAK</td>
+    <td class="no">BRAK</td>
+    <td>n3/n7/n8 DSS</td>
+    <td>B3/B7/B8</td>
+  </tr>
+  <tr>
+    <td>BT14889</td>
+    <td>Plus</td>
+    <td class="no">BRAK</td>
+    <td class="no">BRAK</td>
+    <td>n3/n7/n8 DSS</td>
+    <td>B3/B7/B8</td>
+  </tr>
+</table>
+
+<h3>Profil terenu i linia wzroku</h3>
+<img src="teren-cedzyna.png" alt="Profil terenu: Radlin → Cedzyna" class="terrain-img">
+<div class="ascii-los">Radlin (296m)           Wzgórze (317m)                      BTS Cedzyna (264m + maszt ≈ 299m)
+    ×                      /\
+     \    ⛔ BLOKADA       /  \
+      \     ↑ ~10-18m     /    \
+       \________________/\_     \___
+                                    \_________
+                                              × BTS
+    0m        250m        500m               2500m</div>
+
+<table>
+  <tr><th style="width:30%">Parametr</th><th>Wartość</th></tr>
+  <tr><td>Odległość</td><td>2,5 km (Orange/T-Mo) — 2,8 km (Play n78)</td></tr>
+  <tr><td>Azymut</td><td>322° NW (Orange) · 331° NNW (Play n78) · 343° NNW (T-Mobile)</td></tr>
+  <tr><td>Twoja wysokość</td><td>~296 m n.p.m.</td></tr>
+  <tr><td>Wysokość BTS</td><td>~264 m + maszt ~35 m = ~299 m</td></tr>
+  <tr><td>Przeszkoda</td><td><strong>Wzgórze ~317 m n.p.m.</strong> w odl. ~250 m (+21 m nad użytkownikiem)</td></tr>
+  <tr><td style="background:#fce4ec"><strong>Linia wzroku</strong></td>
+      <td style="background:#fce4ec"><strong>⛔ ZABLOKOWANA</strong> — wzgórze blokuje o ~10–18 m nawet z masztem BTS</td></tr>
+  <tr><td>Prędkość realna (Play n78)</td><td><strong>0–100 Mbps</strong> — n78 prawdopodobnie niedostępne, fallback na LTE</td></tr>
+  <tr><td>Prędkość realna (Orange/T-Mo)</td><td>30–120 Mbps — low-band przeniknie częściowo</td></tr>
+</table>
+
+<div class="callout callout-red">
+  <strong>⛔ Cedzyna: LOS zablokowany.</strong>
+  Jedyna stacja n78 w okolicy, ale wzgórze 317 m uniemożliwia wykorzystanie pasma 3600 MHz.
+  Strata dyfrakcyjna ~15–25 dB + las (Góry Świętokrzyskie) ~10–20 dB na 3,5 GHz.
+</div>
+
+<!-- PAGE: Radlin -->
+<div class="section-break"></div>
+<div class="loc-header">2. Radlin — 1,7 km · azymut 25° (NNE)</div>
+<div class="loc-sub">Play — 1 stacja (n28 + pełny LTE) · NAJBLIŻSZA STACJA</div>
+
+<h3>Stacja bazowa</h3>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Operator</th>
+    <th>5G n78</th>
+    <th>5G n28</th>
+    <th>5G inne</th>
+    <th>LTE</th>
+  </tr>
+  <tr style="background:#e8f5e9">
+    <td><strong>KIE4428</strong></td>
+    <td><strong>Play</strong></td>
+    <td class="no">BRAK</td>
+    <td class="yes">TAK</td>
+    <td>n1</td>
+    <td>B1/B3/B7/B8/B20/B28</td>
+  </tr>
+</table>
+
+<h3>Profil terenu i linia wzroku</h3>
+<img src="teren-radlin.png" alt="Profil terenu: Radlin → Play Radlin BTS" class="terrain-img">
+<div class="ascii-los">Radlin (296m)     Wzniesienie (~302m)                             BTS Radlin (275m + maszt ≈ 310m)
+    ×                /‾\
+     \   +4-6m      /    \____
+      \_OK z dachu_/          \___                    ___
+                                  \___               /   \
+                                      \_____________/     × BTS
+    0m       400m       1000m        2000m               3300m</div>
+
+<table>
+  <tr><th style="width:30%">Parametr</th><th>Wartość</th></tr>
+  <tr><td>Odległość</td><td><strong>1,7 km — najbliższa stacja</strong></td></tr>
+  <tr><td>Azymut</td><td>25° (NNE)</td></tr>
+  <tr><td>Twoja wysokość</td><td>~296 m n.p.m.</td></tr>
+  <tr><td>Wysokość BTS</td><td>~275 m + maszt ~35 m = ~310 m</td></tr>
+  <tr><td>Przeszkoda</td><td>Łagodne wzniesienie ~302 m w odl. ~400 m (+4–6 m nad użytkownikiem)</td></tr>
+  <tr><td style="background:#e8f5e9"><strong>Linia wzroku</strong></td>
+      <td style="background:#e8f5e9"><strong>✅ CZYSTY z dachu/komina</strong> — montaż +3–6 m oczyszcza wzniesienie, dalej brak przeszkód</td></tr>
+  <tr><td><strong>Prędkość realna</strong></td><td><strong>150–300 Mbps</strong> — n28 + LTE agregacja, stabilny LOS, krótki dystans</td></tr>
+</table>
+
+<div class="callout callout-green">
+  <strong>✅ Radlin: najbliższa stacja (1,7 km), najlepszy profil terenu — REKOMENDOWANY KIERUNEK.</strong>
+  Czysty LOS z montażu na dachu. Brak n78, ale stabilne 150–300 Mbps na n28 + LTE
+  to lepiej niż niestabilne 0–100 Mbps z n78 za wzgórzem w Cedzynie.
+</div>
+
+<!-- PAGE: Górno -->
+<div class="section-break"></div>
+<div class="loc-header">3. Górno — 5,1 km · azymut 85° (E)</div>
+<div class="loc-sub">Orange (n28 + pełny LTE) · T-Mobile · Plus (DSS) — 3 stacje</div>
+
+<h3>Stacje bazowe</h3>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Operator</th>
+    <th>5G n78</th>
+    <th>5G n28</th>
+    <th>5G inne</th>
+    <th>LTE</th>
+  </tr>
+  <tr>
+    <td><strong>14004</strong></td>
+    <td><strong>Orange</strong></td>
+    <td class="no">BRAK</td>
+    <td class="yes">TAK</td>
+    <td>n1</td>
+    <td>B1/B3/B7/B8/B20/B28</td>
+  </tr>
+  <tr>
+    <td>52845</td>
+    <td>T-Mobile</td>
+    <td class="no">BRAK</td>
+    <td class="yes">TAK</td>
+    <td>n1</td>
+    <td>B1/B3/B7/B8/B20/B28</td>
+  </tr>
+  <tr>
+    <td>BT12337</td>
+    <td>Plus</td>
+    <td class="no">BRAK</td>
+    <td class="no">BRAK</td>
+    <td>n3/n7/n8 DSS</td>
+    <td>B3/B8</td>
+  </tr>
+</table>
+
+<h3>Profil terenu i linia wzroku</h3>
+<img src="teren-gorno.png" alt="Profil terenu: Radlin → Górno" class="terrain-img">
+<div class="ascii-los">Radlin (296m)                                                   BTS Górno (285m + maszt ≈ 320m)
+    ×
+     \
+      \___                                              ___
+          \___        ___                              /   × BTS
+              \______/   \____________________________/
+                ~265m                                  ~285m
+    0m        1000m      2000m      4000m             6500m</div>
+
+<table>
+  <tr><th style="width:30%">Parametr</th><th>Wartość</th></tr>
+  <tr><td>Odległość</td><td>5,1 km (Orange/T-Mobile) · 6,0 km (Plus) · 6,8 km (Play KIE4415)</td></tr>
+  <tr><td>Azymut</td><td>85° E (Orange/T-Mobile) · 84° E (Plus) · 88° E (Play)</td></tr>
+  <tr><td>Twoja wysokość</td><td>~296 m n.p.m.</td></tr>
+  <tr><td>Wysokość BTS</td><td>~285 m + maszt ~35 m = ~320 m</td></tr>
+  <tr><td>Przeszkoda</td><td>Brak — teren opada, użytkownik powyżej całej trasy</td></tr>
+  <tr><td style="background:#e8f5e9"><strong>Linia wzroku</strong></td>
+      <td style="background:#e8f5e9"><strong>✅ CZYSTY</strong> — strefa Fresnela wolna, brak przeszkód</td></tr>
+  <tr><td>Prędkość realna (Orange)</td><td><strong>100–200 Mbps</strong> — B3 30 MHz (najszerszy LTE), dystans 5,1 km</td></tr>
+  <tr><td>Prędkość realna (T-Mobile)</td><td>80–180 Mbps — pełny LTE, B20 15 MHz</td></tr>
+  <tr><td>Prędkość realna (Plus)</td><td>30–80 Mbps — DSS, mało pasm LTE (B3/B8)</td></tr>
+</table>
+
+<div class="callout callout-blue">
+  <strong>Górno: czysty LOS, dystans 5,1 km.</strong>
+  Orange z B3 30 MHz da solidne 100–200 Mbps. T-Mobile podobnie. Plus słaby (brak n28, mało LTE).
+  Dobra opcja zapasowa lub dla Orange/T-Mobile jako operatora głównego.
+</div>
+
+<!-- PAGE: Brzechów -->
+<div class="section-break"></div>
+<div class="loc-header">4. Brzechów — 3,9 km · azymut 134° (SE)</div>
+<div class="loc-sub">Play (n28 + pełny LTE) — 1 stacja</div>
+
+<h3>Stacja bazowa</h3>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Operator</th>
+    <th>5G n78</th>
+    <th>5G n28</th>
+    <th>5G inne</th>
+    <th>LTE</th>
+  </tr>
+  <tr>
+    <td>KIE3328</td>
+    <td>Play</td>
+    <td class="no">BRAK</td>
+    <td class="yes">TAK</td>
+    <td>n1</td>
+    <td>B1/B3/B7/B8/B20/B28</td>
+  </tr>
+</table>
+
+<h3>Profil terenu i linia wzroku</h3>
+<img src="teren-brzechow.png" alt="Profil terenu: Radlin → Brzechów" class="terrain-img">
+<div class="ascii-los">Radlin (296m)                         GÓRA (~340m)
+    ×                                   /\
+     \                                 /  \
+      \___                            /    \
+          \____                      /      \
+               \____________________/        \___
+                                                 \___ × BTS 265m
+    0m          1000m         2200m               3500m</div>
+
+<table>
+  <tr><th style="width:30%">Parametr</th><th>Wartość</th></tr>
+  <tr><td>Odległość</td><td>3,9 km</td></tr>
+  <tr><td>Azymut</td><td>134° (SE)</td></tr>
+  <tr><td>Twoja wysokość</td><td>~296 m n.p.m.</td></tr>
+  <tr><td>Wysokość BTS</td><td>~265 m + maszt ~35 m = ~300 m</td></tr>
+  <tr><td>Przeszkoda</td><td><strong>Góra ~340 m n.p.m.</strong> w odl. ~2 200 m (+44 m nad użytkownikiem!)</td></tr>
+  <tr><td style="background:#fce4ec"><strong>Linia wzroku</strong></td>
+      <td style="background:#fce4ec"><strong>⛔⛔ TOTALNIE ZABLOKOWANY</strong> — najgorsza przeszkoda, blokada ~40 m nad BTS</td></tr>
+  <tr><td>Prędkość realna</td><td><strong>10–40 Mbps</strong> — nawet 700 MHz nie przebije skutecznie</td></tr>
+</table>
+
+<div class="callout callout-red">
+  <strong>⛔⛔ Brzechów: masywna góra 340 m — kierunek nieużyteczny.</strong>
+  Strata dyfrakcyjna 25–35 dB. Najgorszy profil terenu ze wszystkich kierunków.
+</div>
+
+<!-- PAGE: Ranking kierunków -->
+<div class="section-break"></div>
+<h2>5. Ranking kierunków i operatorów</h2>
+
+<table>
+  <tr>
+    <th style="width:5%">#</th>
+    <th style="width:14%">Kierunek</th>
+    <th style="width:10%">Operator</th>
+    <th style="width:8%">Odl.</th>
+    <th style="width:6%">LOS</th>
+    <th style="width:14%">Prędkość DL</th>
+    <th>Komentarz</th>
+  </tr>
+  <tr style="background:#e8f5e9">
+    <td><strong>🥇</strong></td>
+    <td><strong>Radlin (25° NNE)</strong></td>
+    <td><strong>Play</strong></td>
+    <td><strong>1,7 km</strong></td>
+    <td class="yes">✅</td>
+    <td><strong>150–300 Mbps</strong></td>
+    <td>Najbliższa stacja! Czysty LOS z dachu. n28 + pełny LTE.</td>
+  </tr>
+  <tr>
+    <td>🥈</td>
+    <td>Górno (85° E)</td>
+    <td>Orange</td>
+    <td>5,1 km</td>
+    <td class="yes">✅</td>
+    <td>100–200 Mbps</td>
+    <td>Czysty LOS. B3 30 MHz najszerszy blok LTE.</td>
+  </tr>
+  <tr>
+    <td>🥉</td>
+    <td>Górno (85° E)</td>
+    <td>Plus</td>
+    <td>6,0 km</td>
+    <td class="yes">✅</td>
+    <td>30–80 Mbps</td>
+    <td>Czysty LOS, ale brak n28 i mało pasm LTE.</td>
+  </tr>
+  <tr>
+    <td>4.</td>
+    <td>Cedzyna (331° NNW)</td>
+    <td>Play (n78)</td>
+    <td>2,8 km</td>
+    <td class="no">⛔</td>
+    <td>0–100 Mbps</td>
+    <td>Jedyny n78, ale wzgórze 317 m blokuje. Ryzykowne.</td>
+  </tr>
+  <tr>
+    <td>5.</td>
+    <td>Cedzyna (322° NW)</td>
+    <td>Orange/T-Mo</td>
+    <td>2,5 km</td>
+    <td class="no">⛔</td>
+    <td>30–120 Mbps</td>
+    <td>Za wzgórzem. Low-band przeniknie częściowo.</td>
+  </tr>
+  <tr>
+    <td>6.</td>
+    <td>Brzechów (134° SE)</td>
+    <td>Play</td>
+    <td>3,9 km</td>
+    <td class="no">⛔⛔</td>
+    <td>10–40 Mbps</td>
+    <td>Góra 340 m — totalny blok. Nieużyteczny.</td>
+  </tr>
+</table>
+
+<h3>Porównanie wizualne</h3>
+<table>
+  <tr>
+    <th style="width:22%">Kierunek</th>
+    <th style="width:15%">Prędkość DL</th>
+    <th>Skala</th>
+  </tr>
+  <tr style="background:#e8f5e9">
+    <td><strong>Play → Radlin (25°)</strong> ✅</td>
+    <td><strong>150–300 Mbps</strong></td>
+    <td><div style="background:#0a8754;color:#fff;padding:4px 8px;border-radius:4px;width:100%">████████████████████████████████████████</div></td>
+  </tr>
+  <tr>
+    <td>Orange → Górno (85°) ✅</td>
+    <td>100–200 Mbps</td>
+    <td><div style="background:#f9a825;color:#333;padding:4px 8px;border-radius:4px;width:72%">█████████████████████████████</div></td>
+  </tr>
+  <tr>
+    <td>Plus → Górno (85°) ✅</td>
+    <td>30–80 Mbps</td>
+    <td><div style="background:#e67e22;color:#fff;padding:4px 8px;border-radius:4px;width:32%">█████████████</div></td>
+  </tr>
+  <tr>
+    <td>Play → Cedzyna (331°) ⛔</td>
+    <td>0–100 Mbps</td>
+    <td><div style="background:#c0392b;color:#fff;padding:4px 8px;border-radius:4px;width:40%">████████████████</div></td>
+  </tr>
+  <tr>
+    <td>Orange/T-Mo → Cedzyna (322°) ⛔</td>
+    <td>30–120 Mbps</td>
+    <td><div style="background:#c0392b;color:#fff;padding:4px 8px;border-radius:4px;width:48%">███████████████████</div></td>
+  </tr>
+  <tr>
+    <td>Play → Brzechów (134°) ⛔⛔</td>
+    <td>10–40 Mbps</td>
+    <td><div style="background:#7f1d1d;color:#fff;padding:4px 8px;border-radius:4px;width:16%">██████</div></td>
+  </tr>
+</table>
+
+<div class="callout callout-blue">
+  <strong>Kluczowy wniosek: teren zmienia wszystko.</strong>
+  Czysty LOS na niższych pasmach &gt; wyższe pasmo za przeszkodą.
+  Cell lock nie jest potrzebny — jedyna stacja n78 jest za wzgórzem,
+  a stacje z czystym LOS nie mają n78.
+</div>
+
+<!-- ==================== PART 2: ROUTERS ==================== -->
+
+<!-- PAGE: Router comparison -->
+<div class="section-break"></div>
+<h2>6. Porównanie routerów 5G</h2>
+
+<h3>6.1 Modem i wydajność</h3>
+<table>
+  <tr>
+    <th style="width:30%">Parametr</th>
+    <th style="width:35%">ER701-5G-Outdoor (Omada)</th>
+    <th style="width:35%">NE200-Outdoor (konsumencki)</th>
+  </tr>
+  <tr><td>Prędkość 5G DL</td><td><strong>7,01 Gbps (SA)</strong> / 4,5 Gbps (NSA)</td><td><strong>4,67 Gbps</strong></td></tr>
+  <tr><td>Prędkość 5G UL</td><td>1,25 Gbps (SA) / 730 Mbps (NSA)</td><td><strong>1,46 Gbps</strong></td></tr>
+  <tr><td>Prędkość LTE</td><td>DL 1,6 Gbps / UL 211 Mbps</td><td>DL 1,6 Gbps / UL 211 Mbps</td></tr>
+  <tr><td>Tryb SA</td><td class="yes">TAK</td><td class="partial">Niepotwierdzony</td></tr>
+  <tr><td>Chipset</td><td>MediaTek T830 (Fibocom FG370)</td><td>Nieujawniony</td></tr>
+  <tr><td>RAM / Flash</td><td>2 GB LPDDR4x / 4 GB eMMC</td><td>Nieujawniony</td></tr>
+</table>
+
+<h3>6.2 Łączność i interfejsy</h3>
+<table>
+  <tr><th>Parametr</th><th>ER701-5G-Outdoor</th><th>NE200-Outdoor</th></tr>
+  <tr><td>SIM</td><td><strong>Dual Nano SIM</strong> (failover)</td><td>Single Nano SIM</td></tr>
+  <tr><td>Ethernet</td><td>1× 2,5G RJ45</td><td>1× 2,5G RJ45</td></tr>
+  <tr><td>Wi-Fi</td><td>2,4 GHz 802.11n (zarządzanie)</td><td class="no">Brak</td></tr>
+  <tr><td>Anteny</td><td><strong>9× wewnętrzne</strong> + 1× Wi-Fi</td><td>Wewnętrzne (liczba nieujawniona)</td></tr>
+  <tr><td>Zasilanie</td><td>802.3at PoE / Passive PoE 48V</td><td>802.3af/at PoE / Passive PoE 48V</td></tr>
+  <tr><td>Kabel w zestawie</td><td>Brak</td><td><strong>10 m RJ45</strong></td></tr>
+</table>
+
+<h3>6.3 Oprogramowanie</h3>
+<table>
+  <tr><th>Funkcja</th><th>ER701</th><th>NE200</th></tr>
+  <tr><td>Zarządzanie chmurowe</td><td class="yes">Omada Central</td><td class="no">Brak</td></tr>
+  <tr><td>DPI / VLAN / QoS / OSPF</td><td class="yes">TAK</td><td class="no">Brak</td></tr>
+  <tr><td>Sesje równoczesne</td><td>500 000</td><td>Nieujawnione</td></tr>
+  <tr><td>Uwierzytelnianie (RADIUS/LDAP)</td><td class="yes">TAK</td><td class="no">Brak</td></tr>
+  <tr><td>SMS / SNMP</td><td class="yes">TAK</td><td class="no">Brak</td></tr>
+  <tr><td><strong>Serwer VPN</strong></td><td class="no">Brak</td><td class="yes">PPTP/IPSec/OpenVPN</td></tr>
+  <tr><td><strong>IP Passthrough</strong></td><td class="no">Brak</td><td class="yes">TAK</td></tr>
+  <tr><td>Cell lock</td><td class="no">Brak</td><td class="no">Brak</td></tr>
+</table>
+
+<h3>6.4 Budowa</h3>
+<table>
+  <tr><th>Parametr</th><th>ER701</th><th>NE200</th></tr>
+  <tr><td>Wymiary</td><td>183 × 110 × 36 mm</td><td>183 × 110 × 36 mm</td></tr>
+  <tr><td>Klasa ochrony</td><td>IP66</td><td>IP66</td></tr>
+  <tr><td>Ochrona przeciwprzepięciowa</td><td>6 kV</td><td>6 kV + 15 kV ESD</td></tr>
+  <tr><td>Temp. pracy</td><td>-30°C do 60°C</td><td>-30°C do 50°C</td></tr>
+  <tr><td>Montaż</td><td>Ściana / słup / okno</td><td>Ściana / słup / okno</td></tr>
+</table>
+
+<!-- PAGE: Bands -->
+<div class="section-break"></div>
+<h2>7. Kompatybilność z pasmami w Polsce</h2>
+
+<h3>7.1 Pasma 5G NR — Polska vs urządzenia</h3>
+<table>
+  <tr>
+    <th>Pasmo (Polska)</th>
+    <th>Rola</th>
+    <th>ER701</th>
+    <th>NE200</th>
+  </tr>
+  <tr><td>N78 (3500 MHz)</td><td>Główne 5G</td><td class="yes">TAK</td><td class="yes">TAK</td></tr>
+  <tr><td>N28 (700 MHz)</td><td>Zasięg 5G</td><td class="yes">TAK</td><td class="yes">TAK</td></tr>
+  <tr><td>N1 (2100 MHz)</td><td>5G/LTE</td><td class="yes">TAK</td><td class="yes">TAK</td></tr>
+  <tr><td>N3 (1800 MHz)</td><td>LTE/DSS</td><td class="yes">TAK</td><td class="yes">TAK</td></tr>
+  <tr><td>N7 (2600 MHz FDD)</td><td>Pojemność</td><td class="yes">TAK</td><td class="yes">TAK</td></tr>
+  <tr><td>N38 (2600 MHz TDD)</td><td>Plus</td><td class="yes">TAK</td><td class="yes">TAK</td></tr>
+  <tr><td>N20 (800 MHz)</td><td>Zasięg</td><td class="yes">TAK</td><td class="yes">TAK</td></tr>
+  <tr><td>N8 (900 MHz)</td><td>Legacy</td><td class="yes">TAK</td><td class="yes">TAK</td></tr>
+  <tr style="font-weight:700; background:#e8f5e9">
+    <td colspan="2">Pokrycie polskich pasm</td><td>100%</td><td>100%</td>
+  </tr>
+</table>
+
+<div class="callout callout-green">
+  <strong>Oba urządzenia obsługują 100% polskich pasm.</strong>
+  Dodatkowe pasma ER701 (N26, N75, N76) nie są używane w Polsce.
+</div>
+
+<!-- PAGE: Final recommendation -->
+<div class="section-break"></div>
+<h2>8. Rekomendacja końcowa</h2>
+
+<h3>8.1 Ranking urządzeń dla lokalizacji Radlin</h3>
+<table>
+  <tr>
+    <th style="width:5%">#</th>
+    <th style="width:25%">Urządzenie</th>
+    <th style="width:10%">Cena ~PLN</th>
+    <th>Uzasadnienie</th>
+  </tr>
+  <tr style="background:#e8f5e9">
+    <td><strong>1.</strong></td>
+    <td><strong>TP-Link NE200-Outdoor</strong></td>
+    <td><strong>1000–1400</strong></td>
+    <td>Najlepszy stosunek cena/wydajność. Outdoor PoE, IP passthrough,
+        cell lock niepotrzebny. Karta Play, kierunek Radlin.</td>
+  </tr>
+  <tr>
+    <td>2.</td>
+    <td>TP-Link ER701-5G-Outdoor</td>
+    <td>1500–2000</td>
+    <td>Dual SIM (Play + Orange). Zarządzanie Omada.
+        Nadmiarowe funkcje dla zastosowania domowego.</td>
+  </tr>
+  <tr>
+    <td>3.</td>
+    <td>Teltonika RUTC50 + antena</td>
+    <td>3500–5000</td>
+    <td>Overkill. Cell lock niepotrzebny, straty kablowe obniżają wydajność
+        vs outdoor CPE. 2–3× droższa opcja.</td>
+  </tr>
+</table>
+
+<h3>8.2 Zalecana konfiguracja</h3>
+
+<div class="verdict">
+  <h3>TP-Link NE200-Outdoor + Play 5G → azymut 25° (Radlin, 1,7 km)</h3>
+  <table>
+    <tr><td style="width:25%"><strong>Router</strong></td>
+    <td>TP-Link NE200-Outdoor (~1000–1400 PLN)</td></tr>
+    <tr><td><strong>Operator</strong></td>
+    <td><strong>Play</strong> — stacja KIE4428 w Radlinie (1,7 km): n28 (700) + n1 (2100) + pełny LTE.</td></tr>
+    <tr><td><strong>Montaż</strong></td>
+    <td><strong>Dach lub komin</strong> (jak najwyżej — oczyścić wzniesienie +4–6 m),
+        skierowany na <strong>azymut 25° (NNE)</strong> w stronę Radlina.</td></tr>
+    <tr><td><strong>Podłączenie</strong></td>
+    <td>Kabel Ethernet (10 m w zestawie) → router domowy. Tryb IP passthrough.</td></tr>
+    <tr><td><strong>Oczekiwana prędkość</strong></td>
+    <td><strong>150–300 Mbps DL</strong> (n28 + LTE agregacja, czysty LOS, 1,7 km).</td></tr>
+    <tr><td><strong>Koszt całkowity</strong></td>
+    <td>~1000–1400 PLN + abonament Play 5G</td></tr>
+  </table>
+</div>
+
+<div class="callout callout-amber">
+  <strong>Wskazówka: warto przetestować oba kierunki.</strong>
+  Po montażu porównaj sygnał w kierunku Radlina i Cedzyny. Jeśli n78 z Cedzyny
+  okaże się działać dzięki dyfrakcji — będzie bonus. Bazowo celuj w Radlin.
+</div>
+
+<div class="footer-note">
+  <strong>Źródła:</strong> TP-Link (strony produktów UK/SG/US), ISPreview UK Forum,
+  spectrum-tracker.com (dane UKE), btssearch.pl (dane stacji bazowych),
+  profile terenu (dane wysokościowe NMT), 3GPP Release 16.<br>
+  Ceny orientacyjne na marzec 2026 — mogą się różnić w zależności od dystrybutora.<br>
+  <strong>Zastrzeżenie:</strong> Prędkości szacunkowe dla outdoor CPE z uwzględnieniem profili terenu.
+  Rzeczywiste prędkości zależą od operatora, obciążenia sieci, linii wzroku,
+  pogody, roślinności i planu taryfowego.
+</div>
+
+</body>
+</html>

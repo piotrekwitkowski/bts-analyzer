@@ -1,0 +1,5551 @@
+{
+  "user": {
+    "lat": 50.84830351134754,
+    "lon": 20.74563526011893
+  },
+  "towers": [
+    {
+      "lat": 50.866204,
+      "lon": 20.724352,
+      "miasto": "Cedzyna",
+      "dist_km": 2.49,
+      "azimuth": 323.1,
+      "azimuth_dir": "NW",
+      "operator_count": 3,
+      "operator_names": [
+        "Orange",
+        "Play",
+        "Plus"
+      ],
+      "has_5g_n78": false,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G1800",
+        "5G2100",
+        "5G2600",
+        "5G700",
+        "5G900",
+        "GSM1800",
+        "GSM900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 15,
+      "operators": [
+        {
+          "operator": "Play",
+          "id": "KIE1043",
+          "bands": [
+            "5G2100",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE800",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Cedzyna",
+          "lokalizacja": ""
+        },
+        {
+          "operator": "Plus",
+          "id": "BT12468",
+          "bands": [
+            "5G1800",
+            "5G2600",
+            "5G900",
+            "GSM900",
+            "LTE1800",
+            "LTE2600",
+            "LTE900",
+            "UMTS900"
+          ],
+          "miasto": "Cedzyna",
+          "lokalizacja": ""
+        },
+        {
+          "operator": "Orange",
+          "id": "13788",
+          "bands": [
+            "5G2100",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100"
+          ],
+          "miasto": "Cedzyna",
+          "lokalizacja": "313/1"
+        }
+      ]
+    },
+    {
+      "lat": 50.869722,
+      "lon": 20.735,
+      "miasto": "Cedzyna",
+      "dist_km": 2.5,
+      "azimuth": 342.6,
+      "azimuth_dir": "NNW",
+      "operator_count": 1,
+      "operator_names": [
+        "T-Mobile"
+      ],
+      "has_5g_n78": false,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G2100",
+        "5G700",
+        "GSM1800",
+        "GSM900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100"
+      ],
+      "band_count": 11,
+      "operators": [
+        {
+          "operator": "T-Mobile",
+          "id": "55187",
+          "bands": [
+            "5G2100",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100"
+          ],
+          "miasto": "Cedzyna",
+          "lokalizacja": "44c, 170/432"
+        }
+      ]
+    },
+    {
+      "lat": 50.870556,
+      "lon": 20.726389,
+      "miasto": "Cedzyna",
+      "dist_km": 2.82,
+      "azimuth": 331.4,
+      "azimuth_dir": "NNW",
+      "operator_count": 2,
+      "operator_names": [
+        "Play",
+        "Plus"
+      ],
+      "has_5g_n78": true,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G1800",
+        "5G2100",
+        "5G2600",
+        "5G3600",
+        "5G700",
+        "5G900",
+        "GSM1800",
+        "GSM900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 16,
+      "operators": [
+        {
+          "operator": "Play",
+          "id": "KIE4427",
+          "bands": [
+            "5G2100",
+            "5G3600",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Cedzyna",
+          "lokalizacja": "dz. nr 190/3, 400/3"
+        },
+        {
+          "operator": "Plus",
+          "id": "BT14889",
+          "bands": [
+            "5G1800",
+            "5G2600",
+            "5G900",
+            "GSM900",
+            "LTE1800",
+            "LTE2600",
+            "LTE900",
+            "UMTS900"
+          ],
+          "miasto": "Cedzyna",
+          "lokalizacja": ""
+        }
+      ]
+    },
+    {
+      "lat": 50.863333,
+      "lon": 20.784444,
+      "miasto": "Radlin",
+      "dist_km": 3.2,
+      "azimuth": 58.5,
+      "azimuth_dir": "ENE",
+      "operator_count": 1,
+      "operator_names": [
+        "Play"
+      ],
+      "has_5g_n78": false,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G2100",
+        "5G700",
+        "GSM1800",
+        "GSM900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 12,
+      "operators": [
+        {
+          "operator": "Play",
+          "id": "KIE4428",
+          "bands": [
+            "5G2100",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Radlin",
+          "lokalizacja": ""
+        }
+      ]
+    },
+    {
+      "lat": 50.821944,
+      "lon": 20.781111,
+      "miasto": "Brzechów",
+      "dist_km": 3.85,
+      "azimuth": 139.6,
+      "azimuth_dir": "SE",
+      "operator_count": 1,
+      "operator_names": [
+        "Play"
+      ],
+      "has_5g_n78": false,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G2100",
+        "5G700",
+        "GSM1800",
+        "GSM900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 12,
+      "operators": [
+        {
+          "operator": "Play",
+          "id": "KIE3328",
+          "bands": [
+            "5G2100",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Brzechów",
+          "lokalizacja": ""
+        }
+      ]
+    },
+    {
+      "lat": 50.88125,
+      "lon": 20.770972,
+      "miasto": "Mąchocice Kapitulne",
+      "dist_km": 4.07,
+      "azimuth": 25.9,
+      "azimuth_dir": "NNE",
+      "operator_count": 2,
+      "operator_names": [
+        "Play",
+        "Plus"
+      ],
+      "has_5g_n78": false,
+      "has_5g_n28": false,
+      "has_5g": true,
+      "all_bands": [
+        "5G1800",
+        "5G2100",
+        "5G2600",
+        "5G900",
+        "GSM1800",
+        "GSM900",
+        "IOT900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE800",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 14,
+      "operators": [
+        {
+          "operator": "Plus",
+          "id": "BT14225",
+          "bands": [
+            "5G1800",
+            "5G2600",
+            "5G900",
+            "GSM900",
+            "IOT900",
+            "LTE1800",
+            "LTE2600",
+            "LTE900",
+            "UMTS900"
+          ],
+          "miasto": "Mąchocice Kapitulne",
+          "lokalizacja": ""
+        },
+        {
+          "operator": "Play",
+          "id": "KIE4425",
+          "bands": [
+            "5G2100",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE800",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Mąchocice Kapitulne",
+          "lokalizacja": "dz. nr 995/14"
+        }
+      ]
+    },
+    {
+      "lat": 50.862778,
+      "lon": 20.679167,
+      "miasto": "Kielce",
+      "dist_km": 4.94,
+      "azimuth": 289.1,
+      "azimuth_dir": "WNW",
+      "operator_count": 1,
+      "operator_names": [
+        "Play"
+      ],
+      "has_5g_n78": false,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G2100",
+        "5G700",
+        "GSM1800",
+        "GSM900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 12,
+      "operators": [
+        {
+          "operator": "Play",
+          "id": "KIE1047",
+          "bands": [
+            "5G2100",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Sandomierska"
+        }
+      ]
+    },
+    {
+      "lat": 50.851944,
+      "lon": 20.817778,
+      "miasto": "Górno",
+      "dist_km": 5.08,
+      "azimuth": 85.4,
+      "azimuth_dir": "E",
+      "operator_count": 1,
+      "operator_names": [
+        "Orange"
+      ],
+      "has_5g_n78": false,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G2100",
+        "5G700",
+        "GSM1800",
+        "GSM900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100"
+      ],
+      "band_count": 11,
+      "operators": [
+        {
+          "operator": "Orange",
+          "id": "14004",
+          "bands": [
+            "5G2100",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100"
+          ],
+          "miasto": "Górno",
+          "lokalizacja": "1168/1"
+        }
+      ]
+    },
+    {
+      "lat": 50.854444,
+      "lon": 20.83,
+      "miasto": "Górno-Parcele",
+      "dist_km": 5.96,
+      "azimuth": 83.4,
+      "azimuth_dir": "E",
+      "operator_count": 1,
+      "operator_names": [
+        "Plus"
+      ],
+      "has_5g_n78": false,
+      "has_5g_n28": false,
+      "has_5g": true,
+      "all_bands": [
+        "5G1800",
+        "5G2600",
+        "5G900",
+        "GSM900",
+        "LTE1800",
+        "LTE900",
+        "UMTS900"
+      ],
+      "band_count": 7,
+      "operators": [
+        {
+          "operator": "Plus",
+          "id": "BT12337",
+          "bands": [
+            "5G1800",
+            "5G2600",
+            "5G900",
+            "GSM900",
+            "LTE1800",
+            "LTE900",
+            "UMTS900"
+          ],
+          "miasto": "Górno-Parcele",
+          "lokalizacja": ""
+        }
+      ]
+    },
+    {
+      "lat": 50.836944,
+      "lon": 20.656389,
+      "miasto": "Kielce",
+      "dist_km": 6.39,
+      "azimuth": 258.6,
+      "azimuth_dir": "WSW",
+      "operator_count": 2,
+      "operator_names": [
+        "Orange",
+        "Play"
+      ],
+      "has_5g_n78": true,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G2100",
+        "5G3600",
+        "5G700",
+        "GSM1800",
+        "GSM900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 13,
+      "operators": [
+        {
+          "operator": "Orange",
+          "id": "4134",
+          "bands": [
+            "5G2100",
+            "5G3600",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Wojska Polskiego, 41/34"
+        },
+        {
+          "operator": "Play",
+          "id": "KIE1056",
+          "bands": [
+            "5G2100",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE800",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "dz. nr 41/34"
+        }
+      ]
+    },
+    {
+      "lat": 50.878611,
+      "lon": 20.824444,
+      "miasto": "Krajno Parcele",
+      "dist_km": 6.48,
+      "azimuth": 58.6,
+      "azimuth_dir": "ENE",
+      "operator_count": 1,
+      "operator_names": [
+        "Play"
+      ],
+      "has_5g_n78": false,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G2100",
+        "5G700",
+        "GSM1800",
+        "GSM900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 12,
+      "operators": [
+        {
+          "operator": "Play",
+          "id": "KIE4463",
+          "bands": [
+            "5G2100",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Krajno Parcele",
+          "lokalizacja": ""
+        }
+      ]
+    },
+    {
+      "lat": 50.902361,
+      "lon": 20.782083,
+      "miasto": "Mąchocice Kapitulne",
+      "dist_km": 6.53,
+      "azimuth": 23.0,
+      "azimuth_dir": "NNE",
+      "operator_count": 2,
+      "operator_names": [
+        "Plus",
+        "T-Mobile"
+      ],
+      "has_5g_n78": false,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G1800",
+        "5G2100",
+        "5G2600",
+        "5G700",
+        "5G900",
+        "GSM1800",
+        "GSM900",
+        "IOT900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 16,
+      "operators": [
+        {
+          "operator": "Plus",
+          "id": "BT12530",
+          "bands": [
+            "5G1800",
+            "5G2100",
+            "5G2600",
+            "5G900",
+            "GSM900",
+            "IOT900",
+            "LTE1800",
+            "LTE2600",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Mąchocice Kapitulne",
+          "lokalizacja": ""
+        },
+        {
+          "operator": "T-Mobile",
+          "id": "55302",
+          "bands": [
+            "5G2100",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100"
+          ],
+          "miasto": "Mąchocice Kapitulne",
+          "lokalizacja": "178, 384/4"
+        }
+      ]
+    },
+    {
+      "lat": 50.906111,
+      "lon": 20.728611,
+      "miasto": "Masłów Pierwszy",
+      "dist_km": 6.54,
+      "azimuth": 349.5,
+      "azimuth_dir": "N",
+      "operator_count": 1,
+      "operator_names": [
+        "Play"
+      ],
+      "has_5g_n78": false,
+      "has_5g_n28": false,
+      "has_5g": false,
+      "all_bands": [
+        "GSM1800",
+        "GSM900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE800",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 8,
+      "operators": [
+        {
+          "operator": "Play",
+          "id": "KIE4426",
+          "bands": [
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE800",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Masłów Pierwszy",
+          "lokalizacja": "dz. nr 198/1"
+        }
+      ]
+    },
+    {
+      "lat": 50.861944,
+      "lon": 20.654167,
+      "miasto": "Kielce",
+      "dist_km": 6.6,
+      "azimuth": 283.3,
+      "azimuth_dir": "WNW",
+      "operator_count": 2,
+      "operator_names": [
+        "Play",
+        "Plus"
+      ],
+      "has_5g_n78": true,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G1800",
+        "5G2100",
+        "5G2600",
+        "5G3600",
+        "5G700",
+        "5G900",
+        "GSM1800",
+        "GSM900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 16,
+      "operators": [
+        {
+          "operator": "Play",
+          "id": "KIE1067",
+          "bands": [
+            "5G2100",
+            "5G3600",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Radostowa 4, dz. nr 1508"
+        },
+        {
+          "operator": "Plus",
+          "id": "BT11767",
+          "bands": [
+            "5G1800",
+            "5G2100",
+            "5G2600",
+            "5G900",
+            "GSM900",
+            "LTE1800",
+            "LTE2600",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "ul. Radostowa"
+        }
+      ]
+    },
+    {
+      "lat": 50.889444,
+      "lon": 20.674028,
+      "miasto": "Kielce",
+      "dist_km": 6.8,
+      "azimuth": 312.3,
+      "azimuth_dir": "NW",
+      "operator_count": 2,
+      "operator_names": [
+        "Orange",
+        "Plus"
+      ],
+      "has_5g_n78": true,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G1800",
+        "5G2100",
+        "5G2600",
+        "5G3600",
+        "5G700",
+        "5G900",
+        "GSM1800",
+        "GSM900",
+        "IOT900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 17,
+      "operators": [
+        {
+          "operator": "Plus",
+          "id": "BT12529",
+          "bands": [
+            "5G1800",
+            "5G2600",
+            "5G900",
+            "GSM900",
+            "IOT900",
+            "LTE1800",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Radomska"
+        },
+        {
+          "operator": "Orange",
+          "id": "4131",
+          "bands": [
+            "5G2100",
+            "5G3600",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Wschodnia, 10/169"
+        }
+      ]
+    },
+    {
+      "lat": 50.86375,
+      "lon": 20.651389,
+      "miasto": "Kielce",
+      "dist_km": 6.83,
+      "azimuth": 284.6,
+      "azimuth_dir": "WNW",
+      "operator_count": 2,
+      "operator_names": [
+        "Play",
+        "T-Mobile"
+      ],
+      "has_5g_n78": true,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G2100",
+        "5G3600",
+        "5G700",
+        "GSM1800",
+        "GSM900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 13,
+      "operators": [
+        {
+          "operator": "Play",
+          "id": "KIE1009",
+          "bands": [
+            "5G2100",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE800",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Szczecińska"
+        },
+        {
+          "operator": "T-Mobile",
+          "id": "55113",
+          "bands": [
+            "5G2100",
+            "5G3600",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Szczecińska 25, 1408/36"
+        }
+      ]
+    },
+    {
+      "lat": 50.8475,
+      "lon": 20.6475,
+      "miasto": "Kielce",
+      "dist_km": 6.89,
+      "azimuth": 269.3,
+      "azimuth_dir": "W",
+      "operator_count": 2,
+      "operator_names": [
+        "Play",
+        "Plus"
+      ],
+      "has_5g_n78": true,
+      "has_5g_n28": false,
+      "has_5g": true,
+      "all_bands": [
+        "5G1800",
+        "5G2100",
+        "5G2600",
+        "5G3600",
+        "5G900",
+        "GSM1800",
+        "GSM900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE420",
+        "LTE800",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 15,
+      "operators": [
+        {
+          "operator": "Play",
+          "id": "KIE1013",
+          "bands": [
+            "5G2100",
+            "5G3600",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE800",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "J. Hauke-Bosaka 2a"
+        },
+        {
+          "operator": "Plus",
+          "id": "BT12104",
+          "bands": [
+            "5G1800",
+            "5G2100",
+            "5G2600",
+            "5G900",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE420",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "ul. Generała Józefa Hauke-Bosaka 2A, 1238\\5"
+        }
+      ]
+    },
+    {
+      "lat": 50.851111,
+      "lon": 20.84375,
+      "miasto": "Gorno - Parcele",
+      "dist_km": 6.9,
+      "azimuth": 87.4,
+      "azimuth_dir": "E",
+      "operator_count": 2,
+      "operator_names": [
+        "Play",
+        "T-Mobile"
+      ],
+      "has_5g_n78": false,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G2100",
+        "5G700",
+        "GSM1800",
+        "GSM900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 12,
+      "operators": [
+        {
+          "operator": "Play",
+          "id": "KIE4415",
+          "bands": [
+            "5G2100",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE800",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Gorno - Parcele",
+          "lokalizacja": ""
+        },
+        {
+          "operator": "T-Mobile",
+          "id": "56375",
+          "bands": [
+            "5G2100",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100"
+          ],
+          "miasto": "Górno-Parcele",
+          "lokalizacja": "386/4"
+        }
+      ]
+    },
+    {
+      "lat": 50.875278,
+      "lon": 20.655741,
+      "miasto": "Kielce",
+      "dist_km": 6.99,
+      "azimuth": 295.5,
+      "azimuth_dir": "WNW",
+      "operator_count": 3,
+      "operator_names": [
+        "Orange",
+        "Play",
+        "Plus"
+      ],
+      "has_5g_n78": true,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G1800",
+        "5G2100",
+        "5G2600",
+        "5G3600",
+        "5G700",
+        "5G900",
+        "GSM1800",
+        "GSM900",
+        "IOT900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 17,
+      "operators": [
+        {
+          "operator": "Orange",
+          "id": "2184",
+          "bands": [
+            "5G2100",
+            "5G3600",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Żniwna 5, 264"
+        },
+        {
+          "operator": "Play",
+          "id": "KIE1014",
+          "bands": [
+            "5G2100",
+            "5G3600",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Żniwna 5"
+        },
+        {
+          "operator": "Plus",
+          "id": "BT12123",
+          "bands": [
+            "5G1800",
+            "5G2600",
+            "5G900",
+            "IOT900",
+            "LTE1800",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "ul. Żniwna"
+        }
+      ]
+    },
+    {
+      "lat": 50.887037,
+      "lon": 20.665648,
+      "miasto": "Kielce",
+      "dist_km": 7.08,
+      "azimuth": 307.5,
+      "azimuth_dir": "NW",
+      "operator_count": 3,
+      "operator_names": [
+        "Orange",
+        "Play",
+        "Plus"
+      ],
+      "has_5g_n78": false,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G1800",
+        "5G2100",
+        "5G2600",
+        "5G700",
+        "5G900",
+        "GSM1800",
+        "GSM900",
+        "IOT900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 16,
+      "operators": [
+        {
+          "operator": "Plus",
+          "id": "BT11760",
+          "bands": [
+            "5G1800",
+            "5G2600",
+            "5G900",
+            "GSM900",
+            "IOT900",
+            "LTE1800",
+            "LTE900",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "ul. Radomska"
+        },
+        {
+          "operator": "Orange",
+          "id": "9751",
+          "bands": [
+            "5G2100",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Radomska 8, 48"
+        },
+        {
+          "operator": "Play",
+          "id": "KIE1028",
+          "bands": [
+            "5G2100",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE800",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Radomska"
+        }
+      ]
+    },
+    {
+      "lat": 50.893333,
+      "lon": 20.673472,
+      "miasto": "Kielce",
+      "dist_km": 7.12,
+      "azimuth": 314.7,
+      "azimuth_dir": "NW",
+      "operator_count": 2,
+      "operator_names": [
+        "Play",
+        "Plus"
+      ],
+      "has_5g_n78": true,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G1800",
+        "5G2100",
+        "5G2600",
+        "5G3600",
+        "5G700",
+        "5G900",
+        "GSM1800",
+        "GSM900",
+        "IOT900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 17,
+      "operators": [
+        {
+          "operator": "Play",
+          "id": "KIE1031",
+          "bands": [
+            "5G2100",
+            "5G3600",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Jeziorańskiego 133"
+        },
+        {
+          "operator": "Plus",
+          "id": "BT14147",
+          "bands": [
+            "5G1800",
+            "5G2600",
+            "5G900",
+            "GSM900",
+            "IOT900",
+            "LTE1800",
+            "LTE2600",
+            "LTE900",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "ul. Jana Nowaka-Jeziorańskiego"
+        }
+      ]
+    },
+    {
+      "lat": 50.838194,
+      "lon": 20.643472,
+      "miasto": "Kielce",
+      "dist_km": 7.26,
+      "azimuth": 261.1,
+      "azimuth_dir": "W",
+      "operator_count": 2,
+      "operator_names": [
+        "Plus",
+        "T-Mobile"
+      ],
+      "has_5g_n78": true,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G1800",
+        "5G2100",
+        "5G3600",
+        "5G700",
+        "5G900",
+        "GSM1800",
+        "GSM900",
+        "IOT900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 16,
+      "operators": [
+        {
+          "operator": "Plus",
+          "id": "BT12519",
+          "bands": [
+            "5G1800",
+            "5G2100",
+            "5G900",
+            "GSM1800",
+            "GSM900",
+            "IOT900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": ""
+        },
+        {
+          "operator": "T-Mobile",
+          "id": "55131",
+          "bands": [
+            "5G2100",
+            "5G3600",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "11/2"
+        }
+      ]
+    },
+    {
+      "lat": 50.871667,
+      "lon": 20.648889,
+      "miasto": "Kielce",
+      "dist_km": 7.27,
+      "azimuth": 291.0,
+      "azimuth_dir": "WNW",
+      "operator_count": 1,
+      "operator_names": [
+        "Play"
+      ],
+      "has_5g_n78": true,
+      "has_5g_n28": false,
+      "has_5g": true,
+      "all_bands": [
+        "5G2100",
+        "5G3600",
+        "GSM1800",
+        "GSM900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE800",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 11,
+      "operators": [
+        {
+          "operator": "Play",
+          "id": "KIE1008",
+          "bands": [
+            "5G2100",
+            "5G3600",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE800",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Legnicka 1"
+        }
+      ]
+    },
+    {
+      "lat": 50.8825,
+      "lon": 20.656111,
+      "miasto": "Kielce",
+      "dist_km": 7.34,
+      "azimuth": 301.2,
+      "azimuth_dir": "WNW",
+      "operator_count": 2,
+      "operator_names": [
+        "Plus",
+        "T-Mobile"
+      ],
+      "has_5g_n78": true,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G2100",
+        "5G3600",
+        "5G700",
+        "GSM1800",
+        "GSM900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100"
+      ],
+      "band_count": 12,
+      "operators": [
+        {
+          "operator": "T-Mobile",
+          "id": "55321",
+          "bands": [
+            "5G2100",
+            "5G3600",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "al. Solidarności 36"
+        },
+        {
+          "operator": "Plus",
+          "id": "BT12475",
+          "bands": [
+            "UMTS2100"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "AL. Solidarności"
+        }
+      ]
+    },
+    {
+      "lat": 50.870417,
+      "lon": 20.646667,
+      "miasto": "Kielce",
+      "dist_km": 7.37,
+      "azimuth": 289.5,
+      "azimuth_dir": "WNW",
+      "operator_count": 2,
+      "operator_names": [
+        "Orange",
+        "Plus"
+      ],
+      "has_5g_n78": true,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G1800",
+        "5G2100",
+        "5G2600",
+        "5G3600",
+        "5G700",
+        "5G900",
+        "GSM1800",
+        "GSM900",
+        "IOT900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 17,
+      "operators": [
+        {
+          "operator": "Plus",
+          "id": "BT12103",
+          "bands": [
+            "5G1800",
+            "5G2600",
+            "5G900",
+            "IOT900",
+            "LTE1800",
+            "LTE900",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "ul. Sandomierska"
+        },
+        {
+          "operator": "Orange",
+          "id": "3724",
+          "bands": [
+            "5G2100",
+            "5G3600",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Sandomierska 81, 270/1"
+        }
+      ]
+    },
+    {
+      "lat": 50.881389,
+      "lon": 20.654167,
+      "miasto": "Kielce",
+      "dist_km": 7.4,
+      "azimuth": 299.9,
+      "azimuth_dir": "WNW",
+      "operator_count": 1,
+      "operator_names": [
+        "Plus"
+      ],
+      "has_5g_n78": false,
+      "has_5g_n28": false,
+      "has_5g": true,
+      "all_bands": [
+        "5G1800",
+        "5G2100",
+        "5G900",
+        "GSM900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 10,
+      "operators": [
+        {
+          "operator": "Plus",
+          "id": "BT10220",
+          "bands": [
+            "5G1800",
+            "5G2100",
+            "5G900",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "AL. Solidarności"
+        }
+      ]
+    },
+    {
+      "lat": 50.893333,
+      "lon": 20.666111,
+      "miasto": "Kielce",
+      "dist_km": 7.5,
+      "azimuth": 311.9,
+      "azimuth_dir": "NW",
+      "operator_count": 1,
+      "operator_names": [
+        "Play"
+      ],
+      "has_5g_n78": false,
+      "has_5g_n28": false,
+      "has_5g": true,
+      "all_bands": [
+        "5G2100",
+        "GSM1800",
+        "GSM900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE800",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 10,
+      "operators": [
+        {
+          "operator": "Play",
+          "id": "KIE1069",
+          "bands": [
+            "5G2100",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE800",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Osiedle na Stoku 1, dz. nr 85/2"
+        }
+      ]
+    },
+    {
+      "lat": 50.877083,
+      "lon": 20.647778,
+      "miasto": "Kielce",
+      "dist_km": 7.58,
+      "azimuth": 295.0,
+      "azimuth_dir": "WNW",
+      "operator_count": 2,
+      "operator_names": [
+        "Play",
+        "Plus"
+      ],
+      "has_5g_n78": false,
+      "has_5g_n28": false,
+      "has_5g": true,
+      "all_bands": [
+        "5G1800",
+        "5G2100",
+        "5G2600",
+        "GSM1800",
+        "GSM900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE800",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 11,
+      "operators": [
+        {
+          "operator": "Plus",
+          "id": "BT12124",
+          "bands": [
+            "5G1800",
+            "5G2100",
+            "5G2600",
+            "LTE1800",
+            "UMTS2100"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "ul. Górna"
+        },
+        {
+          "operator": "Play",
+          "id": "KIE1068",
+          "bands": [
+            "5G2100",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE800",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "dz. nr 222/7"
+        }
+      ]
+    },
+    {
+      "lat": 50.881667,
+      "lon": 20.649444,
+      "miasto": "Kielce",
+      "dist_km": 7.7,
+      "azimuth": 298.8,
+      "azimuth_dir": "WNW",
+      "operator_count": 1,
+      "operator_names": [
+        "Play"
+      ],
+      "has_5g_n78": false,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G2100",
+        "5G700",
+        "GSM1800",
+        "GSM900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 12,
+      "operators": [
+        {
+          "operator": "Play",
+          "id": "KIE1058",
+          "bands": [
+            "5G2100",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": ""
+        }
+      ]
+    },
+    {
+      "lat": 50.880278,
+      "lon": 20.647361,
+      "miasto": "Kielce",
+      "dist_km": 7.76,
+      "azimuth": 297.3,
+      "azimuth_dir": "WNW",
+      "operator_count": 2,
+      "operator_names": [
+        "Orange",
+        "Plus"
+      ],
+      "has_5g_n78": true,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G2100",
+        "5G3600",
+        "5G700",
+        "5G900",
+        "GSM1800",
+        "GSM900",
+        "IOT900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100"
+      ],
+      "band_count": 14,
+      "operators": [
+        {
+          "operator": "Plus",
+          "id": "BT12474",
+          "bands": [
+            "5G900",
+            "GSM900",
+            "IOT900",
+            "LTE900",
+            "UMTS2100"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "ul. Świętokrzyska"
+        },
+        {
+          "operator": "Orange",
+          "id": "8751",
+          "bands": [
+            "5G2100",
+            "5G3600",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Świętokrzyska 20, 282"
+        }
+      ]
+    },
+    {
+      "lat": 50.877917,
+      "lon": 20.645139,
+      "miasto": "Kielce",
+      "dist_km": 7.78,
+      "azimuth": 295.1,
+      "azimuth_dir": "WNW",
+      "operator_count": 2,
+      "operator_names": [
+        "Play",
+        "T-Mobile"
+      ],
+      "has_5g_n78": true,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G2100",
+        "5G3600",
+        "5G700",
+        "GSM1800",
+        "GSM900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 13,
+      "operators": [
+        {
+          "operator": "T-Mobile",
+          "id": "55190",
+          "bands": [
+            "5G2100",
+            "5G3600",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "al. Tysiąclecia Państwa Polskiego 19, 187/95"
+        },
+        {
+          "operator": "Play",
+          "id": "KIE1097",
+          "bands": [
+            "5G2100",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Al. Tysiąclecia Państwa Polskiego"
+        }
+      ]
+    },
+    {
+      "lat": 50.889306,
+      "lon": 20.655694,
+      "miasto": "Kielce",
+      "dist_km": 7.79,
+      "azimuth": 305.9,
+      "azimuth_dir": "NW",
+      "operator_count": 2,
+      "operator_names": [
+        "Play",
+        "Plus"
+      ],
+      "has_5g_n78": true,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G1800",
+        "5G2100",
+        "5G2600",
+        "5G3600",
+        "5G700",
+        "5G900",
+        "GSM1800",
+        "GSM900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 16,
+      "operators": [
+        {
+          "operator": "Plus",
+          "id": "BT14328",
+          "bands": [
+            "5G1800",
+            "5G2600",
+            "5G900",
+            "GSM900",
+            "LTE1800",
+            "LTE900",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "skwer Świętej Jadwigi Królowej"
+        },
+        {
+          "operator": "Play",
+          "id": "KIE1059",
+          "bands": [
+            "5G2100",
+            "5G3600",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Skwer Św. Jadwigi Królowej 1"
+        }
+      ]
+    },
+    {
+      "lat": 50.796944,
+      "lon": 20.821111,
+      "miasto": "Daleszyce",
+      "dist_km": 7.79,
+      "azimuth": 137.1,
+      "azimuth_dir": "SE",
+      "operator_count": 1,
+      "operator_names": [
+        "Play"
+      ],
+      "has_5g_n78": false,
+      "has_5g_n28": false,
+      "has_5g": true,
+      "all_bands": [
+        "5G2100",
+        "GSM1800",
+        "GSM900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE800",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 10,
+      "operators": [
+        {
+          "operator": "Play",
+          "id": "KIE3310",
+          "bands": [
+            "5G2100",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE800",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Daleszyce",
+          "lokalizacja": "Daleszyce"
+        }
+      ]
+    },
+    {
+      "lat": 50.860764,
+      "lon": 20.635625,
+      "miasto": "Kielce",
+      "dist_km": 7.85,
+      "azimuth": 280.2,
+      "azimuth_dir": "W",
+      "operator_count": 3,
+      "operator_names": [
+        "Play",
+        "Plus",
+        "T-Mobile"
+      ],
+      "has_5g_n78": true,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G1800",
+        "5G2100",
+        "5G3600",
+        "5G700",
+        "GSM1800",
+        "GSM900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 14,
+      "operators": [
+        {
+          "operator": "Plus",
+          "id": "BT12132",
+          "bands": [
+            "5G1800",
+            "LTE1800"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "ul. Wojska Polskiego"
+        },
+        {
+          "operator": "Plus",
+          "id": "BT14541",
+          "bands": [
+            "5G1800",
+            "LTE1800",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "ul. Generała Józefa Bema"
+        },
+        {
+          "operator": "Play",
+          "id": "KIE1051",
+          "bands": [
+            "5G2100",
+            "5G3600",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE800",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Bema 7"
+        },
+        {
+          "operator": "T-Mobile",
+          "id": "55310",
+          "bands": [
+            "5G2100",
+            "5G3600",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Generała Józefa Bema 7, 99/25"
+        }
+      ]
+    },
+    {
+      "lat": 50.868519,
+      "lon": 20.637963,
+      "miasto": "Kielce",
+      "dist_km": 7.88,
+      "azimuth": 286.6,
+      "azimuth_dir": "WNW",
+      "operator_count": 3,
+      "operator_names": [
+        "Play",
+        "Plus",
+        "T-Mobile"
+      ],
+      "has_5g_n78": true,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G1800",
+        "5G2100",
+        "5G2600",
+        "5G3600",
+        "5G700",
+        "5G900",
+        "GSM1800",
+        "GSM900",
+        "IOT900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 17,
+      "operators": [
+        {
+          "operator": "T-Mobile",
+          "id": "55189",
+          "bands": [
+            "5G2100",
+            "5G3600",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Winnicka 6, 580/33"
+        },
+        {
+          "operator": "Play",
+          "id": "KIE1003",
+          "bands": [
+            "5G2100",
+            "5G3600",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Plac Moniuszki 2b, dz. nr 574/1, 574/3, 574/4"
+        },
+        {
+          "operator": "Plus",
+          "id": "BT12138",
+          "bands": [
+            "5G1800",
+            "5G2100",
+            "5G2600",
+            "5G900",
+            "GSM900",
+            "IOT900",
+            "LTE1800",
+            "LTE2600",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "pl. Stanisława Moniuszki"
+        }
+      ]
+    },
+    {
+      "lat": 50.896389,
+      "lon": 20.662315,
+      "miasto": "Kielce",
+      "dist_km": 7.92,
+      "azimuth": 312.5,
+      "azimuth_dir": "NW",
+      "operator_count": 3,
+      "operator_names": [
+        "Play",
+        "Plus",
+        "T-Mobile"
+      ],
+      "has_5g_n78": true,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G1800",
+        "5G2100",
+        "5G2600",
+        "5G3600",
+        "5G700",
+        "5G900",
+        "GSM1800",
+        "GSM900",
+        "IOT900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 17,
+      "operators": [
+        {
+          "operator": "T-Mobile",
+          "id": "55317",
+          "bands": [
+            "5G2100",
+            "5G3600",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Generała Władysława Sikorskiego 2, 843/19"
+        },
+        {
+          "operator": "Plus",
+          "id": "BT12100",
+          "bands": [
+            "5G1800",
+            "5G2600",
+            "5G900",
+            "GSM900",
+            "IOT900",
+            "LTE1800",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "ul. Generała Władysława Sikorskiego"
+        },
+        {
+          "operator": "Play",
+          "id": "KIE1029",
+          "bands": [
+            "5G2100",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE800",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Sikorskiego"
+        }
+      ]
+    },
+    {
+      "lat": 50.906389,
+      "lon": 20.68,
+      "miasto": "Kielce",
+      "dist_km": 7.93,
+      "azimuth": 324.5,
+      "azimuth_dir": "NW",
+      "operator_count": 1,
+      "operator_names": [
+        "Play"
+      ],
+      "has_5g_n78": false,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G2100",
+        "5G700",
+        "GSM1800",
+        "GSM900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 12,
+      "operators": [
+        {
+          "operator": "Play",
+          "id": "KIE3343",
+          "bands": [
+            "5G2100",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": ""
+        }
+      ]
+    },
+    {
+      "lat": 50.795833,
+      "lon": 20.822639,
+      "miasto": "Daleszyce",
+      "dist_km": 7.96,
+      "azimuth": 137.1,
+      "azimuth_dir": "SE",
+      "operator_count": 2,
+      "operator_names": [
+        "Plus",
+        "T-Mobile"
+      ],
+      "has_5g_n78": false,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G1800",
+        "5G2100",
+        "5G700",
+        "5G900",
+        "CDMA420",
+        "GSM1800",
+        "GSM900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE420",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 16,
+      "operators": [
+        {
+          "operator": "Plus",
+          "id": "BT11768",
+          "bands": [
+            "5G1800",
+            "5G900",
+            "CDMA420",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2600",
+            "LTE420",
+            "LTE900",
+            "UMTS900"
+          ],
+          "miasto": "Daleszyce",
+          "lokalizacja": "ul. Bartosza Głowackiego, 2911\\2"
+        },
+        {
+          "operator": "T-Mobile",
+          "id": "55245",
+          "bands": [
+            "5G2100",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100"
+          ],
+          "miasto": "Daleszyce",
+          "lokalizacja": "Ługi 1, 2911/2"
+        }
+      ]
+    },
+    {
+      "lat": 50.853611,
+      "lon": 20.631481,
+      "miasto": "Kielce",
+      "dist_km": 8.04,
+      "azimuth": 274.3,
+      "azimuth_dir": "W",
+      "operator_count": 3,
+      "operator_names": [
+        "Orange",
+        "Play",
+        "Plus"
+      ],
+      "has_5g_n78": true,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G1800",
+        "5G2100",
+        "5G2600",
+        "5G3600",
+        "5G700",
+        "5G900",
+        "GSM1800",
+        "GSM900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 16,
+      "operators": [
+        {
+          "operator": "Play",
+          "id": "KIE1011",
+          "bands": [
+            "5G2100",
+            "5G3600",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Wapiennikowa 45"
+        },
+        {
+          "operator": "Plus",
+          "id": "BT12137",
+          "bands": [
+            "5G1800",
+            "5G2100",
+            "5G2600",
+            "5G900",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "ul. Wapiennikowa"
+        },
+        {
+          "operator": "Orange",
+          "id": "2110",
+          "bands": [
+            "5G2100",
+            "5G3600",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Wapiennikowa 45a"
+        }
+      ]
+    },
+    {
+      "lat": 50.873056,
+      "lon": 20.637917,
+      "miasto": "Kielce",
+      "dist_km": 8.05,
+      "azimuth": 290.0,
+      "azimuth_dir": "WNW",
+      "operator_count": 2,
+      "operator_names": [
+        "Play",
+        "T-Mobile"
+      ],
+      "has_5g_n78": true,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G2100",
+        "5G3600",
+        "5G700",
+        "GSM1800",
+        "GSM900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 13,
+      "operators": [
+        {
+          "operator": "T-Mobile",
+          "id": "55301",
+          "bands": [
+            "5G2100",
+            "5G3600",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Generała Tadeusza Kościuszki 23, 111/1"
+        },
+        {
+          "operator": "Play",
+          "id": "KIE1039",
+          "bands": [
+            "5G2100",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Kościuszki"
+        }
+      ]
+    },
+    {
+      "lat": 50.882222,
+      "lon": 20.644167,
+      "miasto": "Kielce",
+      "dist_km": 8.06,
+      "azimuth": 297.9,
+      "azimuth_dir": "WNW",
+      "operator_count": 2,
+      "operator_names": [
+        "Play",
+        "Plus"
+      ],
+      "has_5g_n78": true,
+      "has_5g_n28": false,
+      "has_5g": true,
+      "all_bands": [
+        "5G1800",
+        "5G2100",
+        "5G2600",
+        "5G3600",
+        "5G900",
+        "GSM1800",
+        "GSM900",
+        "IOT900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE800",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 15,
+      "operators": [
+        {
+          "operator": "Play",
+          "id": "KIE1015",
+          "bands": [
+            "5G2100",
+            "5G3600",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE800",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Świętokrzyska 12"
+        },
+        {
+          "operator": "Plus",
+          "id": "BT12125",
+          "bands": [
+            "5G1800",
+            "5G2600",
+            "5G900",
+            "IOT900",
+            "LTE1800",
+            "LTE900",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "ul. Świętokrzyska"
+        }
+      ]
+    },
+    {
+      "lat": 50.869167,
+      "lon": 20.635278,
+      "miasto": "Kielce",
+      "dist_km": 8.09,
+      "azimuth": 286.7,
+      "azimuth_dir": "WNW",
+      "operator_count": 1,
+      "operator_names": [
+        "T-Mobile"
+      ],
+      "has_5g_n78": true,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G2100",
+        "5G3600",
+        "5G700",
+        "GSM1800",
+        "GSM900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100"
+      ],
+      "band_count": 12,
+      "operators": [
+        {
+          "operator": "T-Mobile",
+          "id": "55365",
+          "bands": [
+            "5G2100",
+            "5G3600",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Świętego Leonarda 1, 465/1"
+        }
+      ]
+    },
+    {
+      "lat": 50.879722,
+      "lon": 20.640833,
+      "miasto": "Kielce",
+      "dist_km": 8.14,
+      "azimuth": 295.4,
+      "azimuth_dir": "WNW",
+      "operator_count": 1,
+      "operator_names": [
+        "Orange"
+      ],
+      "has_5g_n78": true,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G2100",
+        "5G3600",
+        "5G700",
+        "GSM1800",
+        "GSM900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100"
+      ],
+      "band_count": 12,
+      "operators": [
+        {
+          "operator": "Orange",
+          "id": "5944",
+          "bands": [
+            "5G2100",
+            "5G3600",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "al. Tysiąclecia Państwa Polskiego 7"
+        }
+      ]
+    },
+    {
+      "lat": 50.858333,
+      "lon": 20.63,
+      "miasto": "Kielce",
+      "dist_km": 8.19,
+      "azimuth": 277.9,
+      "azimuth_dir": "W",
+      "operator_count": 1,
+      "operator_names": [
+        "Play"
+      ],
+      "has_5g_n78": false,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G2100",
+        "5G700",
+        "GSM1800",
+        "GSM900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 12,
+      "operators": [
+        {
+          "operator": "Play",
+          "id": "KIE1081",
+          "bands": [
+            "5G2100",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Langiewicza"
+        }
+      ]
+    },
+    {
+      "lat": 50.910833,
+      "lon": 20.683056,
+      "miasto": "Kielce",
+      "dist_km": 8.22,
+      "azimuth": 327.8,
+      "azimuth_dir": "NNW",
+      "operator_count": 1,
+      "operator_names": [
+        "T-Mobile"
+      ],
+      "has_5g_n78": true,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G2100",
+        "5G3600",
+        "5G700",
+        "GSM1800",
+        "GSM900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100"
+      ],
+      "band_count": 12,
+      "operators": [
+        {
+          "operator": "T-Mobile",
+          "id": "55383",
+          "bands": [
+            "5G2100",
+            "5G3600",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Warszawska 430, 274"
+        }
+      ]
+    },
+    {
+      "lat": 50.871111,
+      "lon": 20.633889,
+      "miasto": "Kielce",
+      "dist_km": 8.24,
+      "azimuth": 288.0,
+      "azimuth_dir": "WNW",
+      "operator_count": 1,
+      "operator_names": [
+        "Play"
+      ],
+      "has_5g_n78": false,
+      "has_5g_n28": false,
+      "has_5g": true,
+      "all_bands": [
+        "5G2100",
+        "GSM1800",
+        "GSM900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE800",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 10,
+      "operators": [
+        {
+          "operator": "Play",
+          "id": "KIE1040",
+          "bands": [
+            "5G2100",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE800",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Wesoła"
+        }
+      ]
+    },
+    {
+      "lat": 50.865556,
+      "lon": 20.630556,
+      "miasto": "Kielce",
+      "dist_km": 8.3,
+      "azimuth": 283.4,
+      "azimuth_dir": "WNW",
+      "operator_count": 2,
+      "operator_names": [
+        "Orange",
+        "Play"
+      ],
+      "has_5g_n78": true,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G2100",
+        "5G3600",
+        "5G700",
+        "GSM1800",
+        "GSM900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 13,
+      "operators": [
+        {
+          "operator": "Orange",
+          "id": "2108",
+          "bands": [
+            "5G2100",
+            "5G3600",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Wesoła 51, 1244/17"
+        },
+        {
+          "operator": "Play",
+          "id": "KIE1005",
+          "bands": [
+            "5G2100",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE800",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Wesoła"
+        }
+      ]
+    },
+    {
+      "lat": 50.873611,
+      "lon": 20.633889,
+      "miasto": "Kielce",
+      "dist_km": 8.33,
+      "azimuth": 289.8,
+      "azimuth_dir": "WNW",
+      "operator_count": 1,
+      "operator_names": [
+        "Orange"
+      ],
+      "has_5g_n78": true,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G2100",
+        "5G3600",
+        "5G700",
+        "GSM1800",
+        "GSM900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100"
+      ],
+      "band_count": 12,
+      "operators": [
+        {
+          "operator": "Orange",
+          "id": "3281",
+          "bands": [
+            "5G2100",
+            "5G3600",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "al. IX Wieków Kielc 14, 345/2"
+        }
+      ]
+    },
+    {
+      "lat": 50.87713,
+      "lon": 20.635926,
+      "miasto": "Kielce",
+      "dist_km": 8.34,
+      "azimuth": 292.6,
+      "azimuth_dir": "WNW",
+      "operator_count": 3,
+      "operator_names": [
+        "Orange",
+        "Play",
+        "Plus"
+      ],
+      "has_5g_n78": true,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G1800",
+        "5G2100",
+        "5G2600",
+        "5G3600",
+        "5G700",
+        "5G900",
+        "GSM1800",
+        "GSM900",
+        "IOT900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 17,
+      "operators": [
+        {
+          "operator": "Play",
+          "id": "KIE1048",
+          "bands": [
+            "5G2100",
+            "5G3600",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE800",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Warszawska 34"
+        },
+        {
+          "operator": "Plus",
+          "id": "BT12470",
+          "bands": [
+            "5G1800",
+            "5G2100",
+            "5G2600",
+            "5G900",
+            "GSM900",
+            "IOT900",
+            "LTE1800",
+            "LTE2600",
+            "LTE900",
+            "UMTS2100"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "ul. Warszawska"
+        },
+        {
+          "operator": "Orange",
+          "id": "11747",
+          "bands": [
+            "5G2100",
+            "5G3600",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Warszawska 34, 21/6"
+        }
+      ]
+    },
+    {
+      "lat": 50.891019,
+      "lon": 20.647593,
+      "miasto": "Kielce",
+      "dist_km": 8.36,
+      "azimuth": 304.7,
+      "azimuth_dir": "NW",
+      "operator_count": 3,
+      "operator_names": [
+        "Orange",
+        "Play",
+        "Plus"
+      ],
+      "has_5g_n78": true,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G1800",
+        "5G2100",
+        "5G2600",
+        "5G3600",
+        "5G700",
+        "5G900",
+        "GSM1800",
+        "GSM900",
+        "IOT900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 17,
+      "operators": [
+        {
+          "operator": "Orange",
+          "id": "3546",
+          "bands": [
+            "5G2100",
+            "5G3600",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Warszawska 147, 947/244"
+        },
+        {
+          "operator": "Play",
+          "id": "KIE1030",
+          "bands": [
+            "5G2100",
+            "5G3600",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Warszawska 147"
+        },
+        {
+          "operator": "Plus",
+          "id": "BT12101",
+          "bands": [
+            "5G1800",
+            "5G2600",
+            "5G900",
+            "GSM900",
+            "IOT900",
+            "LTE1800",
+            "LTE2600",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "ul. Warszawska"
+        }
+      ]
+    },
+    {
+      "lat": 50.885556,
+      "lon": 20.640833,
+      "miasto": "Kielce",
+      "dist_km": 8.44,
+      "azimuth": 299.4,
+      "azimuth_dir": "WNW",
+      "operator_count": 1,
+      "operator_names": [
+        "Play"
+      ],
+      "has_5g_n78": false,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G2100",
+        "5G700",
+        "GSM1800",
+        "GSM900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 12,
+      "operators": [
+        {
+          "operator": "Play",
+          "id": "KIE1105",
+          "bands": [
+            "5G2100",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Warszawska"
+        }
+      ]
+    },
+    {
+      "lat": 50.846944,
+      "lon": 20.625278,
+      "miasto": "Kielce",
+      "dist_km": 8.45,
+      "azimuth": 269.0,
+      "azimuth_dir": "W",
+      "operator_count": 2,
+      "operator_names": [
+        "Play",
+        "Plus"
+      ],
+      "has_5g_n78": false,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G1800",
+        "5G2100",
+        "5G2600",
+        "5G700",
+        "5G900",
+        "GSM1800",
+        "GSM900",
+        "IOT900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 16,
+      "operators": [
+        {
+          "operator": "Play",
+          "id": "KIE1034",
+          "bands": [
+            "5G2100",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Podlasie"
+        },
+        {
+          "operator": "Plus",
+          "id": "BT12105",
+          "bands": [
+            "5G1800",
+            "5G2600",
+            "5G900",
+            "GSM900",
+            "IOT900",
+            "LTE1800",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "ul. Podlasie"
+        }
+      ]
+    },
+    {
+      "lat": 50.888889,
+      "lon": 20.643333,
+      "miasto": "Kielce",
+      "dist_km": 8.48,
+      "azimuth": 302.2,
+      "azimuth_dir": "WNW",
+      "operator_count": 1,
+      "operator_names": [
+        "Play"
+      ],
+      "has_5g_n78": true,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G2100",
+        "5G3600",
+        "5G700",
+        "GSM1800",
+        "GSM900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 13,
+      "operators": [
+        {
+          "operator": "Play",
+          "id": "KIE1070",
+          "bands": [
+            "5G2100",
+            "5G3600",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Turystyczna 1, dz. nr 616/4"
+        }
+      ]
+    },
+    {
+      "lat": 50.894722,
+      "lon": 20.841944,
+      "miasto": "Krajno-Zagórze",
+      "dist_km": 8.5,
+      "azimuth": 52.6,
+      "azimuth_dir": "NE",
+      "operator_count": 1,
+      "operator_names": [
+        "Plus"
+      ],
+      "has_5g_n78": false,
+      "has_5g_n28": false,
+      "has_5g": true,
+      "all_bands": [
+        "5G1800",
+        "5G900",
+        "GSM900",
+        "IOT900",
+        "LTE1800",
+        "LTE900",
+        "UMTS900"
+      ],
+      "band_count": 7,
+      "operators": [
+        {
+          "operator": "Plus",
+          "id": "BT12447",
+          "bands": [
+            "5G1800",
+            "5G900",
+            "GSM900",
+            "IOT900",
+            "LTE1800",
+            "LTE900",
+            "UMTS900"
+          ],
+          "miasto": "Krajno-Zagórze",
+          "lokalizacja": ""
+        }
+      ]
+    },
+    {
+      "lat": 50.864167,
+      "lon": 20.626111,
+      "miasto": "Kielce",
+      "dist_km": 8.57,
+      "azimuth": 281.9,
+      "azimuth_dir": "WNW",
+      "operator_count": 1,
+      "operator_names": [
+        "Plus"
+      ],
+      "has_5g_n78": false,
+      "has_5g_n28": false,
+      "has_5g": true,
+      "all_bands": [
+        "5G1800",
+        "5G2100",
+        "5G2600",
+        "5G900",
+        "GSM900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 11,
+      "operators": [
+        {
+          "operator": "Plus",
+          "id": "BT12106",
+          "bands": [
+            "5G1800",
+            "5G2100",
+            "5G2600",
+            "5G900",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "ul. Krakowska"
+        }
+      ]
+    },
+    {
+      "lat": 50.876389,
+      "lon": 20.631667,
+      "miasto": "Kielce",
+      "dist_km": 8.59,
+      "azimuth": 291.4,
+      "azimuth_dir": "WNW",
+      "operator_count": 1,
+      "operator_names": [
+        "Plus"
+      ],
+      "has_5g_n78": false,
+      "has_5g_n28": false,
+      "has_5g": true,
+      "all_bands": [
+        "5G1800",
+        "5G900",
+        "IOT900",
+        "LTE1800",
+        "LTE2600",
+        "LTE900",
+        "UMTS900"
+      ],
+      "band_count": 7,
+      "operators": [
+        {
+          "operator": "Plus",
+          "id": "BT14633",
+          "bands": [
+            "5G1800",
+            "5G900",
+            "IOT900",
+            "LTE1800",
+            "LTE2600",
+            "LTE900",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "ul. Targowa"
+        }
+      ]
+    },
+    {
+      "lat": 50.840278,
+      "lon": 20.623889,
+      "miasto": "Kielce",
+      "dist_km": 8.59,
+      "azimuth": 264.1,
+      "azimuth_dir": "W",
+      "operator_count": 1,
+      "operator_names": [
+        "Play"
+      ],
+      "has_5g_n78": false,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G2100",
+        "5G700",
+        "GSM1800",
+        "GSM900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 12,
+      "operators": [
+        {
+          "operator": "Play",
+          "id": "KIE1080",
+          "bands": [
+            "5G2100",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Ściegiennego"
+        }
+      ]
+    },
+    {
+      "lat": 50.873056,
+      "lon": 20.629444,
+      "miasto": "Kielce",
+      "dist_km": 8.61,
+      "azimuth": 288.7,
+      "azimuth_dir": "WNW",
+      "operator_count": 1,
+      "operator_names": [
+        "T-Mobile"
+      ],
+      "has_5g_n78": true,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G2100",
+        "5G3600",
+        "5G700",
+        "GSM1800",
+        "GSM900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100"
+      ],
+      "band_count": 12,
+      "operators": [
+        {
+          "operator": "T-Mobile",
+          "id": "55105",
+          "bands": [
+            "5G2100",
+            "5G3600",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Piotrkowska 12, 979/3"
+        }
+      ]
+    },
+    {
+      "lat": 50.775278,
+      "lon": 20.786944,
+      "miasto": "Słopiec",
+      "dist_km": 8.62,
+      "azimuth": 160.3,
+      "azimuth_dir": "SSE",
+      "operator_count": 1,
+      "operator_names": [
+        "T-Mobile"
+      ],
+      "has_5g_n78": false,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G2100",
+        "5G700",
+        "GSM1800",
+        "GSM900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100"
+      ],
+      "band_count": 11,
+      "operators": [
+        {
+          "operator": "T-Mobile",
+          "id": "56300",
+          "bands": [
+            "5G2100",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100"
+          ],
+          "miasto": "Słopiec",
+          "lokalizacja": "280/9"
+        }
+      ]
+    },
+    {
+      "lat": 50.861806,
+      "lon": 20.624306,
+      "miasto": "Kielce",
+      "dist_km": 8.65,
+      "azimuth": 280.0,
+      "azimuth_dir": "W",
+      "operator_count": 2,
+      "operator_names": [
+        "Play",
+        "T-Mobile"
+      ],
+      "has_5g_n78": true,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G2100",
+        "5G3600",
+        "5G700",
+        "GSM1800",
+        "GSM900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 13,
+      "operators": [
+        {
+          "operator": "T-Mobile",
+          "id": "55360",
+          "bands": [
+            "5G2100",
+            "5G3600",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Księdza Piotra Ściegiennego 8, 16"
+        },
+        {
+          "operator": "Play",
+          "id": "KIE1063",
+          "bands": [
+            "5G2100",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE800",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Księdza Piotra Ściegiennego 8"
+        }
+      ]
+    },
+    {
+      "lat": 50.885694,
+      "lon": 20.6375,
+      "miasto": "Kielce",
+      "dist_km": 8.65,
+      "azimuth": 298.8,
+      "azimuth_dir": "WNW",
+      "operator_count": 2,
+      "operator_names": [
+        "Play",
+        "T-Mobile"
+      ],
+      "has_5g_n78": true,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G2100",
+        "5G3600",
+        "5G700",
+        "GSM1800",
+        "GSM900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 13,
+      "operators": [
+        {
+          "operator": "Play",
+          "id": "KIE1057",
+          "bands": [
+            "5G2100",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE800",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Marszałkowska 34"
+        },
+        {
+          "operator": "T-Mobile",
+          "id": "55260",
+          "bands": [
+            "5G2100",
+            "5G3600",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Wiśniowa 3, 612/3"
+        }
+      ]
+    },
+    {
+      "lat": 50.88,
+      "lon": 20.632222,
+      "miasto": "Kielce",
+      "dist_km": 8.7,
+      "azimuth": 293.9,
+      "azimuth_dir": "WNW",
+      "operator_count": 1,
+      "operator_names": [
+        "T-Mobile"
+      ],
+      "has_5g_n78": true,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G2100",
+        "5G3600",
+        "5G700",
+        "GSM1800",
+        "GSM900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100"
+      ],
+      "band_count": 12,
+      "operators": [
+        {
+          "operator": "T-Mobile",
+          "id": "55314",
+          "bands": [
+            "5G2100",
+            "5G3600",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Pocieszka 3, 870/3"
+        }
+      ]
+    },
+    {
+      "lat": 50.871852,
+      "lon": 20.625648,
+      "miasto": "Kielce",
+      "dist_km": 8.82,
+      "azimuth": 287.3,
+      "azimuth_dir": "WNW",
+      "operator_count": 3,
+      "operator_names": [
+        "Orange",
+        "Play",
+        "Plus"
+      ],
+      "has_5g_n78": true,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G1800",
+        "5G2100",
+        "5G2600",
+        "5G3600",
+        "5G700",
+        "GSM1800",
+        "GSM900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 15,
+      "operators": [
+        {
+          "operator": "Orange",
+          "id": "5039",
+          "bands": [
+            "5G2100",
+            "5G3600",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Henryka Sienkiewicza 33, 484"
+        },
+        {
+          "operator": "Plus",
+          "id": "BT12131",
+          "bands": [
+            "5G1800",
+            "5G2100",
+            "5G2600",
+            "LTE1800",
+            "LTE2100",
+            "UMTS2100"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "ul. Księdza Stanisława Staszica"
+        },
+        {
+          "operator": "Play",
+          "id": "KIE1001",
+          "bands": [
+            "5G2100",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE800",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Sienkiewicza"
+        }
+      ]
+    },
+    {
+      "lat": 50.815833,
+      "lon": 20.629722,
+      "miasto": "Kielce",
+      "dist_km": 8.91,
+      "azimuth": 246.1,
+      "azimuth_dir": "WSW",
+      "operator_count": 1,
+      "operator_names": [
+        "Orange"
+      ],
+      "has_5g_n78": false,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G2100",
+        "5G700",
+        "GSM1800",
+        "GSM900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100"
+      ],
+      "band_count": 11,
+      "operators": [
+        {
+          "operator": "Orange",
+          "id": "27394",
+          "bands": [
+            "5G2100",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Sukowska 38, 500/9"
+        }
+      ]
+    },
+    {
+      "lat": 50.869167,
+      "lon": 20.621389,
+      "miasto": "Kielce",
+      "dist_km": 9.02,
+      "azimuth": 284.9,
+      "azimuth_dir": "WNW",
+      "operator_count": 1,
+      "operator_names": [
+        "Play"
+      ],
+      "has_5g_n78": true,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G2100",
+        "5G3600",
+        "5G700",
+        "GSM1800",
+        "GSM900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 13,
+      "operators": [
+        {
+          "operator": "Play",
+          "id": "KIE1006",
+          "bands": [
+            "5G2100",
+            "5G3600",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Paderewskiego 3//5"
+        }
+      ]
+    },
+    {
+      "lat": 50.849444,
+      "lon": 20.616944,
+      "miasto": "Kielce",
+      "dist_km": 9.04,
+      "azimuth": 270.9,
+      "azimuth_dir": "W",
+      "operator_count": 1,
+      "operator_names": [
+        "T-Mobile"
+      ],
+      "has_5g_n78": true,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G2100",
+        "5G3600",
+        "5G700",
+        "GSM1800",
+        "GSM900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100"
+      ],
+      "band_count": 12,
+      "operators": [
+        {
+          "operator": "T-Mobile",
+          "id": "55177",
+          "bands": [
+            "5G2100",
+            "5G3600",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Króla Jana III Sobieskiego 51, 826"
+        }
+      ]
+    },
+    {
+      "lat": 50.904074,
+      "lon": 20.650278,
+      "miasto": "Kielce",
+      "dist_km": 9.12,
+      "azimuth": 312.9,
+      "azimuth_dir": "NW",
+      "operator_count": 3,
+      "operator_names": [
+        "Orange",
+        "Play",
+        "Plus"
+      ],
+      "has_5g_n78": false,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G1800",
+        "5G2100",
+        "5G2600",
+        "5G700",
+        "5G900",
+        "GSM1800",
+        "GSM900",
+        "IOT900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 16,
+      "operators": [
+        {
+          "operator": "Plus",
+          "id": "BT12140",
+          "bands": [
+            "5G1800",
+            "5G2100",
+            "5G2600",
+            "5G900",
+            "GSM900",
+            "IOT900",
+            "LTE1800",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "ul. Wincentego Witosa"
+        },
+        {
+          "operator": "Orange",
+          "id": "2161",
+          "bands": [
+            "5G2100",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Wincentego Witosa 68a, 25/1"
+        },
+        {
+          "operator": "Play",
+          "id": "KIE1033",
+          "bands": [
+            "5G2100",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE800",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Witosa"
+        }
+      ]
+    },
+    {
+      "lat": 50.766806,
+      "lon": 20.726528,
+      "miasto": "Marzysz",
+      "dist_km": 9.16,
+      "azimuth": 188.4,
+      "azimuth_dir": "S",
+      "operator_count": 2,
+      "operator_names": [
+        "Play",
+        "Plus"
+      ],
+      "has_5g_n78": false,
+      "has_5g_n28": false,
+      "has_5g": true,
+      "all_bands": [
+        "5G1800",
+        "5G2100",
+        "5G2600",
+        "5G900",
+        "GSM1800",
+        "GSM900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE800",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 13,
+      "operators": [
+        {
+          "operator": "Play",
+          "id": "KIE3319",
+          "bands": [
+            "5G2100",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE800",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Marzysz",
+          "lokalizacja": ""
+        },
+        {
+          "operator": "Plus",
+          "id": "BT12127",
+          "bands": [
+            "5G1800",
+            "5G2100",
+            "5G2600",
+            "5G900",
+            "GSM900",
+            "LTE1800",
+            "LTE2600",
+            "LTE900",
+            "UMTS900"
+          ],
+          "miasto": "Marzysz",
+          "lokalizacja": ""
+        }
+      ]
+    },
+    {
+      "lat": 50.876944,
+      "lon": 20.623056,
+      "miasto": "Kielce",
+      "dist_km": 9.17,
+      "azimuth": 290.4,
+      "azimuth_dir": "WNW",
+      "operator_count": 1,
+      "operator_names": [
+        "Plus"
+      ],
+      "has_5g_n78": false,
+      "has_5g_n28": false,
+      "has_5g": true,
+      "all_bands": [
+        "5G1800",
+        "5G2100",
+        "5G2600",
+        "5G900",
+        "GSM900",
+        "IOT900",
+        "LTE1800",
+        "LTE2600",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 11,
+      "operators": [
+        {
+          "operator": "Plus",
+          "id": "BT12126",
+          "bands": [
+            "5G1800",
+            "5G2100",
+            "5G2600",
+            "5G900",
+            "GSM900",
+            "IOT900",
+            "LTE1800",
+            "LTE2600",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "ul. 1 Maja"
+        }
+      ]
+    },
+    {
+      "lat": 50.869444,
+      "lon": 20.618611,
+      "miasto": "Kielce",
+      "dist_km": 9.22,
+      "azimuth": 284.8,
+      "azimuth_dir": "WNW",
+      "operator_count": 1,
+      "operator_names": [
+        "T-Mobile"
+      ],
+      "has_5g_n78": true,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G2100",
+        "5G3600",
+        "5G700",
+        "GSM1800",
+        "GSM900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100"
+      ],
+      "band_count": 12,
+      "operators": [
+        {
+          "operator": "T-Mobile",
+          "id": "55178",
+          "bands": [
+            "5G2100",
+            "5G3600",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Żytnia 1, 632/8"
+        }
+      ]
+    },
+    {
+      "lat": 50.852778,
+      "lon": 20.614167,
+      "miasto": "Kielce",
+      "dist_km": 9.24,
+      "azimuth": 273.1,
+      "azimuth_dir": "W",
+      "operator_count": 1,
+      "operator_names": [
+        "Play"
+      ],
+      "has_5g_n78": false,
+      "has_5g_n28": false,
+      "has_5g": true,
+      "all_bands": [
+        "5G2100",
+        "GSM1800",
+        "GSM900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE800",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 10,
+      "operators": [
+        {
+          "operator": "Play",
+          "id": "KIE1061",
+          "bands": [
+            "5G2100",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE800",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Wojciecha Szczepaniaka 29"
+        }
+      ]
+    },
+    {
+      "lat": 50.873472,
+      "lon": 20.62,
+      "miasto": "Kielce",
+      "dist_km": 9.25,
+      "azimuth": 287.7,
+      "azimuth_dir": "WNW",
+      "operator_count": 2,
+      "operator_names": [
+        "Play",
+        "T-Mobile"
+      ],
+      "has_5g_n78": true,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G2100",
+        "5G3600",
+        "5G700",
+        "GSM1800",
+        "GSM900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 13,
+      "operators": [
+        {
+          "operator": "T-Mobile",
+          "id": "55248",
+          "bands": [
+            "5G2100",
+            "5G3600",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Henryka Sienkiewicza 78a, 241"
+        },
+        {
+          "operator": "Play",
+          "id": "KIE1002",
+          "bands": [
+            "5G2100",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE800",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Żelazna"
+        }
+      ]
+    },
+    {
+      "lat": 50.881111,
+      "lon": 20.624444,
+      "miasto": "Kielce",
+      "dist_km": 9.25,
+      "azimuth": 293.3,
+      "azimuth_dir": "WNW",
+      "operator_count": 1,
+      "operator_names": [
+        "Play"
+      ],
+      "has_5g_n78": true,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G2100",
+        "5G3600",
+        "5G700",
+        "GSM1800",
+        "GSM900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 13,
+      "operators": [
+        {
+          "operator": "Play",
+          "id": "KIE1007",
+          "bands": [
+            "5G2100",
+            "5G3600",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Zagnańska 27"
+        }
+      ]
+    },
+    {
+      "lat": 50.871111,
+      "lon": 20.618333,
+      "miasto": "Kielce",
+      "dist_km": 9.29,
+      "azimuth": 285.9,
+      "azimuth_dir": "WNW",
+      "operator_count": 1,
+      "operator_names": [
+        "Plus"
+      ],
+      "has_5g_n78": false,
+      "has_5g_n28": false,
+      "has_5g": true,
+      "all_bands": [
+        "5G1800",
+        "5G2600",
+        "5G900",
+        "GSM900",
+        "IOT900",
+        "LTE1800",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 9,
+      "operators": [
+        {
+          "operator": "Plus",
+          "id": "BT12113",
+          "bands": [
+            "5G1800",
+            "5G2600",
+            "5G900",
+            "GSM900",
+            "IOT900",
+            "LTE1800",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "ul. Żelazna"
+        }
+      ]
+    },
+    {
+      "lat": 50.884167,
+      "lon": 20.625833,
+      "miasto": "Kielce",
+      "dist_km": 9.31,
+      "azimuth": 295.4,
+      "azimuth_dir": "WNW",
+      "operator_count": 1,
+      "operator_names": [
+        "Orange"
+      ],
+      "has_5g_n78": true,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G2100",
+        "5G3600",
+        "5G700",
+        "GSM1800",
+        "GSM900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100"
+      ],
+      "band_count": 12,
+      "operators": [
+        {
+          "operator": "Orange",
+          "id": "3725",
+          "bands": [
+            "5G2100",
+            "5G3600",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Zagnańska 27, 21/32"
+        }
+      ]
+    },
+    {
+      "lat": 50.886528,
+      "lon": 20.627083,
+      "miasto": "Kielce",
+      "dist_km": 9.34,
+      "azimuth": 297.1,
+      "azimuth_dir": "WNW",
+      "operator_count": 1,
+      "operator_names": [
+        "Plus"
+      ],
+      "has_5g_n78": false,
+      "has_5g_n28": false,
+      "has_5g": true,
+      "all_bands": [
+        "5G1800",
+        "5G2100",
+        "5G2600",
+        "5G900",
+        "GSM900",
+        "IOT900",
+        "LTE1800",
+        "LTE2600",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 11,
+      "operators": [
+        {
+          "operator": "Plus",
+          "id": "BT12102",
+          "bands": [
+            "5G1800",
+            "5G2100",
+            "5G2600",
+            "5G900",
+            "GSM900",
+            "IOT900",
+            "LTE1800",
+            "LTE2600",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "ul. Robotnicza"
+        },
+        {
+          "operator": "Plus",
+          "id": "BT11165",
+          "bands": [
+            "5G1800",
+            "LTE1800",
+            "UMTS2100"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "ul. Zagnańska"
+        }
+      ]
+    },
+    {
+      "lat": 50.8875,
+      "lon": 20.627778,
+      "miasto": "Kielce",
+      "dist_km": 9.35,
+      "azimuth": 297.8,
+      "azimuth_dir": "WNW",
+      "operator_count": 1,
+      "operator_names": [
+        "Orange"
+      ],
+      "has_5g_n78": true,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G2100",
+        "5G3600",
+        "5G700",
+        "GSM1800",
+        "GSM900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100"
+      ],
+      "band_count": 12,
+      "operators": [
+        {
+          "operator": "Orange",
+          "id": "9463",
+          "bands": [
+            "5G2100",
+            "5G3600",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Zagnańska 61, 20/1"
+        }
+      ]
+    },
+    {
+      "lat": 50.819167,
+      "lon": 20.620139,
+      "miasto": "Kielce",
+      "dist_km": 9.39,
+      "azimuth": 249.9,
+      "azimuth_dir": "WSW",
+      "operator_count": 2,
+      "operator_names": [
+        "Play",
+        "Plus"
+      ],
+      "has_5g_n78": false,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G1800",
+        "5G2100",
+        "5G2600",
+        "5G700",
+        "5G900",
+        "GSM1800",
+        "GSM900",
+        "IOT900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 16,
+      "operators": [
+        {
+          "operator": "Play",
+          "id": "KIE1065",
+          "bands": [
+            "5G2100",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Księdza Piotra Ściegiennego"
+        },
+        {
+          "operator": "Plus",
+          "id": "BT12478",
+          "bands": [
+            "5G1800",
+            "5G2600",
+            "5G900",
+            "GSM900",
+            "IOT900",
+            "LTE1800",
+            "LTE2600",
+            "LTE900",
+            "UMTS900"
+          ],
+          "miasto": "Dyminy-Wieś",
+          "lokalizacja": "ul. Księdza Piotra Ściegiennego"
+        }
+      ]
+    },
+    {
+      "lat": 50.863333,
+      "lon": 20.612778,
+      "miasto": "Kielce",
+      "dist_km": 9.47,
+      "azimuth": 280.2,
+      "azimuth_dir": "W",
+      "operator_count": 2,
+      "operator_names": [
+        "Play",
+        "T-Mobile"
+      ],
+      "has_5g_n78": true,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G2100",
+        "5G3600",
+        "5G700",
+        "GSM1800",
+        "GSM900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 13,
+      "operators": [
+        {
+          "operator": "T-Mobile",
+          "id": "55398",
+          "bands": [
+            "5G2100",
+            "5G3600",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Krakowska 52, 807/3"
+        },
+        {
+          "operator": "Play",
+          "id": "KIE1037",
+          "bands": [
+            "5G2100",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Krakowska"
+        }
+      ]
+    },
+    {
+      "lat": 50.855833,
+      "lon": 20.610417,
+      "miasto": "Kielce",
+      "dist_km": 9.53,
+      "azimuth": 275.1,
+      "azimuth_dir": "W",
+      "operator_count": 2,
+      "operator_names": [
+        "Orange",
+        "Plus"
+      ],
+      "has_5g_n78": true,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G1800",
+        "5G2100",
+        "5G2600",
+        "5G3600",
+        "5G700",
+        "GSM1800",
+        "GSM900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100"
+      ],
+      "band_count": 14,
+      "operators": [
+        {
+          "operator": "Orange",
+          "id": "13035",
+          "bands": [
+            "5G2100",
+            "5G3600",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Leszka Drogosza 2, 447/3"
+        },
+        {
+          "operator": "Plus",
+          "id": "BT12129",
+          "bands": [
+            "5G1800",
+            "5G2600",
+            "LTE1800",
+            "UMTS2100"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "ul. Boczna"
+        }
+      ]
+    },
+    {
+      "lat": 50.891667,
+      "lon": 20.628056,
+      "miasto": "Kielce",
+      "dist_km": 9.56,
+      "azimuth": 300.3,
+      "azimuth_dir": "WNW",
+      "operator_count": 2,
+      "operator_names": [
+        "Play",
+        "T-Mobile"
+      ],
+      "has_5g_n78": true,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G2100",
+        "5G3600",
+        "5G700",
+        "GSM1800",
+        "GSM900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 13,
+      "operators": [
+        {
+          "operator": "T-Mobile",
+          "id": "55315",
+          "bands": [
+            "5G2100",
+            "5G3600",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Zagnańska 71, 63/3"
+        },
+        {
+          "operator": "Play",
+          "id": "KIE1016",
+          "bands": [
+            "5G2100",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Zagnańska"
+        }
+      ]
+    },
+    {
+      "lat": 50.905556,
+      "lon": 20.643056,
+      "miasto": "Kielce",
+      "dist_km": 9.61,
+      "azimuth": 311.5,
+      "azimuth_dir": "NW",
+      "operator_count": 1,
+      "operator_names": [
+        "Plus"
+      ],
+      "has_5g_n78": false,
+      "has_5g_n28": false,
+      "has_5g": true,
+      "all_bands": [
+        "5G1800",
+        "5G2100",
+        "5G2600",
+        "LTE1800",
+        "UMTS2100"
+      ],
+      "band_count": 5,
+      "operators": [
+        {
+          "operator": "Plus",
+          "id": "BT15306",
+          "bands": [
+            "5G1800",
+            "5G2100",
+            "5G2600",
+            "LTE1800",
+            "UMTS2100"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "ul. Zagnańska"
+        }
+      ]
+    },
+    {
+      "lat": 50.866111,
+      "lon": 20.610278,
+      "miasto": "Kielce",
+      "dist_km": 9.71,
+      "azimuth": 281.8,
+      "azimuth_dir": "WNW",
+      "operator_count": 1,
+      "operator_names": [
+        "Plus"
+      ],
+      "has_5g_n78": false,
+      "has_5g_n28": false,
+      "has_5g": true,
+      "all_bands": [
+        "5G1800",
+        "5G2600",
+        "5G900",
+        "GSM900",
+        "IOT900",
+        "LTE1800",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 9,
+      "operators": [
+        {
+          "operator": "Plus",
+          "id": "BT12130",
+          "bands": [
+            "5G1800",
+            "5G2600",
+            "5G900",
+            "GSM900",
+            "IOT900",
+            "LTE1800",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "ul. Romualda Mielczarskiego"
+        }
+      ]
+    },
+    {
+      "lat": 50.901852,
+      "lon": 20.635093,
+      "miasto": "Kielce",
+      "dist_km": 9.78,
+      "azimuth": 307.6,
+      "azimuth_dir": "NW",
+      "operator_count": 3,
+      "operator_names": [
+        "Orange",
+        "Play",
+        "Plus"
+      ],
+      "has_5g_n78": true,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G1800",
+        "5G2100",
+        "5G2600",
+        "5G3600",
+        "5G700",
+        "5G900",
+        "GSM1800",
+        "GSM900",
+        "IOT900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 17,
+      "operators": [
+        {
+          "operator": "Plus",
+          "id": "BT12121",
+          "bands": [
+            "5G1800",
+            "5G2600",
+            "5G900",
+            "IOT900",
+            "LTE1800",
+            "LTE900",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "ul. Magazynowa"
+        },
+        {
+          "operator": "Play",
+          "id": "KIE1088",
+          "bands": [
+            "5G2100",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": ""
+        },
+        {
+          "operator": "Orange",
+          "id": "27376",
+          "bands": [
+            "5G2100",
+            "5G3600",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Magazynowa 4, 194/17"
+        }
+      ]
+    },
+    {
+      "lat": 50.876111,
+      "lon": 20.613333,
+      "miasto": "Kielce",
+      "dist_km": 9.79,
+      "azimuth": 288.5,
+      "azimuth_dir": "WNW",
+      "operator_count": 1,
+      "operator_names": [
+        "Play"
+      ],
+      "has_5g_n78": false,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G2100",
+        "5G700",
+        "GSM1800",
+        "GSM900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 12,
+      "operators": [
+        {
+          "operator": "Play",
+          "id": "KIE1084",
+          "bands": [
+            "5G2100",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Grochowa"
+        }
+      ]
+    },
+    {
+      "lat": 50.880463,
+      "lon": 20.614722,
+      "miasto": "Czarnów",
+      "dist_km": 9.86,
+      "azimuth": 291.3,
+      "azimuth_dir": "WNW",
+      "operator_count": 3,
+      "operator_names": [
+        "Orange",
+        "Play",
+        "Plus"
+      ],
+      "has_5g_n78": true,
+      "has_5g_n28": true,
+      "has_5g": true,
+      "all_bands": [
+        "5G1800",
+        "5G2100",
+        "5G2600",
+        "5G3600",
+        "5G700",
+        "5G900",
+        "GSM1800",
+        "GSM900",
+        "IOT900",
+        "LTE1800",
+        "LTE2100",
+        "LTE2600",
+        "LTE700",
+        "LTE800",
+        "LTE900",
+        "UMTS2100",
+        "UMTS900"
+      ],
+      "band_count": 17,
+      "operators": [
+        {
+          "operator": "Plus",
+          "id": "BT12685",
+          "bands": [
+            "5G1800",
+            "5G2100",
+            "5G2600",
+            "5G900",
+            "GSM900",
+            "IOT900",
+            "LTE1800",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Czarnów",
+          "lokalizacja": "ul. Hoża"
+        },
+        {
+          "operator": "Orange",
+          "id": "9063",
+          "bands": [
+            "5G2100",
+            "5G3600",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Jagiellońska 25, 1551/2"
+        },
+        {
+          "operator": "Play",
+          "id": "KIE1017",
+          "bands": [
+            "5G2100",
+            "5G700",
+            "GSM1800",
+            "GSM900",
+            "LTE1800",
+            "LTE2100",
+            "LTE2600",
+            "LTE700",
+            "LTE800",
+            "LTE900",
+            "UMTS2100",
+            "UMTS900"
+          ],
+          "miasto": "Kielce",
+          "lokalizacja": "Jagiellońska 27"
+        }
+      ]
+    }
+  ]
+}

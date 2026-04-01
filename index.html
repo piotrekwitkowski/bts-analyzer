@@ -1,0 +1,1633 @@
+<!DOCTYPE html>
+<html lang="pl" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analiza BTS — Wieże w okolicy</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>📡</text></svg>">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --clr-play: #7b2d8e;
+            --clr-orange: #ff6600;
+            --clr-tmobile: #e20074;
+            --clr-plus: #00843d;
+            --clr-bg: #0d0f12;
+            --clr-surface: #141820;
+            --clr-surface-alt: #1a1f2a;
+            --clr-border: #242a36;
+            --clr-text: #c8cdd6;
+            --clr-text-dim: #6b7280;
+            --clr-accent: #38bdf8;
+            --clr-5g3600: #ef4444;
+            --clr-5g700: #22c55e;
+            --clr-5g2100: #3b82f6;
+            --clr-lte: #6b7280;
+            --clr-gsm: #4b5563;
+            --clr-umts: #64748b;
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 16px;
+            --space-xs: 4px;
+            --space-sm: 8px;
+            --space-md: 16px;
+            --space-lg: 24px;
+            --space-xl: 32px;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--clr-bg);
+            color: var(--clr-text);
+            margin: 0;
+            min-height: 100vh;
+        }
+
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+
+        /* === HEADER === */
+        .app-header {
+            background: linear-gradient(135deg, var(--clr-surface) 0%, #0f1318 100%);
+            border-bottom: 1px solid var(--clr-border);
+            padding: var(--space-sm) 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .app-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -10%;
+            width: 60%;
+            height: 200%;
+            background: radial-gradient(ellipse, rgba(56,189,248,0.04) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .app-header h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin: 0;
+        }
+        .app-header h1 span { color: var(--clr-accent); }
+        .stat-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-xs);
+            background: var(--clr-surface-alt);
+            border: 1px solid var(--clr-border);
+            border-radius: 999px;
+            padding: var(--space-xs) var(--space-md);
+            font-size: 0.8rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .stat-pill .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--clr-accent);
+        }
+
+        /* === MAP === */
+        #map {
+            height: 52vh;
+            width: 100%;
+            border-bottom: 2px solid var(--clr-border);
+            z-index: 1;
+        }
+        .leaflet-container { background: var(--clr-bg) !important; }
+
+        .user-marker {
+            width: 20px;
+            height: 20px;
+            position: relative;
+        }
+        .user-marker-dot {
+            width: 14px;
+            height: 14px;
+            background: var(--clr-accent);
+            border-radius: 50%;
+            border: 3px solid rgba(56,189,248,0.3);
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        .user-marker-ring {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid rgba(56,189,248,0.15);
+            position: absolute;
+            top: 0;
+            left: 0;
+            animation: ring-pulse 2s ease-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(56,189,248,0.4); }
+            50% { transform: scale(1.1); box-shadow: 0 0 12px 4px rgba(56,189,248,0.2); }
+        }
+        @keyframes ring-pulse {
+            0% { transform: scale(1); opacity: 0.6; }
+            100% { transform: scale(2.5); opacity: 0; }
+        }
+
+        /* === FILTERS === */
+        .filter-bar {
+            background: var(--clr-surface);
+            border-bottom: 1px solid var(--clr-border);
+            padding: var(--space-md) 0;
+        }
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            flex-wrap: wrap;
+        }
+        .filter-label {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--clr-text-dim);
+            font-weight: 600;
+            min-width: fit-content;
+        }
+        .op-check {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: var(--space-xs) var(--space-sm);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--clr-border);
+            cursor: pointer;
+            font-size: 0.82rem;
+            font-weight: 500;
+            transition: all 0.15s ease;
+            user-select: none;
+        }
+        .op-check:hover { background: var(--clr-surface-alt); }
+        .op-check input { display: none; }
+        .op-check .op-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            transition: all 0.15s ease;
+        }
+        .op-check.active { border-color: currentColor; }
+        .op-check:not(.active) .op-dot { opacity: 0.3; }
+        .op-check:not(.active) { opacity: 0.5; }
+
+        .tech-btn {
+            padding: var(--space-xs) 12px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--clr-border);
+            background: transparent;
+            color: var(--clr-text);
+            font-size: 0.78rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+        .tech-btn:hover { background: var(--clr-surface-alt); }
+        .tech-btn.active {
+            background: var(--clr-accent);
+            color: #0d0f12;
+            border-color: var(--clr-accent);
+        }
+
+        .dist-slider {
+            -webkit-appearance: none;
+            appearance: none;
+            height: 4px;
+            border-radius: 2px;
+            background: var(--clr-border);
+            outline: none;
+            width: 140px;
+        }
+        .dist-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--clr-accent);
+            cursor: pointer;
+        }
+
+        /* === TABLE === */
+        .table-wrap {
+            background: var(--clr-surface);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--clr-border);
+            overflow: hidden;
+            margin: var(--space-lg) 0;
+        }
+
+        .bts-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.82rem;
+        }
+        .bts-table thead th {
+            background: var(--clr-surface-alt);
+            padding: var(--space-sm) var(--space-md);
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--clr-text-dim);
+            font-weight: 600;
+            border-bottom: 1px solid var(--clr-border);
+            white-space: nowrap;
+            cursor: pointer;
+            user-select: none;
+            position: sticky;
+            top: 0;
+            z-index: 2;
+        }
+        .bts-table thead th:hover { color: var(--clr-text); }
+        .bts-table thead th .sort-icon { opacity: 0.3; margin-left: 4px; }
+        .bts-table thead th.sorted .sort-icon { opacity: 1; color: var(--clr-accent); }
+
+        .bts-table tbody tr {
+            border-bottom: 1px solid var(--clr-border);
+            cursor: pointer;
+            transition: all 0.12s ease;
+            border-left: 3px solid transparent;
+        }
+        .bts-table tbody tr:hover {
+            background: rgba(56,189,248,0.04);
+        }
+        .bts-table tbody tr.highlighted {
+            background: rgba(56,189,248,0.08);
+        }
+        .bts-table tbody tr.op-play { border-left-color: var(--clr-play); }
+        .bts-table tbody tr.op-orange { border-left-color: var(--clr-orange); }
+        .bts-table tbody tr.op-tmobile { border-left-color: var(--clr-tmobile); }
+        .bts-table tbody tr.op-plus { border-left-color: var(--clr-plus); }
+        .bts-table tbody tr.op-multi { border-left-color: var(--clr-accent); }
+
+        .bts-table td {
+            padding: var(--space-sm) var(--space-md);
+            vertical-align: middle;
+        }
+        .bts-table td.num { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; }
+
+        .op-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 2px 8px;
+            border-radius: 999px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            border: 1px solid;
+            margin: 1px 2px;
+        }
+        .op-tag.play { color: var(--clr-play); border-color: rgba(123,45,142,0.3); background: rgba(123,45,142,0.1); }
+        .op-tag.orange { color: var(--clr-orange); border-color: rgba(255,102,0,0.3); background: rgba(255,102,0,0.1); }
+        .op-tag.tmobile { color: var(--clr-tmobile); border-color: rgba(226,0,116,0.3); background: rgba(226,0,116,0.1); }
+        .op-tag.plus { color: var(--clr-plus); border-color: rgba(0,132,61,0.3); background: rgba(0,132,61,0.1); }
+
+        .band-badge {
+            display: inline-block;
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-size: 0.68rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 500;
+            margin: 1px;
+            white-space: nowrap;
+        }
+        .band-5g3600 { background: rgba(239,68,68,0.15); color: #f87171; border: 1px solid rgba(239,68,68,0.25); }
+        .band-5g700 { background: rgba(34,197,94,0.15); color: #4ade80; border: 1px solid rgba(34,197,94,0.25); }
+        .band-5g2100 { background: rgba(59,130,246,0.15); color: #60a5fa; border: 1px solid rgba(59,130,246,0.25); }
+        .band-lte { background: rgba(107,114,128,0.15); color: #9ca3af; border: 1px solid rgba(107,114,128,0.25); }
+        .band-gsm { background: rgba(75,85,99,0.15); color: #9ca3af; border: 1px solid rgba(75,85,99,0.2); }
+        .band-umts { background: rgba(100,116,139,0.15); color: #94a3b8; border: 1px solid rgba(100,116,139,0.25); }
+
+        .check-icon { font-size: 0.9rem; }
+        .check-yes { color: #22c55e; }
+        .speed-mid { color: #f59e0b; }
+        .speed-low { color: #f97316; }
+        .check-no { color: #374151; }
+
+        .table-scroll {
+            max-height: 55vh;
+            overflow-y: auto;
+            overflow-x: auto;
+        }
+        .table-scroll::-webkit-scrollbar { width: 6px; height: 6px; }
+        .table-scroll::-webkit-scrollbar-track { background: var(--clr-surface); }
+        .table-scroll::-webkit-scrollbar-thumb { background: var(--clr-border); border-radius: 3px; }
+        .table-scroll::-webkit-scrollbar-thumb:hover { background: var(--clr-text-dim); }
+
+        /* === POPUP === */
+        .leaflet-popup-content-wrapper {
+            background: var(--clr-surface) !important;
+            color: var(--clr-text) !important;
+            border: 1px solid var(--clr-border) !important;
+            border-radius: var(--radius-md) !important;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5) !important;
+        }
+        .leaflet-popup-tip { background: var(--clr-surface) !important; }
+        .leaflet-popup-content { margin: 12px 16px !important; font-size: 0.82rem; }
+        .popup-title {
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .popup-grid {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 4px 12px;
+            font-size: 0.78rem;
+        }
+        .popup-grid dt { color: var(--clr-text-dim); font-weight: 500; }
+        .popup-grid dd { margin: 0; font-family: 'JetBrains Mono', monospace; }
+        .popup-bands { margin-top: 8px; }
+        .popup-op-section {
+            margin-top: 10px;
+            padding-top: 8px;
+            border-top: 1px solid var(--clr-border);
+        }
+        .popup-op-section:first-child {
+            margin-top: 0;
+            padding-top: 0;
+            border-top: none;
+        }
+        .popup-op-name {
+            font-weight: 600;
+            font-size: 0.8rem;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .popup-op-bands {
+            margin-top: 4px;
+            line-height: 1.6;
+        }
+
+        /* === MISC === */
+        .loading-overlay {
+            position: fixed;
+            inset: 0;
+            background: var(--clr-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.4s ease;
+        }
+        .loading-overlay.hidden { opacity: 0; pointer-events: none; }
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--clr-border);
+            border-top-color: var(--clr-accent);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .leaflet-control-zoom a {
+            background: var(--clr-surface) !important;
+            color: var(--clr-text) !important;
+            border-color: var(--clr-border) !important;
+        }
+        .leaflet-control-zoom a:hover {
+            background: var(--clr-surface-alt) !important;
+        }
+
+        /* === TERRAIN PROFILE === */
+        .terrain-panel {
+            background: var(--clr-surface);
+            border-bottom: 1px solid var(--clr-border);
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 0.5s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease 0.05s;
+        }
+        .terrain-panel.open {
+            max-height: 800px;
+            opacity: 1;
+        }
+        .terrain-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: var(--space-md);
+            padding-top: var(--space-lg);
+        }
+        .terrain-title {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            font-size: 1rem;
+            font-weight: 700;
+        }
+        .terrain-close {
+            background: none;
+            border: 1px solid var(--clr-border);
+            border-radius: var(--radius-sm);
+            color: var(--clr-text-dim);
+            font-size: 1.2rem;
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.15s ease;
+        }
+        .terrain-close:hover { color: var(--clr-text); background: var(--clr-surface-alt); }
+        .terrain-loading {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            padding: var(--space-lg) 0;
+            color: var(--clr-text-dim);
+            font-size: 0.85rem;
+        }
+        .terrain-chart-wrap {
+            background: var(--clr-surface-alt);
+            border: 1px solid var(--clr-border);
+            border-radius: var(--radius-md);
+            padding: var(--space-md);
+            margin-bottom: var(--space-md);
+            position: relative;
+            height: 280px;
+        }
+        .terrain-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: var(--space-sm);
+            padding-bottom: var(--space-lg);
+        }
+        .terrain-stat {
+            background: var(--clr-surface-alt);
+            border: 1px solid var(--clr-border);
+            border-radius: var(--radius-sm);
+            padding: var(--space-sm) var(--space-md);
+        }
+        .terrain-stat .label {
+            color: var(--clr-text-dim);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+        .terrain-stat .value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.82rem;
+        }
+        .terrain-stat .value.los-clear { color: #22c55e; }
+        .terrain-stat .value.los-blocked { color: #ef4444; }
+        .terrain-stat .value.fresnel-ok { color: #22c55e; }
+        .terrain-stat .value.fresnel-bad { color: #f59e0b; }
+        .terrain-btn {
+            background: none;
+            border: 1px solid var(--clr-border);
+            border-radius: var(--radius-sm);
+            color: var(--clr-text-dim);
+            font-size: 0.72rem;
+            padding: 2px 8px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            white-space: nowrap;
+        }
+        .terrain-btn:hover {
+            color: var(--clr-accent);
+            border-color: var(--clr-accent);
+            background: rgba(56,189,248,0.08);
+        }
+        .popup-terrain-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            background: var(--clr-surface-alt);
+            border: 1px solid var(--clr-border);
+            border-radius: var(--radius-sm);
+            color: var(--clr-accent);
+            font-size: 0.78rem;
+            font-family: 'DM Sans', sans-serif;
+            padding: 5px 10px;
+            cursor: pointer;
+            margin-top: 10px;
+            width: 100%;
+            transition: all 0.15s ease;
+        }
+        .popup-terrain-btn:hover {
+            background: rgba(56,189,248,0.12);
+            border-color: var(--clr-accent);
+        }
+
+        @media (max-width: 768px) {
+            #map { height: 40vh; }
+            .bts-table { font-size: 0.75rem; }
+            .bts-table td, .bts-table th { padding: var(--space-xs) var(--space-sm); }
+            .filter-bar .container-fluid { flex-direction: column; gap: var(--space-sm); }
+            .terrain-chart-wrap { height: 200px; }
+            .terrain-stats { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="loading-overlay" id="loader">
+    <div class="loading-spinner"></div>
+</div>
+
+<header class="app-header">
+    <div class="container-fluid px-4">
+        <h1>📡 Analiza <span>BTS</span> <span style="font-size:0.6em;font-weight:400;color:var(--clr-text-dim)">— wieże w promieniu 10 km — 50.8483°N, 20.7456°E</span></h1>
+    </div>
+</header>
+
+<div id="map"></div>
+
+<div class="filter-bar">
+    <div class="container-fluid px-4 d-flex align-items-center gap-4 flex-wrap">
+        <div class="filter-group">
+            <span class="filter-label">Operator</span>
+            <label class="op-check active" style="color:var(--clr-play)">
+                <input type="checkbox" value="Play" checked>
+                <span class="op-dot" style="background:var(--clr-play)"></span> Play
+            </label>
+            <label class="op-check active" style="color:var(--clr-orange)">
+                <input type="checkbox" value="Orange" checked>
+                <span class="op-dot" style="background:var(--clr-orange)"></span> Orange
+            </label>
+            <label class="op-check active" style="color:var(--clr-tmobile)">
+                <input type="checkbox" value="T-Mobile" checked>
+                <span class="op-dot" style="background:var(--clr-tmobile)"></span> T-Mobile
+            </label>
+            <label class="op-check active" style="color:var(--clr-plus)">
+                <input type="checkbox" value="Plus" checked>
+                <span class="op-dot" style="background:var(--clr-plus)"></span> Plus
+            </label>
+        </div>
+
+        <div style="width:1px; height:24px; background:var(--clr-border)"></div>
+
+        <div class="filter-group">
+            <span class="filter-label">Technologia</span>
+            <button class="tech-btn active" data-tech="all">Wszystkie</button>
+            <button class="tech-btn" data-tech="5g_n78">5G n78</button>
+            <button class="tech-btn" data-tech="5g_n28">5G n28</button>
+            <button class="tech-btn" data-tech="5g_any">5G</button>
+            <button class="tech-btn" data-tech="lte">LTE</button>
+        </div>
+
+        <div style="width:1px; height:24px; background:var(--clr-border)"></div>
+
+        <div class="filter-group">
+            <span class="filter-label">Max odległość</span>
+            <input type="range" class="dist-slider" id="dist-slider" min="0.5" max="10" step="0.1" value="10">
+            <span class="font-mono" style="font-size:0.78rem; min-width:50px;" id="dist-value">10.0 km</span>
+        </div>
+    </div>
+</div>
+
+<div id="terrain-panel" class="terrain-panel">
+    <div class="container-fluid px-4">
+        <div class="terrain-header">
+            <div class="terrain-title">⛰️ <span id="terrain-station-name">Profil terenu</span></div>
+            <button class="terrain-close" id="terrain-close" title="Zamknij">✕</button>
+        </div>
+        <div id="terrain-loading" class="terrain-loading">
+            <div class="loading-spinner" style="width:20px;height:20px;border-width:2px"></div>
+            <span>Pobieranie danych wysokościowych...</span>
+        </div>
+        <div id="terrain-content" style="display:none">
+            <div class="terrain-chart-wrap">
+                <canvas id="terrain-chart"></canvas>
+            </div>
+            <div id="terrain-stats" class="terrain-stats"></div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid px-4">
+    <div class="table-wrap">
+        <div class="table-scroll" id="table-scroll">
+            <table class="bts-table" id="bts-table">
+                <thead>
+                    <tr>
+                        <th data-sort="index"># <span class="sort-icon">↕</span></th>
+                        <th data-sort="dist_km" class="sorted">Odległość <span class="sort-icon">↑</span></th>
+                        <th data-sort="azimuth">Azymut <span class="sort-icon">↕</span></th>
+                        <th data-sort="operator_count">Operatorzy <span class="sort-icon">↕</span></th>
+                        <th data-sort="miasto">Miasto <span class="sort-icon">↕</span></th>
+                        <th data-sort="has_5g_n78">5G <span class="sort-icon">↕</span></th>
+                        <th data-sort="band_count" style="min-width:200px">Prędkość ↓ <span class="sort-icon">↕</span></th>
+                        <th style="min-width:90px">Szczegóły</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+
+<script>
+(function() {
+    'use strict';
+
+    // ── CONFIG ──
+    const OPERATOR_COLORS = {
+        'Play': '#7b2d8e',
+        'Orange': '#ff6600',
+        'T-Mobile': '#e20074',
+        'Plus': '#00843d'
+    };
+    const OPERATOR_CLASS = {
+        'Play': 'play',
+        'Orange': 'orange',
+        'T-Mobile': 'tmobile',
+        'Plus': 'plus'
+    };
+
+    function estimateSpeed(tower) {
+        const d = tower.dist_km;
+        const los = losCache[tower._idx] || null;
+        return estimateSpeedForBands(tower.all_bands, d, los);
+    }
+
+    function estimateSpeedForBands(bands, d, los) {
+        let best = '', maxDl = 0, label = '';
+        const losPenalty = los ? (los.blocked ? Math.min(0.9, los.maxObs / 50) : 0) : null;
+
+        if (bands.includes('5G3600') || bands.includes('5G3500')) {
+            best = 'n78';
+            maxDl = d < 1.5 ? 700 : d < 3 ? 500 : d < 5 ? 300 : 150;
+            if (losPenalty !== null) {
+                if (losPenalty > 0.3) maxDl = Math.max(10, Math.round(maxDl * 0.15));
+                else if (losPenalty > 0) maxDl = Math.round(maxDl * (1 - losPenalty));
+            }
+            label = `${maxDl}${losPenalty === null ? '+' : ''} Mbps`;
+        } else if (bands.includes('5G700')) {
+            best = 'n28';
+            maxDl = d < 2 ? 120 : d < 5 ? 80 : 50;
+            const lteBands = bands.filter(b => b.startsWith('LTE'));
+            if (lteBands.length >= 3) { maxDl = Math.min(300, maxDl + lteBands.length * 30); }
+            if (losPenalty !== null && losPenalty > 0) maxDl = Math.round(maxDl * (1 - losPenalty * 0.5));
+            label = `${maxDl} Mbps`;
+        } else if (bands.some(b => b.startsWith('5G'))) {
+            best = '5G';
+            const lteBands = bands.filter(b => b.startsWith('LTE'));
+            maxDl = d < 3 ? 100 + lteBands.length * 15 : 60 + lteBands.length * 10;
+            if (losPenalty !== null && losPenalty > 0) maxDl = Math.round(maxDl * (1 - losPenalty * 0.5));
+            label = `${maxDl} Mbps`;
+        } else {
+            const lteBands = bands.filter(b => b.startsWith('LTE'));
+            if (lteBands.length > 0) {
+                best = 'LTE';
+                maxDl = d < 3 ? lteBands.length * 35 : d < 6 ? lteBands.length * 25 : lteBands.length * 15;
+                if (losPenalty !== null && losPenalty > 0) maxDl = Math.round(maxDl * (1 - losPenalty * 0.4));
+                label = `${maxDl} Mbps`;
+            } else {
+                best = '2G/3G';
+                maxDl = 10;
+                label = '<10 Mbps';
+            }
+        }
+        const cls = maxDl >= 300 ? 'check-yes' : maxDl >= 100 ? 'speed-mid' : maxDl >= 50 ? 'speed-low' : 'check-no';
+        const losIcon = losPenalty === null ? '' : (losPenalty > 0 ? ' ⛔' : ' ✅');
+        return { best, maxDl, label: label + losIcon, cls };
+    }
+
+    function estimateSpeedsPerOperator(tower) {
+        const los = losCache[tower._idx] || null;
+        return tower.operators.map(op => {
+            const spd = estimateSpeedForBands(op.bands, tower.dist_km, los);
+            return { operator: op.operator, id: op.id, ...spd };
+        }).sort((a, b) => b.maxDl - a.maxDl);
+    }
+
+    const losCache = {};
+    let losFetchQueue = [];
+    let losFetching = false;
+
+    async function fetchLOSForTower(tower) {
+        const idx = tower._idx;
+        if (losCache[idx]) return losCache[idx];
+        const points = interpolatePoints(userLoc.lat, userLoc.lon, tower.lat, tower.lon, 30);
+        const elevations = await fetchTerrainElevations(idx, points);
+        const distances = points.map(p => haversineDist(userLoc.lat, userLoc.lon, p.lat, p.lon));
+        const losData = computeLOSAnalysis(elevations, distances);
+        losCache[idx] = losData;
+        return losData;
+    }
+
+    async function autoFetchLOS() {
+        if (losFetching) return;
+        losFetching = true;
+        const sorted = [...allTowers].sort((a, b) => a.dist_km - b.dist_km);
+        for (const tower of sorted) {
+            if (losCache[tower._idx]) continue;
+            try {
+                await fetchLOSForTower(tower);
+                updateTowerSpeedCells(tower._idx);
+                await new Promise(r => setTimeout(r, 200));
+            } catch (e) {
+                console.warn(`LOS fetch failed for tower ${tower._idx}:`, e.message);
+            }
+        }
+        losFetching = false;
+    }
+
+    function updateTowerSpeedCells(idx) {
+        const rows = document.querySelectorAll(`tr[data-idx="${idx}"]`);
+        if (!rows.length) return;
+        const tower = allTowers[idx];
+        if (!tower) return;
+        const opSpeeds = estimateSpeedsPerOperator(tower);
+        const topTwo = opSpeeds.slice(0, 2);
+        const speedCell = topTwo.map(s => {
+            const c = OPERATOR_COLORS[s.operator] || '#888';
+            return `<span class="${s.cls}" style="font-weight:600">${s.label}</span> <span style="font-size:0.75em;color:${c}">${s.operator}</span> <span style="font-size:0.7em;color:var(--clr-text-dim)">${s.best}</span>`;
+        }).join('<br>');
+        const mainRow = rows[0];
+        const speedTd = mainRow.querySelectorAll('td')[7];
+        if (speedTd) speedTd.innerHTML = speedCell;
+    }
+
+    async function renderInlineTerrain(tower, container) {
+        try {
+            const points = interpolatePoints(userLoc.lat, userLoc.lon, tower.lat, tower.lon, 30);
+            const elevations = await fetchTerrainElevations(tower._idx, points);
+            const distances = points.map(p => haversineDist(userLoc.lat, userLoc.lon, p.lat, p.lon));
+            const losData = computeLOSAnalysis(elevations, distances);
+
+            if (!losCache[tower._idx]) {
+                losCache[tower._idx] = losData;
+                updateTowerSpeedCells(tower._idx);
+            }
+
+            const canvas = document.createElement('canvas');
+            canvas.style.width = '100%';
+            canvas.style.height = '100%';
+            container.innerHTML = '';
+            container.appendChild(canvas);
+
+            const losLine = distances.map(d => losData.userElev + (d / losData.totalDist) * (losData.btsElev - losData.userElev));
+            const distLabels = distances.map(d => (d / 1000).toFixed(1));
+
+            new Chart(canvas, {
+                type: 'line',
+                data: {
+                    labels: distLabels,
+                    datasets: [
+                        {
+                            label: 'Teren',
+                            data: elevations,
+                            borderColor: losData.blocked ? '#ef4444' : '#22c55e',
+                            backgroundColor: losData.blocked ? 'rgba(239,68,68,0.15)' : 'rgba(34,197,94,0.15)',
+                            borderWidth: 1.5,
+                            fill: true,
+                            pointRadius: 0,
+                            tension: 0.3
+                        },
+                        {
+                            label: 'LOS',
+                            data: losLine,
+                            borderColor: '#fbbf24',
+                            borderWidth: 1,
+                            borderDash: [4, 4],
+                            fill: false,
+                            pointRadius: 0
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    animation: { duration: 300 },
+                    plugins: {
+                        legend: { display: false },
+                        title: {
+                            display: true,
+                            text: `${tower.miasto} ${tower.dist_km}km — ${losData.blocked ? '⛔ NLOS (+' + losData.maxObs.toFixed(0) + 'm)' : '✅ LOS czysty'}`,
+                            color: losData.blocked ? '#ef4444' : '#22c55e',
+                            font: { size: 11 }
+                        }
+                    },
+                    scales: {
+                        x: { display: true, title: { display: true, text: 'km', color: '#6b7280', font: { size: 9 } }, ticks: { color: '#6b7280', font: { size: 8 }, maxTicksLimit: 6 }, grid: { color: 'rgba(36,42,54,0.5)' } },
+                        y: { title: { display: true, text: 'm', color: '#6b7280', font: { size: 9 } }, ticks: { color: '#6b7280', font: { size: 8 } }, grid: { color: 'rgba(36,42,54,0.5)' } }
+                    }
+                }
+            });
+        } catch (e) {
+            container.innerHTML = `<div style="color:#ef4444;font-size:0.8em;text-align:center;padding-top:60px">Błąd: ${e.message}</div>`;
+        }
+    }
+
+    function bandClass(b) {
+        if (b.startsWith('5G3600') || b === '5G3600') return 'band-5g3600';
+        if (b.startsWith('5G700') || b === '5G700') return 'band-5g700';
+        if (b.startsWith('5G')) return 'band-5g2100';
+        if (b.startsWith('LTE')) return 'band-lte';
+        if (b.startsWith('GSM')) return 'band-gsm';
+        if (b.startsWith('UMTS')) return 'band-umts';
+        return 'band-lte';
+    }
+
+    /** Return the primary operator of a tower (the one with the most bands) */
+    function primaryOperator(tower) {
+        if (tower.operators.length === 1) return tower.operators[0].operator;
+        let best = tower.operators[0];
+        for (let i = 1; i < tower.operators.length; i++) {
+            if (tower.operators[i].bands.length > best.bands.length) best = tower.operators[i];
+        }
+        return best.operator;
+    }
+
+    // ── STATE ──
+    let allTowers = [];
+    let filteredTowers = [];
+    let userLoc = null;
+    let map, userMarker;
+    let markers = {};      // towerIdx -> L.marker/circleMarker
+    let lines = {};        // towerIdx -> L.polyline
+    let linesLayer;
+    let markersLayer;
+    let highlightedIdx = null;
+    let sortCol = 'dist_km';
+    let sortDir = 'asc';
+
+    // ── INIT ──
+    async function init() {
+        const resp = await fetch('data.json?t=' + Date.now());
+        const data = await resp.json();
+        console.log('Loaded data keys:', Object.keys(data), 'towers:', data.towers?.length);
+        userLoc = data.user;
+        allTowers = data.towers.map((t, i) => ({ ...t, _idx: i }));
+
+        initMap();
+        bindFilters();
+        applyFilters();
+        initTerrain();
+
+        setTimeout(() => document.getElementById('loader').classList.add('hidden'), 300);
+        setTimeout(() => autoFetchLOS(), 1000);
+    }
+
+    // ── MAP ──
+    function initMap() {
+        map = L.map('map', {
+            center: [userLoc.lat, userLoc.lon],
+            zoom: 13,
+            zoomControl: true
+        });
+
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+            attribution: '© <a href="https://carto.com/">CARTO</a> © <a href="https://osm.org/copyright">OSM</a>',
+            maxZoom: 19
+        }).addTo(map);
+
+        // User marker
+        const userIcon = L.divIcon({
+            className: 'user-marker',
+            html: '<div class="user-marker-ring"></div><div class="user-marker-dot"></div>',
+            iconSize: [20, 20],
+            iconAnchor: [10, 10]
+        });
+        userMarker = L.marker([userLoc.lat, userLoc.lon], { icon: userIcon, zIndexOffset: 1000 })
+            .addTo(map)
+            .bindPopup('<div class="popup-title">📍 Twoja lokalizacja</div><div class="font-mono" style="font-size:0.78rem">' + userLoc.lat.toFixed(5) + '°N, ' + userLoc.lon.toFixed(5) + '°E</div>');
+
+        linesLayer = L.layerGroup().addTo(map);
+        markersLayer = L.layerGroup().addTo(map);
+    }
+
+    function buildPieSvg(operators, size) {
+        const colors = operators.map(o => OPERATOR_COLORS[o.operator] || '#888');
+        if (colors.length === 1) {
+            return `<circle cx="${size/2}" cy="${size/2}" r="${size/2 - 1}" fill="${colors[0]}" stroke="${colors[0]}" stroke-width="1" opacity="0.85"/>`;
+        }
+        const cx = size / 2, cy = size / 2, r = size / 2 - 1;
+        let svg = '';
+        const sliceAngle = 360 / colors.length;
+        colors.forEach((c, i) => {
+            const startAngle = (i * sliceAngle - 90) * Math.PI / 180;
+            const endAngle = ((i + 1) * sliceAngle - 90) * Math.PI / 180;
+            const x1 = cx + r * Math.cos(startAngle);
+            const y1 = cy + r * Math.sin(startAngle);
+            const x2 = cx + r * Math.cos(endAngle);
+            const y2 = cy + r * Math.sin(endAngle);
+            const large = sliceAngle > 180 ? 1 : 0;
+            svg += `<path d="M${cx},${cy} L${x1},${y1} A${r},${r} 0 ${large},1 ${x2},${y2} Z" fill="${c}" opacity="0.85"/>`;
+        });
+        svg += `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="0.8"/>`;
+        return svg;
+    }
+
+    function renderMapMarkers() {
+        markersLayer.clearLayers();
+        linesLayer.clearLayers();
+        markers = {};
+        lines = {};
+
+        filteredTowers.forEach(t => {
+            const primOp = primaryOperator(t);
+            const primColor = OPERATOR_COLORS[primOp] || '#888';
+            const radius = Math.max(5, Math.min(14, 4 + t.band_count * 0.4));
+            const idx = t._idx;
+
+            const line = L.polyline(
+                [[userLoc.lat, userLoc.lon], [t.lat, t.lon]],
+                { color: primColor, weight: 1, opacity: 0.15, dashArray: '4 6' }
+            );
+            linesLayer.addLayer(line);
+            lines[idx] = line;
+
+            let marker;
+            const svgSize = radius * 3;
+            const pieSvg = buildPieSvg(t.operators, svgSize);
+
+            if (t.has_5g_n78) {
+                const starIcon = L.divIcon({
+                    className: '',
+                    html: `<svg width="${svgSize}" height="${svgSize}" viewBox="0 0 24 24" style="filter:drop-shadow(0 0 4px ${primColor}80)">
+                        <defs><clipPath id="star-${idx}"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></clipPath></defs>
+                        <g clip-path="url(#star-${idx})">${buildPieSvg(t.operators, 24)}</g>
+                        <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"
+                            fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="0.8"/>
+                    </svg>`,
+                    iconSize: [svgSize, svgSize],
+                    iconAnchor: [svgSize/2, svgSize/2]
+                });
+                marker = L.marker([t.lat, t.lon], { icon: starIcon });
+            } else {
+                const circleIcon = L.divIcon({
+                    className: '',
+                    html: `<svg width="${svgSize}" height="${svgSize}" viewBox="0 0 ${svgSize} ${svgSize}" style="filter:drop-shadow(0 0 2px rgba(0,0,0,0.5))">${pieSvg}</svg>`,
+                    iconSize: [svgSize, svgSize],
+                    iconAnchor: [svgSize/2, svgSize/2]
+                });
+                marker = L.marker([t.lat, t.lon], { icon: circleIcon });
+            }
+
+            marker.bindPopup(buildPopup(t));
+            marker.on('click', () => highlightTower(idx, 'map'));
+
+            markersLayer.addLayer(marker);
+            markers[idx] = marker;
+        });
+    }
+
+    function buildPopup(t) {
+        const primOp = primaryOperator(t);
+        const color = OPERATOR_COLORS[primOp] || '#888';
+
+        // Operator sections
+        const opSections = t.operators.map(op => {
+            const opColor = OPERATOR_COLORS[op.operator] || '#888';
+            const bands = op.bands.map(b => `<span class="band-badge ${bandClass(b)}">${b}</span>`).join(' ');
+            return `
+                <div class="popup-op-section">
+                    <div class="popup-op-name">
+                        <span style="color:${opColor}">●</span>
+                        ${op.operator} <span style="color:var(--clr-text-dim);font-weight:400;font-size:0.72rem">#${op.id}</span>
+                    </div>
+                    <div style="font-size:0.72rem;color:var(--clr-text-dim)">${op.lokalizacja}</div>
+                    <div class="popup-op-bands">${bands}</div>
+                </div>`;
+        }).join('');
+
+        return `
+            <div class="popup-title">
+                <span style="color:${color}">●</span>
+                Wieża — ${t.miasto}
+                ${t.operator_count > 1 ? '<span style="font-size:0.7rem;color:var(--clr-text-dim)">' + t.operator_count + ' operatorów</span>' : ''}
+            </div>
+            <dl class="popup-grid">
+                <dt>Odległość</dt><dd>${t.dist_km} km</dd>
+                <dt>Azymut</dt><dd>${t.azimuth}° ${t.azimuth_dir}</dd>
+                <dt>5G n78</dt><dd>${t.has_5g_n78 ? '✅ Tak' : '—'}</dd>
+                <dt>5G n28</dt><dd>${t.has_5g_n28 ? '✅ Tak' : '—'}</dd>
+                <dt>Pasm łącznie</dt><dd>${t.band_count}</dd>
+            </dl>
+            ${opSections}
+            <button class="popup-terrain-btn" onclick="window.showTerrainProfile(${t._idx})">⛰️ Profil terenu i LOS</button>
+        `;
+    }
+
+    // ── TABLE ──
+    function renderTable() {
+        const tbody = document.getElementById('table-body');
+        tbody.innerHTML = '';
+
+        filteredTowers.forEach((t, i) => {
+            const primOp = primaryOperator(t);
+            const rowCls = t.operator_count > 1 ? 'op-multi' : ('op-' + (OPERATOR_CLASS[primOp] || ''));
+
+            const opBadges = t.operator_names.map(name => {
+                const cls = OPERATOR_CLASS[name] || '';
+                return `<span class="op-tag ${cls}">${name}</span>`;
+            }).join('');
+
+            const opSpeeds = estimateSpeedsPerOperator(t);
+            const topSpd = opSpeeds[0];
+            const topOpColor = OPERATOR_COLORS[topSpd.operator] || '#888';
+
+            const tr = document.createElement('tr');
+            tr.className = rowCls;
+            tr.dataset.idx = t._idx;
+            const topTwo = opSpeeds.slice(0, 2);
+            const speedCell = topTwo.map(s => {
+                const c = OPERATOR_COLORS[s.operator] || '#888';
+                return `<span style="white-space:nowrap"><span class="${s.cls}" style="font-weight:600">${s.label}</span> <span style="font-size:0.75em;color:${c}">${s.operator}</span> <span style="font-size:0.7em;color:var(--clr-text-dim)">${s.best}</span></span>`;
+            }).join('<br>');
+
+            const fiveG = [];
+            if (t.has_5g_n78) fiveG.push('<span class="check-yes" style="font-weight:700">★ n78</span>');
+            if (t.has_5g_n28) fiveG.push('<span class="speed-mid">✔ n28</span>');
+            if (!fiveG.length && t.has_5g) fiveG.push('<span class="speed-low">5G</span>');
+            const fiveGCell = fiveG.length ? fiveG.join(' ') : '<span class="check-no">—</span>';
+
+            tr.innerHTML = `
+                <td class="num">${i + 1}</td>
+                <td class="num">${t.dist_km.toFixed(2)}</td>
+                <td class="num">${t.azimuth.toFixed(1)}° <span style="color:var(--clr-text-dim)">${t.azimuth_dir}</span></td>
+                <td>${opBadges}</td>
+                <td>${t.miasto}</td>
+                <td class="text-center">${fiveGCell}</td>
+                <td class="num">${speedCell}</td>
+                <td><button class="terrain-btn details-btn" title="Szczegóły pasm i profil terenu">📋</button></td>
+            `;
+
+            const detailsRow = document.createElement('tr');
+            detailsRow.className = 'band-details d-none';
+            detailsRow.dataset.idx = t._idx;
+            const detailsHtml = opSpeeds.map(s => {
+                const opColor = OPERATOR_COLORS[s.operator] || '#888';
+                const op = t.operators.find(o => o.operator === s.operator && o.id === s.id);
+                const badges = op ? op.bands.map(b => `<span class="band-badge ${bandClass(b)}">${b}</span>`).join(' ') : '';
+                return `<div style="display:flex;align-items:baseline;gap:6px;padding:3px 0;border-bottom:1px solid rgba(255,255,255,0.05);flex-wrap:wrap">
+                    <span class="${s.cls}" style="font-weight:600;min-width:90px">${s.label}</span>
+                    <span style="color:${opColor};font-weight:600">${s.operator}</span>
+                    <span style="color:var(--clr-text-dim);font-size:0.8em">${s.id}</span>
+                    <span style="color:var(--clr-text-dim);font-size:0.8em">(${s.best})</span>
+                    <span>${badges}</span>
+                </div>`;
+            }).join('');
+            detailsRow.innerHTML = `<td colspan="8" style="padding:8px 12px;background:rgba(255,255,255,0.03);border-top:none">
+                <div style="display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap">
+                    <div style="flex:1;min-width:250px">${detailsHtml}</div>
+                    <div style="flex:1;min-width:300px">
+                        <div class="inline-terrain" data-tower-idx="${t._idx}" style="height:180px;position:relative">
+                            <div style="color:var(--clr-text-dim);font-size:0.8em;text-align:center;padding-top:60px">
+                                <div class="loading-spinner" style="width:16px;height:16px;border-width:2px;margin:0 auto 8px"></div>
+                                Ładowanie profilu terenu...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>`;
+
+            const detailsBtn = tr.querySelector('.details-btn');
+            if (detailsBtn) {
+                detailsBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    detailsRow.classList.toggle('d-none');
+                    if (!detailsRow.classList.contains('d-none')) {
+                        const container = detailsRow.querySelector('.inline-terrain');
+                        if (container && !container.dataset.loaded) {
+                            container.dataset.loaded = '1';
+                            renderInlineTerrain(t, container);
+                        }
+                    }
+                });
+            }
+            tr.addEventListener('click', (e) => {
+                if (e.target.closest('.details-btn')) return;
+                highlightTower(t._idx, 'table');
+            });
+            tbody.appendChild(tr);
+            tbody.appendChild(detailsRow);
+        });
+    }
+
+    // ── HIGHLIGHT ──
+    function highlightTower(idx, source) {
+        // Clear previous
+        document.querySelectorAll('.bts-table tbody tr.highlighted').forEach(r => r.classList.remove('highlighted'));
+
+        // Highlight line
+        Object.values(lines).forEach(l => l.setStyle({ weight: 1, opacity: 0.15 }));
+        if (lines[idx]) lines[idx].setStyle({ weight: 2.5, opacity: 0.6 });
+
+        // Highlight table row
+        const row = document.querySelector(`tr[data-idx="${idx}"]`);
+        if (row) {
+            row.classList.add('highlighted');
+            if (source === 'map') {
+                row.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+
+        // Pan map to marker
+        const marker = markers[idx];
+        if (marker && source === 'table') {
+            const latlng = marker.getLatLng();
+            map.panTo(latlng, { animate: true });
+            marker.openPopup();
+        }
+
+        highlightedIdx = idx;
+    }
+
+    // ── FILTERS ──
+    function bindFilters() {
+        // Operator checkboxes
+        document.querySelectorAll('.op-check input').forEach(cb => {
+            cb.addEventListener('change', function() {
+                this.closest('.op-check').classList.toggle('active', this.checked);
+                applyFilters();
+            });
+        });
+
+        // Technology buttons
+        document.querySelectorAll('.tech-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.tech-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                applyFilters();
+            });
+        });
+
+        // Distance slider
+        const slider = document.getElementById('dist-slider');
+        const distVal = document.getElementById('dist-value');
+        slider.addEventListener('input', function() {
+            distVal.textContent = parseFloat(this.value).toFixed(1) + ' km';
+            applyFilters();
+        });
+
+        // Sort headers
+        document.querySelectorAll('.bts-table thead th[data-sort]').forEach(th => {
+            th.addEventListener('click', function() {
+                const col = this.dataset.sort;
+                if (sortCol === col) {
+                    sortDir = sortDir === 'asc' ? 'desc' : 'asc';
+                } else {
+                    sortCol = col;
+                    sortDir = 'asc';
+                }
+                updateSortUI();
+                sortAndRender();
+            });
+        });
+    }
+
+    function applyFilters() {
+        // Gather active operators
+        const activeOps = [];
+        document.querySelectorAll('.op-check input:checked').forEach(cb => activeOps.push(cb.value));
+
+        // Tech filter
+        const tech = document.querySelector('.tech-btn.active')?.dataset.tech || 'all';
+
+        // Distance
+        const maxDist = parseFloat(document.getElementById('dist-slider').value);
+
+        filteredTowers = allTowers.filter(t => {
+            // Tower must have at least one operator that matches active filters
+            const hasMatchingOp = t.operator_names.some(name => activeOps.includes(name));
+            if (!hasMatchingOp) return false;
+
+            if (t.dist_km > maxDist) return false;
+
+            switch (tech) {
+                case '5g_n78': return t.has_5g_n78;
+                case '5g_n28': return t.has_5g_n28;
+                case '5g_any': return t.has_5g;
+                case 'lte': return t.all_bands.some(b => b.startsWith('LTE'));
+                default: return true;
+            }
+        });
+
+        sortAndRender();
+    }
+
+    function sortAndRender() {
+        filteredTowers.sort((a, b) => {
+            let va = a[sortCol];
+            let vb = b[sortCol];
+
+            if (sortCol === 'index') { va = a.dist_km; vb = b.dist_km; }
+            if (typeof va === 'boolean') { va = va ? 1 : 0; vb = vb ? 1 : 0; }
+            if (typeof va === 'string') { va = va.toLowerCase(); vb = vb.toLowerCase(); }
+
+            if (va < vb) return sortDir === 'asc' ? -1 : 1;
+            if (va > vb) return sortDir === 'asc' ? 1 : -1;
+            return 0;
+        });
+
+        renderTable();
+        renderMapMarkers();
+    }
+
+    function updateSortUI() {
+        document.querySelectorAll('.bts-table thead th').forEach(th => {
+            th.classList.remove('sorted');
+            const icon = th.querySelector('.sort-icon');
+            if (icon) icon.textContent = '↕';
+        });
+        const activeTh = document.querySelector(`th[data-sort="${sortCol}"]`);
+        if (activeTh) {
+            activeTh.classList.add('sorted');
+            const icon = activeTh.querySelector('.sort-icon');
+            if (icon) icon.textContent = sortDir === 'asc' ? '↑' : '↓';
+        }
+    }
+
+    // ── TERRAIN PROFILE & LOS ANALYSIS ──
+    const TERRAIN_SAMPLES = 50;
+    const USER_ANTENNA_H = 6;   // roof-mount antenna
+    const BTS_MAST_H = 35;      // typical BTS mast
+    let terrainChart = null;
+    let currentTerrainIdx = null;
+
+    function getDominantFreqMHz(tower) {
+        for (const b of (tower.all_bands || [])) {
+            if (b.includes('3600')) return 3600;
+            if (b.includes('2100') && b.startsWith('5G')) return 2100;
+            if (b.includes('700')) return 700;
+            if (b.includes('2600')) return 2600;
+            if (b.includes('1800')) return 1800;
+            if (b.includes('2100')) return 2100;
+            if (b.includes('800')) return 800;
+            if (b.includes('900')) return 900;
+        }
+        return 1800;
+    }
+
+    function haversineDist(lat1, lon1, lat2, lon2) {
+        const R = 6371000;
+        const toR = x => x * Math.PI / 180;
+        const dLat = toR(lat2 - lat1), dLon = toR(lon2 - lon1);
+        const a = Math.sin(dLat / 2) ** 2 + Math.cos(toR(lat1)) * Math.cos(toR(lat2)) * Math.sin(dLon / 2) ** 2;
+        return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    }
+
+    function interpolatePoints(lat1, lon1, lat2, lon2, n) {
+        const pts = [];
+        for (let i = 0; i <= n; i++) {
+            const t = i / n;
+            pts.push({ lat: lat1 + t * (lat2 - lat1), lon: lon1 + t * (lon2 - lon1) });
+        }
+        return pts;
+    }
+
+    async function fetchTerrainElevations(towerIdx, points) {
+        const cacheKey = `terrain_tower_${towerIdx}`;
+        const cached = sessionStorage.getItem(cacheKey);
+        if (cached) { const d = JSON.parse(cached); window._terrainSource = d.src; return d.elevs; }
+
+        let elevs, src;
+        try {
+            elevs = await fetchGugikNMT(towerIdx, points);
+            src = 'GUGiK NMT (1m)';
+        } catch (e) {
+            console.warn('GUGiK NMT failed, falling back to OpenTopoData:', e.message);
+            elevs = await fetchOpenTopoData(towerIdx, points);
+            src = 'SRTM (30m)';
+        }
+
+        window._terrainSource = src;
+        try { sessionStorage.setItem(cacheKey, JSON.stringify({elevs, src})); } catch (e) { /* quota */ }
+        return elevs;
+    }
+
+    function wgs84ToPuwg92(lat, lon) {
+        const a = 6378137.0, e2 = 0.00669438002290;
+        const latR = lat * Math.PI / 180, lonR = lon * Math.PI / 180, lon0R = 19.0 * Math.PI / 180;
+        const dl = lonR - lon0R;
+        const t = Math.tan(latR), cosL = Math.cos(latR), sinL = Math.sin(latR);
+        const n2 = e2 / (1 - e2) * cosL * cosL;
+        const N = a / Math.sqrt(1 - e2 * sinL * sinL);
+        const A0 = 1 - e2/4 - 3*e2*e2/64 - 5*e2*e2*e2/256;
+        const A2 = 3/8 * (e2 + e2*e2/4 + 15*e2*e2*e2/128);
+        const A4 = 15/256 * (e2*e2 + 3*e2*e2*e2/4);
+        const A6 = 35*e2*e2*e2/3072;
+        const sigma = a * (A0*latR - A2*Math.sin(2*latR) + A4*Math.sin(4*latR) - A6*Math.sin(6*latR));
+        const xgk = sigma + dl*dl/2 * N * sinL * cosL * (1 + dl*dl/12 * cosL*cosL * (5 - t*t + 9*n2 + 4*n2*n2) + dl*dl*dl*dl/360 * cosL*cosL*cosL*cosL * (61 - 58*t*t + t*t*t*t + 270*n2 - 330*n2*t*t));
+        const ygk = dl * N * cosL * (1 + dl*dl/6 * cosL*cosL * (1 - t*t + n2) + dl*dl*dl*dl/120 * cosL*cosL*cosL*cosL * (5 - 18*t*t + t*t*t*t + 14*n2 - 58*n2*t*t));
+        return { x: xgk * 0.9993 - 5300000, y: ygk * 0.9993 + 500000 };
+    }
+
+    async function fetchGugikNMT(towerIdx, points) {
+        const puwgPoints = points.map(p => {
+            const c = wgs84ToPuwg92(p.lat, p.lon);
+            return `${Math.round(c.x)} ${Math.round(c.y)}`;
+        });
+        const url = `https://services.gugik.gov.pl/nmt/?request=GetHByPointList&list=${puwgPoints.join(',')}`;
+        const resp = await fetch(url);
+        if (!resp.ok) throw new Error(`GUGiK HTTP ${resp.status}`);
+        const text = await resp.text();
+        const elevs = text.split(',').map(part => {
+            const tokens = part.trim().split(/\s+/);
+            return parseFloat(tokens[2]) || 0;
+        });
+        if (elevs.length !== points.length) throw new Error(`GUGiK returned ${elevs.length} pts, expected ${points.length}`);
+        return elevs;
+    }
+
+    async function fetchOpenTopoData(towerIdx, points) {
+        const locs = points.map(p => `${p.lat.toFixed(6)},${p.lon.toFixed(6)}`).join('|');
+        const apiUrl = `https://api.opentopodata.org/v1/srtm30m?locations=${locs}`;
+        let data;
+        try {
+            const resp = await fetch(apiUrl);
+            if (resp.ok) { data = await resp.json(); } else { throw new Error('direct failed'); }
+        } catch (e) {
+            const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(apiUrl)}`;
+            const proxyResp = await fetch(proxyUrl);
+            if (!proxyResp.ok) throw new Error(`Proxy HTTP ${proxyResp.status}`);
+            const proxyData = await proxyResp.json();
+            data = JSON.parse(proxyData.contents);
+        }
+        if (data.status !== 'OK') throw new Error(data.error || 'Błąd API');
+        return data.results.map(r => r.elevation ?? 0);
+    }
+
+    function computeLOSAnalysis(elevations, distances) {
+        const n = elevations.length;
+        const userElev = elevations[0] + USER_ANTENNA_H;
+        const btsElev = elevations[n - 1] + BTS_MAST_H;
+        const totalDist = distances[n - 1];
+        const los = distances.map(d => userElev + (d / totalDist) * (btsElev - userElev));
+
+        let maxObs = 0, maxObsDist = 0, maxObsIdx = 0;
+        for (let i = 1; i < n - 1; i++) {
+            const diff = elevations[i] - los[i];
+            if (diff > maxObs) { maxObs = diff; maxObsDist = distances[i]; maxObsIdx = i; }
+        }
+        return { los, userElev, btsElev, totalDist, maxObs, maxObsDist, maxObsIdx, blocked: maxObs > 0 };
+    }
+
+    function computeFresnelRadii(freqMHz, distances, totalDist) {
+        const lambda = 0.3 / (freqMHz / 1000);
+        return distances.map(d => {
+            const d2 = totalDist - d;
+            return (d > 0 && d2 > 0) ? Math.sqrt(lambda * d * d2 / totalDist) : 0;
+        });
+    }
+
+    function knifeEdgeLoss(obsH, lambda, d1, d2, D) {
+        if (obsH <= 0 || d1 <= 0 || d2 <= 0) return 0;
+        const nu = obsH * Math.sqrt(2 * D / (lambda * d1 * d2));
+        return Math.max(0, 6.9 + 20 * Math.log10(Math.sqrt((nu - 0.1) ** 2 + 1) + nu - 0.1));
+    }
+
+    function estimateQuality(blocked, maxObs, fresnelCl, distKm, diffLoss) {
+        if (!blocked && fresnelCl > 0) {
+            if (distKm < 2) return { text: 'Doskonała', cls: 'los-clear' };
+            if (distKm < 5) return { text: 'Bardzo dobra', cls: 'los-clear' };
+            return { text: 'Dobra', cls: 'los-clear' };
+        }
+        if (!blocked) return { text: 'Średnia — naruszenie strefy Fresnela', cls: 'fresnel-bad' };
+        if (diffLoss < 10) return { text: 'Osłabiona — dyfrakcja ' + diffLoss.toFixed(1) + ' dB', cls: 'fresnel-bad' };
+        if (diffLoss < 20) return { text: 'Słaba — dyfrakcja ' + diffLoss.toFixed(1) + ' dB', cls: 'los-blocked' };
+        return { text: 'Brak sygnału LOS — dyfrakcja ' + diffLoss.toFixed(1) + ' dB', cls: 'los-blocked' };
+    }
+
+    async function showTerrainProfile(towerIdx) {
+        const panel = document.getElementById('terrain-panel');
+        if (currentTerrainIdx === towerIdx && panel.classList.contains('open')) return;
+
+        const tower = allTowers.find(t => t._idx === towerIdx);
+        if (!tower) return;
+
+        currentTerrainIdx = towerIdx;
+        const loading = document.getElementById('terrain-loading');
+        const content = document.getElementById('terrain-content');
+
+        const opsLabel = tower.operator_names.join(' + ');
+        document.getElementById('terrain-station-name').textContent =
+            `${opsLabel} — ${tower.miasto} (${tower.dist_km.toFixed(2)} km)`;
+        loading.style.display = 'flex';
+        loading.innerHTML = '<div class="loading-spinner" style="width:20px;height:20px;border-width:2px"></div><span>Pobieranie danych wysokościowych...</span>';
+        content.style.display = 'none';
+        panel.classList.add('open');
+
+        setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 150);
+
+        try {
+            const points = interpolatePoints(userLoc.lat, userLoc.lon, tower.lat, tower.lon, TERRAIN_SAMPLES);
+            const distances = points.map(p => haversineDist(userLoc.lat, userLoc.lon, p.lat, p.lon));
+            const elevations = await fetchTerrainElevations(towerIdx, points);
+
+            if (currentTerrainIdx !== towerIdx) return;
+
+            const losData = computeLOSAnalysis(elevations, distances);
+            const freqMHz = getDominantFreqMHz(tower);
+            const lambda = 0.3 / (freqMHz / 1000);
+            const fresnelRadii = computeFresnelRadii(freqMHz, distances, losData.totalDist);
+            const fresnelLower = losData.los.map((l, i) => l - fresnelRadii[i]);
+
+            let worstFresnelCl = Infinity;
+            for (let i = 1; i < elevations.length - 1; i++) {
+                const cl = losData.los[i] - fresnelRadii[i] - elevations[i];
+                if (cl < worstFresnelCl) worstFresnelCl = cl;
+            }
+
+            const diffLoss = losData.blocked
+                ? knifeEdgeLoss(losData.maxObs, lambda, losData.maxObsDist, losData.totalDist - losData.maxObsDist, losData.totalDist)
+                : 0;
+            const quality = estimateQuality(losData.blocked, losData.maxObs, worstFresnelCl, tower.dist_km, diffLoss);
+
+            drawTerrainChart(distances, elevations, losData, fresnelLower, tower);
+            fillTerrainStats(losData, tower, worstFresnelCl, freqMHz, quality, diffLoss);
+
+            loading.style.display = 'none';
+            content.style.display = 'block';
+        } catch (err) {
+            if (currentTerrainIdx !== towerIdx) return;
+            loading.innerHTML = `<span style="color:var(--clr-5g3600)">❌ Błąd pobierania profilu: ${err.message}</span>`;
+        }
+    }
+
+    function drawTerrainChart(distances, elevations, losData, fresnelLower, tower) {
+        const ctx = document.getElementById('terrain-chart');
+        if (terrainChart) terrainChart.destroy();
+
+        const labels = distances.map(d => (d / 1000).toFixed(2));
+        terrainChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels,
+                datasets: [
+                    {
+                        label: 'Teren',
+                        data: elevations,
+                        borderColor: 'rgba(148,163,184,0.9)',
+                        fill: { target: 1, above: 'rgba(239,68,68,0.3)', below: 'rgba(34,197,94,0.08)' },
+                        tension: 0.35,
+                        pointRadius: 0,
+                        borderWidth: 2,
+                        order: 2
+                    },
+                    {
+                        label: 'Linia wzroku (LOS)',
+                        data: losData.los,
+                        borderColor: 'rgba(251,191,36,0.85)',
+                        borderDash: [8, 4],
+                        fill: false,
+                        pointRadius: 0,
+                        borderWidth: 1.5,
+                        order: 1
+                    },
+                    {
+                        label: 'Dolna granica strefy Fresnela',
+                        data: fresnelLower,
+                        borderColor: 'rgba(251,191,36,0.2)',
+                        borderDash: [3, 3],
+                        fill: false,
+                        pointRadius: 0,
+                        borderWidth: 1,
+                        order: 1
+                    },
+                    {
+                        label: '_fill',
+                        data: elevations,
+                        borderColor: 'transparent',
+                        backgroundColor: 'rgba(56,189,248,0.04)',
+                        fill: 'origin',
+                        pointRadius: 0,
+                        borderWidth: 0,
+                        order: 3
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                interaction: { mode: 'index', intersect: false },
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top',
+                        labels: {
+                            color: '#6b7280',
+                            font: { size: 11, family: "'DM Sans', sans-serif" },
+                            padding: 12,
+                            usePointStyle: true,
+                            pointStyleWidth: 20,
+                            filter: item => item.text !== '_fill'
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(20,24,32,0.95)',
+                        borderColor: '#242a36',
+                        borderWidth: 1,
+                        titleFont: { family: "'DM Sans', sans-serif" },
+                        bodyFont: { family: "'JetBrains Mono', monospace", size: 11 },
+                        callbacks: {
+                            title: items => `Dystans: ${items[0].label} km`,
+                            label: item => {
+                                if (item.dataset.label === '_fill') return null;
+                                return `${item.dataset.label}: ${item.raw.toFixed(1)} m n.p.m.`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        title: { display: true, text: 'Dystans [km]', color: '#6b7280', font: { size: 11 } },
+                        ticks: { color: '#4b5563', font: { size: 10, family: "'JetBrains Mono', monospace" }, maxTicksLimit: 10 },
+                        grid: { color: 'rgba(36,42,54,0.5)' }
+                    },
+                    y: {
+                        title: { display: true, text: 'Wysokość [m n.p.m.]', color: '#6b7280', font: { size: 11 } },
+                        ticks: { color: '#4b5563', font: { size: 10, family: "'JetBrains Mono', monospace" } },
+                        grid: { color: 'rgba(36,42,54,0.5)' }
+                    }
+                }
+            }
+        });
+    }
+
+    function fillTerrainStats(losData, tower, fresnelCl, freqMHz, quality, diffLoss) {
+        const el = document.getElementById('terrain-stats');
+        const losTxt = losData.blocked
+            ? `⛔ Zablokowana (przeszkoda +${losData.maxObs.toFixed(1)}m na dystansie ${(losData.maxObsDist / 1000).toFixed(2)} km)`
+            : '✅ Czysta';
+        const losCls = losData.blocked ? 'los-blocked' : 'los-clear';
+        const frTxt = fresnelCl >= 0
+            ? `Prześwit: ${fresnelCl.toFixed(1)} m`
+            : `Naruszenie: ${fresnelCl.toFixed(1)} m`;
+        const frCls = fresnelCl >= 0 ? 'fresnel-ok' : (fresnelCl > -10 ? 'fresnel-bad' : 'los-blocked');
+
+        const opsLabel = tower.operator_names.join(', ');
+
+        el.innerHTML = `
+            <div class="terrain-stat">
+                <div class="label">Linia wzroku</div>
+                <div class="value ${losCls}">${losTxt}</div>
+            </div>
+            <div class="terrain-stat">
+                <div class="label">Jakość sygnału (szacunek)</div>
+                <div class="value ${quality.cls}">${quality.text}</div>
+            </div>
+            <div class="terrain-stat">
+                <div class="label">Dystans / Azymut</div>
+                <div class="value">${tower.dist_km.toFixed(2)} km | ${tower.azimuth.toFixed(1)}° ${tower.azimuth_dir}</div>
+            </div>
+            <div class="terrain-stat">
+                <div class="label">Operatorzy na wieży</div>
+                <div class="value">${opsLabel} (${tower.operator_count})</div>
+            </div>
+            <div class="terrain-stat">
+                <div class="label">Wysokość użytkownika</div>
+                <div class="value">${(losData.userElev - USER_ANTENNA_H).toFixed(0)} m n.p.m. (+${USER_ANTENNA_H}m antena = ${losData.userElev.toFixed(0)} m)</div>
+            </div>
+            <div class="terrain-stat">
+                <div class="label">Wysokość BTS</div>
+                <div class="value">${(losData.btsElev - BTS_MAST_H).toFixed(0)} m n.p.m. (+${BTS_MAST_H}m maszt = ${losData.btsElev.toFixed(0)} m)</div>
+            </div>
+            <div class="terrain-stat">
+                <div class="label">Strefa Fresnela (${freqMHz} MHz)</div>
+                <div class="value ${frCls}">${frTxt}</div>
+            </div>
+            ${losData.blocked ? `<div class="terrain-stat"><div class="label">Straty dyfrakcyjne (knife-edge)</div><div class="value los-blocked">${diffLoss.toFixed(1)} dB</div></div>` : ''}
+            <div class="terrain-stat">
+                <div class="label">Źródło danych wysokościowych</div>
+                <div class="value">${window._terrainSource || 'SRTM (30m)'}</div>
+            </div>
+        `;
+    }
+
+    function closeTerrainPanel() {
+        document.getElementById('terrain-panel').classList.remove('open');
+        currentTerrainIdx = null;
+    }
+
+    function initTerrain() {
+        document.getElementById('terrain-close').addEventListener('click', closeTerrainPanel);
+        window.showTerrainProfile = showTerrainProfile;
+    }
+
+    // ── BOOT ──
+    document.addEventListener('DOMContentLoaded', init);
+})();
+</script>
+</body>
+</html>
