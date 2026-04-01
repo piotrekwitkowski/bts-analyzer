@@ -37,6 +37,16 @@
             --space-xl: 32px;
         }
 
+        [data-theme="light"] {
+            --clr-bg: #f5f7fa;
+            --clr-surface: #ffffff;
+            --clr-surface-alt: #eef1f6;
+            --clr-border: #d1d5db;
+            --clr-text: #1f2937;
+            --clr-text-dim: #6b7280;
+            --clr-accent: #0284c7;
+        }
+
         * { box-sizing: border-box; }
 
         body {
@@ -51,21 +61,10 @@
 
         /* === HEADER === */
         .app-header {
-            background: linear-gradient(135deg, var(--clr-surface) 0%, #0f1318 100%);
+            background: var(--clr-surface);
             border-bottom: 1px solid var(--clr-border);
             padding: var(--space-sm) 0;
             position: relative;
-            overflow: hidden;
-        }
-        .app-header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -10%;
-            width: 60%;
-            height: 200%;
-            background: radial-gradient(ellipse, rgba(56,189,248,0.04) 0%, transparent 70%);
-            pointer-events: none;
         }
         .app-header h1 {
             font-size: 1.5rem;
@@ -74,6 +73,17 @@
             margin: 0;
         }
         .app-header h1 span { color: var(--clr-accent); }
+        .theme-toggle {
+            background: var(--clr-surface-alt);
+            border: 1px solid var(--clr-border);
+            color: var(--clr-text);
+            border-radius: 999px;
+            padding: 4px 12px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .theme-toggle:hover { background: var(--clr-border); }
         .stat-pill {
             display: inline-flex;
             align-items: center;
@@ -548,12 +558,11 @@
 </div>
 
 <header class="app-header">
-    <div class="container-fluid px-4">
-        <h1>📡 Analiza <span>BTS</span> <span style="font-size:0.6em;font-weight:400;color:var(--clr-text-dim)">— wieże w promieniu 10 km — 50.8483°N, 20.7456°E</span></h1>
+    <div class="container-fluid px-4 d-flex align-items-center justify-content-between">
+        <h1>📡 Analiza <span>BTS</span> <span style="font-size:0.6em;font-weight:400;color:var(--clr-text-dim)">— 50.8483°N, 20.7456°E</span></h1>
+        <button class="theme-toggle" id="theme-toggle" title="Zmień motyw">🌙</button>
     </div>
 </header>
-
-<div id="map"></div>
 
 <div class="filter-bar">
     <div class="container-fluid px-4 d-flex align-items-center gap-4 flex-wrap">
@@ -597,6 +606,8 @@
         </div>
     </div>
 </div>
+
+<div id="map"></div>
 
 <div id="terrain-panel" class="terrain-panel">
     <div class="container-fluid px-4">
@@ -909,6 +920,10 @@
     let filteredTowers = [];
     let userLoc = null;
     let map, userMarker;
+    const TILE_DARK = 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
+    const TILE_LIGHT = 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
+    const TILE_ATTR = '© <a href="https://carto.com/">CARTO</a> © <a href="https://osm.org/copyright">OSM</a>';
+    let tileLayer;
     let markers = {};      // towerIdx -> L.marker/circleMarker
     let lines = {};        // towerIdx -> L.polyline
     let linesLayer;
@@ -942,9 +957,8 @@
             zoomControl: true
         });
 
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-            attribution: '© <a href="https://carto.com/">CARTO</a> © <a href="https://osm.org/copyright">OSM</a>',
-            maxZoom: 19
+        tileLayer = L.tileLayer(document.documentElement.getAttribute('data-theme') === 'light' ? TILE_LIGHT : TILE_DARK, {
+            attribution: TILE_ATTR, maxZoom: 19
         }).addTo(map);
 
         // User marker
@@ -1113,8 +1127,8 @@
 
             tr.innerHTML = `
                 <td class="num">${i + 1}</td>
-                <td class="num">${t.dist_km.toFixed(2)}</td>
-                <td class="num">${Math.round(t.azimuth)}° ${t.azimuth_dir}</td>
+                <td class="num">${t.dist_km.toFixed(2)} <span style="color:var(--clr-text-dim)">km</span></td>
+                <td class="num">${Math.round(t.azimuth)}° <span style="color:var(--clr-text-dim)">${t.azimuth_dir}</span></td>
                 <td>${opBadges}</td>
                 <td>${t.miasto}</td>
                 <td>${fiveGCell}</td>
@@ -1677,7 +1691,33 @@
     }
 
     // ── BOOT ──
-    document.addEventListener('DOMContentLoaded', init);
+    function initTheme() {
+        const saved = localStorage.getItem('bts-theme');
+        if (saved === 'light') applyTheme('light');
+        document.getElementById('theme-toggle').addEventListener('click', () => {
+            const current = document.documentElement.getAttribute('data-theme');
+            applyTheme(current === 'light' ? 'dark' : 'light');
+        });
+    }
+
+    function applyTheme(theme) {
+        const btn = document.getElementById('theme-toggle');
+        if (theme === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+            document.documentElement.setAttribute('data-bs-theme', 'light');
+            btn.textContent = '☀️';
+        } else {
+            document.documentElement.removeAttribute('data-theme');
+            document.documentElement.setAttribute('data-bs-theme', 'dark');
+            btn.textContent = '🌙';
+        }
+        localStorage.setItem('bts-theme', theme);
+        if (typeof map !== 'undefined' && map && tileLayer) {
+            tileLayer.setUrl(theme === 'light' ? TILE_LIGHT : TILE_DARK);
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => { initTheme(); init(); });
 })();
 </script>
 </body>
