@@ -107,7 +107,7 @@
 
         /* === MAP === */
         #map {
-            height: 52vh;
+            flex: 0 0 60vh;
             width: 100%;
             border-bottom: 2px solid var(--clr-border);
             z-index: 1;
@@ -243,6 +243,9 @@
         .table-wrap {
             background: var(--clr-surface);
             overflow: hidden;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .bts-table {
@@ -550,7 +553,7 @@
         }
 
         @media (max-width: 768px) {
-            #map { height: 40vh; }
+            #map { flex: 0 0 40vh; }
             .bts-table { font-size: 0.75rem; }
             .bts-table td, .bts-table th { padding: var(--space-xs) var(--space-sm); }
             .filter-bar { padding: var(--space-sm) 0; }
@@ -573,7 +576,7 @@
 </div>
 
 <header class="app-header">
-    <div class="container-fluid px-4 d-flex align-items-center flex-wrap gap-3">
+    <div class="container-fluid px-4 d-flex align-items-center flex-wrap gap-3 justify-content-end">
         <h1 style="margin-right:auto">Radar <span>5G</span></h1>
 
         <div class="filter-group">
@@ -630,7 +633,7 @@
 <div id="map"></div>
 
 <div class="table-wrap">
-    <div class="table-scroll" id="table-scroll">
+    <div class="table-scroll" id="table-scroll" style="flex:1;overflow-y:auto">
         <table class="bts-table" id="bts-table">
                 <thead>
                     <tr>
