@@ -660,6 +660,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/@luomus/leaflet-smooth-wheel-zoom@1.0.0/SmoothWheelZoom.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
 
 <script>
@@ -977,7 +978,10 @@
         map = L.map('map', {
             center: [userLoc.lat, userLoc.lon],
             zoom: 13,
-            zoomControl: true
+            zoomControl: true,
+            scrollWheelZoom: false,
+            smoothWheelZoom: true,
+            smoothSensitivity: 1.5
         });
 
         tileLayer = L.tileLayer(document.documentElement.getAttribute('data-theme') === 'light' ? TILE_LIGHT : TILE_DARK, {
