@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Analiza BTS — Wieże w okolicy</title>
+    <title>Radar 5G — Wieże w okolicy</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>📡</text></svg>">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet">
@@ -54,7 +54,10 @@
             background: var(--clr-bg);
             color: var(--clr-text);
             margin: 0;
-            min-height: 100vh;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
 
         .font-mono { font-family: 'JetBrains Mono', monospace; }
@@ -212,10 +215,9 @@
             transition: all 0.15s ease;
         }
         .tech-btn:hover { background: var(--clr-surface-alt); }
+        .tech-btn:focus { outline: none; box-shadow: none; }
         .tech-btn.active {
-            background: var(--clr-accent);
-            color: #0d0f12;
-            border-color: var(--clr-accent);
+            border-color: var(--clr-text);
         }
 
         .dist-slider {
@@ -552,6 +554,7 @@
             .bts-table { font-size: 0.75rem; }
             .bts-table td, .bts-table th { padding: var(--space-xs) var(--space-sm); }
             .filter-bar { padding: var(--space-sm) 0; }
+            .filter-group { display: none; }
             .filter-bar .container-fluid { gap: var(--space-xs); }
         .filter-sep { display: none; }
             .filter-group { border-right: none; padding-right: 0; }
@@ -571,67 +574,60 @@
 
 <header class="app-header">
     <div class="container-fluid px-4 d-flex align-items-center flex-wrap gap-3">
-        <h1 style="margin-right:auto">📡 Analiza <span>BTS</span> <span style="font-size:0.6em;font-weight:400;color:var(--clr-text-dim)">— 50.8483°N, 20.7456°E</span></h1>
+        <h1 style="margin-right:auto">Radar <span>5G</span></h1>
 
         <div class="filter-group">
             <span class="filter-label">Operator</span>
-            <label class="op-check active" style="color:var(--clr-play)">
-                <input type="checkbox" value="Play" checked>
-                <span class="op-dot" style="background:var(--clr-play)"></span> Play
-            </label>
             <label class="op-check active" style="color:var(--clr-orange)">
                 <input type="checkbox" value="Orange" checked>
                 <span class="op-dot" style="background:var(--clr-orange)"></span> Orange
             </label>
-            <label class="op-check active" style="color:var(--clr-tmobile)">
-                <input type="checkbox" value="T-Mobile" checked>
-                <span class="op-dot" style="background:var(--clr-tmobile)"></span> T-Mobile
+            <label class="op-check active" style="color:var(--clr-play)">
+                <input type="checkbox" value="Play" checked>
+                <span class="op-dot" style="background:var(--clr-play)"></span> Play
             </label>
             <label class="op-check active" style="color:var(--clr-plus)">
                 <input type="checkbox" value="Plus" checked>
                 <span class="op-dot" style="background:var(--clr-plus)"></span> Plus
             </label>
+            <label class="op-check active" style="color:var(--clr-tmobile)">
+                <input type="checkbox" value="T-Mobile" checked>
+                <span class="op-dot" style="background:var(--clr-tmobile)"></span> T-Mobile
+            </label>
         </div>
 
         <div class="filter-group">
             <span class="filter-label">Technologia</span>
-            <button class="tech-btn active" data-tech="all">Wszystkie</button>
-            <button class="tech-btn" data-tech="5g_n78">5G n78</button>
-            <button class="tech-btn" data-tech="5g_n28">5G n28</button>
-            <button class="tech-btn" data-tech="5g_any">5G</button>
-            <button class="tech-btn" data-tech="lte">LTE</button>
+            <label class="op-check active">
+                <input type="checkbox" class="tech-check" value="5g_n78" checked>
+                <span class="op-dot" style="background:var(--clr-5g3600)"></span> 5G n78
+            </label>
+            <label class="op-check active">
+                <input type="checkbox" class="tech-check" value="5g_n28" checked>
+                <span class="op-dot" style="background:var(--clr-5g700)"></span> 5G n28
+            </label>
+            <label class="op-check active">
+                <input type="checkbox" class="tech-check" value="5g_any" checked>
+                <span class="op-dot" style="background:var(--clr-5g2100)"></span> 5G
+            </label>
+            <label class="op-check active">
+                <input type="checkbox" class="tech-check" value="lte" checked>
+                <span class="op-dot" style="background:var(--clr-lte)"></span> LTE
+            </label>
         </div>
 
         <div class="filter-group">
-            <span class="filter-label">Max odległość</span>
+            <span class="filter-label">Odległość</span>
             <input type="range" class="dist-slider" id="dist-slider" min="0.5" max="10" step="0.1" value="10">
-            <span class="font-mono" style="font-size:0.78rem; min-width:50px;" id="dist-value">10.0 km</span>
+            <span class="font-mono" style="font-size:0.78rem; min-width:50px;" id="dist-value">10 km</span>
         </div>
 
-        <button class="tech-btn" id="theme-toggle" title="Zmień motyw">🌙</button>
+        <button id="theme-toggle" title="Zmień motyw" style="background:rgba(128,128,128,0.06);border:none;font-size:1.2rem;cursor:pointer;padding:4px 8px;border-radius:var(--radius-sm)">🌙</button>
+
     </div>
 </header>
 
 <div id="map"></div>
-
-<div id="terrain-panel" class="terrain-panel">
-    <div class="container-fluid px-4">
-        <div class="terrain-header">
-            <div class="terrain-title">⛰️ <span id="terrain-station-name">Profil terenu</span></div>
-            <button class="terrain-close" id="terrain-close" title="Zamknij">✕</button>
-        </div>
-        <div id="terrain-loading" class="terrain-loading">
-            <div class="loading-spinner" style="width:20px;height:20px;border-width:2px"></div>
-            <span>Pobieranie danych wysokościowych...</span>
-        </div>
-        <div id="terrain-content" style="display:none">
-            <div class="terrain-chart-wrap">
-                <canvas id="terrain-chart"></canvas>
-            </div>
-            <div id="terrain-stats" class="terrain-stats"></div>
-        </div>
-    </div>
-</div>
 
 <div class="table-wrap">
     <div class="table-scroll" id="table-scroll">
@@ -1088,7 +1084,7 @@
                 <dt>Pasm łącznie</dt><dd>${t.band_count}</dd>
             </dl>
             ${opSections}
-            <button class="popup-terrain-btn" onclick="window.showTerrainProfile(${t._idx})">⛰️ Profil terenu i LOS</button>
+            <button class="popup-terrain-btn" onclick="window.expandTowerDetails(${t._idx})">📋 Szczegóły i profil terenu</button>
         `;
     }
 
@@ -1230,11 +1226,10 @@
             });
         });
 
-        // Technology buttons
-        document.querySelectorAll('.tech-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                document.querySelectorAll('.tech-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
+        // Technology checkboxes
+        document.querySelectorAll('.tech-check').forEach(cb => {
+            cb.addEventListener('change', function() {
+                this.closest('.op-check').classList.toggle('active', this.checked);
                 applyFilters();
             });
         });
@@ -1243,7 +1238,8 @@
         const slider = document.getElementById('dist-slider');
         const distVal = document.getElementById('dist-value');
         slider.addEventListener('input', function() {
-            distVal.textContent = parseFloat(this.value).toFixed(1) + ' km';
+            const v = parseFloat(this.value);
+            distVal.textContent = (v % 1 === 0 ? v.toFixed(0) : v.toFixed(1)) + ' km';
             applyFilters();
         });
 
@@ -1264,30 +1260,29 @@
     }
 
     function applyFilters() {
-        // Gather active operators
         const activeOps = [];
-        document.querySelectorAll('.op-check input:checked').forEach(cb => activeOps.push(cb.value));
+        document.querySelectorAll('.op-check input[type="checkbox"]:not(.tech-check):checked').forEach(cb => activeOps.push(cb.value));
 
-        // Tech filter
-        const tech = document.querySelector('.tech-btn.active')?.dataset.tech || 'all';
+        const activeTechs = [];
+        document.querySelectorAll('.tech-check:checked').forEach(cb => activeTechs.push(cb.value));
 
-        // Distance
         const maxDist = parseFloat(document.getElementById('dist-slider').value);
 
         filteredTowers = allTowers.filter(t => {
-            // Tower must have at least one operator that matches active filters
             const hasMatchingOp = t.operator_names.some(name => activeOps.includes(name));
             if (!hasMatchingOp) return false;
 
             if (t.dist_km > maxDist) return false;
 
-            switch (tech) {
-                case '5g_n78': return t.has_5g_n78;
-                case '5g_n28': return t.has_5g_n28;
-                case '5g_any': return t.has_5g;
-                case 'lte': return t.all_bands.some(b => b.startsWith('LTE'));
-                default: return true;
-            }
+            if (activeTechs.length === 0) return false;
+
+            const matchesTech =
+                (activeTechs.includes('5g_n78') && t.has_5g_n78) ||
+                (activeTechs.includes('5g_n28') && t.has_5g_n28) ||
+                (activeTechs.includes('5g_any') && t.has_5g) ||
+                (activeTechs.includes('lte') && t.all_bands.some(b => b.startsWith('LTE')));
+
+            return matchesTech;
         });
 
         sortAndRender();
@@ -1688,8 +1683,22 @@
     }
 
     function initTerrain() {
-        document.getElementById('terrain-close').addEventListener('click', closeTerrainPanel);
-        window.showTerrainProfile = showTerrainProfile;
+        window.expandTowerDetails = function(idx) {
+            const mainRow = document.querySelector(`tr[data-idx="${idx}"]:not(.band-details)`);
+            if (!mainRow) return;
+            const detailsRow = mainRow.nextElementSibling;
+            if (detailsRow && detailsRow.classList.contains('band-details')) {
+                detailsRow.classList.remove('d-none');
+                const container = detailsRow.querySelector('.inline-terrain');
+                if (container && !container.dataset.loaded) {
+                    container.dataset.loaded = '1';
+                    const tower = allTowers[idx];
+                    renderInlineTerrain(tower, container);
+                }
+            }
+            mainRow.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            highlightTower(idx, 'map');
+        };
     }
 
     // ── BOOT ──
